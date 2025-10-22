@@ -1,59 +1,71 @@
-import { headers as getHeaders } from 'next/headers.js'
-import Image from 'next/image'
-import { getPayload } from 'payload'
 import React from 'react'
-import { fileURLToPath } from 'url'
+import { HeroSection } from '@/components/home/HeroSection'
+import { FeaturedPosts } from '@/components/home/FeaturedPosts'
+import { CategorySection } from '@/components/home/CategorySection'
+import { HomePageAdSection, HomePageBottomAdSection } from '@/components/home/HomePageAds'
+import { Metadata } from 'next'
+import { sharedMetadata } from '@/app/shared-metadata'
+import siteConfig from '@/app/shared-metadata'
+import { getHomePageData } from '@/lib/homepage-actions'
 
-import config from '@/payload.config'
-import './styles.css'
+export const metadata: Metadata = {
+  ...sharedMetadata,
+  title: 'بوابة أفريقيا - أخبار وتحليلات شاملة حول الصومال وقرن أفريقيا',
+  openGraph: {
+    ...sharedMetadata.openGraph,
+    title: 'بوابة أفريقيا - أخبار وتحليلات شاملة حول الصومال وقرن أفريقيا',
+    description:
+      'اكتشف آخر الأخبار والقصص والرؤى من جميع أنحاء الصومال. مصدرك الموثوق للمنظورات الأفريقية حول السياسة والثقافة والأعمال والمزيد.',
+    type: 'website',
+    url: siteConfig.url,
+    siteName: 'بوابة أفريقيا',
+  },
+  twitter: {
+    ...sharedMetadata.twitter,
+    title: 'بوابة أفريقيا - أخبار وتحليلات شاملة حول الصومال وقرن أفريقيا',
+    description:
+      'اكتشف آخر الأخبار والقصص والرؤى من جميع أنحاء الصومال. مصدرك الموثوق للمنظورات الأفريقية حول السياسة والثقافة والأعمال والمزيد.',
+    site: '@bawabaafrica',
+  },
+  alternates: {
+    canonical: new URL('/', siteConfig.url).toString(),
+  },
+}
+
+export const revalidate = 30
 
 export default async function HomePage() {
-  const headers = await getHeaders()
-  const payloadConfig = await config
-  const payload = await getPayload({ config: payloadConfig })
-  const { user } = await payload.auth({ headers })
-
-  const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
+  const {
+    latestPost,
+    heroPosts,
+    trendingPosts,
+    editorsPicks,
+    recentNews,
+    categoriesWithPosts,
+    flashNews,
+  } = await getHomePageData()
 
   return (
-    <div className="home">
-      <div className="content">
-        <picture>
-          <source srcSet="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-favicon.svg" />
-          <Image
-            alt="Payload Logo"
-            height={65}
-            src="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-favicon.svg"
-            width={65}
-          />
-        </picture>
-        {!user && <h1>Welcome to your new project.</h1>}
-        {user && <h1>Welcome back, {user.email}</h1>}
-        <div className="links">
-          <a
-            className="admin"
-            href={payloadConfig.routes.admin}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Go to admin panel
-          </a>
-          <a
-            className="docs"
-            href="https://payloadcms.com/docs"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Documentation
-          </a>
+    <div className="min-h-screen">
+      <HeroSection latestPost={latestPost} recentPosts={heroPosts} flashNews={flashNews} />
+
+      <FeaturedPosts
+        trendingPosts={trendingPosts}
+        editorsPicks={editorsPicks}
+        recentNewsItems={recentNews}
+        heroPosts={heroPosts}
+      />
+
+      <HomePageAdSection />
+
+      <section className=" bg-gray-50">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">أقسام الأخبار</h2>
+          <CategorySection categoriesWithPosts={categoriesWithPosts} />
         </div>
-      </div>
-      <div className="footer">
-        <p>Update this page by editing</p>
-        <a className="codeLink" href={fileURL}>
-          <code>app/(frontend)/page.tsx</code>
-        </a>
-      </div>
+      </section>
+
+      <HomePageBottomAdSection />
     </div>
   )
 }

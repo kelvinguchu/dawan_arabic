@@ -33,6 +33,7 @@ yarn-error.log*
 
 # vercel
 .vercel
+.claude
 
 # typescript
 *.tsbuildinfo
@@ -42,9 +43,26 @@ next-env.d.ts
 
 /media
 
-# Playwright
-node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
+.vercel
+
+output.wav
+output.mp3
+
+google-credentials.json
+/src/scripts
+
+# Next-PWA generated files
+**/public/workbox-*.js
+**/public/sw.js
+**/public/worker-*.js
+!**/public/worker.js # Keep our custom worker file
+**/public/fallback-*.js # If you use offline fallbacks
+**/public/fallback-development.js
+/domain-tester
+
+media.xml
+wp-data.xml
+text-to-speech.js
+new.json
+AGENTS.md
+ARABIC_MIGRATION_PLAN.md
