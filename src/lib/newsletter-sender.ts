@@ -3,7 +3,7 @@ import type { Payload } from 'payload'
 import config from '@/payload.config'
 import { Newsletter, NewsletterCampaign } from '@/payload-types'
 import crypto from 'crypto'
-import DOMPurify from 'isomorphic-dompurify'
+import { sanitizeHTML } from './html-sanitizer'
 
 interface SendNewsletterOptions {
   campaignId: string
@@ -208,49 +208,7 @@ export class NewsletterSender {
       htmlContent = this.processRichTextNodes(richTextContent.root.children)
     }
 
-    return DOMPurify.sanitize(htmlContent, {
-      ALLOWED_TAGS: [
-        'h1',
-        'h2',
-        'h3',
-        'h4',
-        'h5',
-        'h6',
-        'p',
-        'br',
-        'strong',
-        'em',
-        'u',
-        'b',
-        'i',
-        'ul',
-        'ol',
-        'li',
-        'a',
-        'img',
-        'table',
-        'thead',
-        'tbody',
-        'tr',
-        'td',
-        'th',
-        'div',
-        'span',
-        'blockquote',
-      ],
-      ALLOWED_ATTR: ['href', 'target', 'rel', 'src', 'alt', 'width', 'height'],
-      ALLOWED_URI_REGEXP:
-        /^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i,
-      ADD_ATTR: ['target', 'rel'],
-      FORBID_TAGS: ['script', 'object', 'embed', 'form', 'input', 'iframe'],
-      FORBID_ATTR: ['onerror', 'onload', 'onclick', 'onmouseover'],
-      KEEP_CONTENT: false,
-      RETURN_DOM: false,
-      RETURN_DOM_FRAGMENT: false,
-      SANITIZE_DOM: true,
-      FORCE_BODY: false,
-      SAFE_FOR_TEMPLATES: false,
-    })
+    return sanitizeHTML(htmlContent)
   }
 
   private processRichTextNodes(nodes: LexicalNode[]): string {

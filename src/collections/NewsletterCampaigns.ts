@@ -1,8 +1,8 @@
 import type { CollectionConfig } from 'payload'
 import { convertLexicalToHTMLAsync } from '@payloadcms/richtext-lexical/html-async'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import DOMPurify from 'isomorphic-dompurify'
 import { buildUnsubscribeUrl } from '../utils/unsubscribe.ts'
+import { sanitizeHTML } from '../lib/html-sanitizer'
 
 function escapeHtml(unsafe: string): string {
   return unsafe
@@ -40,50 +40,7 @@ async function generateEmailHTML(
       })
 
       htmlContent = enhanceHTMLWithStyling(htmlContent)
-      htmlContent = DOMPurify.sanitize(htmlContent, {
-        ALLOWED_TAGS: [
-          'h1',
-          'h2',
-          'h3',
-          'h4',
-          'h5',
-          'h6',
-          'p',
-          'br',
-          'strong',
-          'em',
-          'u',
-          'i',
-          'b',
-          'ul',
-          'ol',
-          'li',
-          'blockquote',
-          'a',
-          'img',
-          'div',
-          'span',
-          'table',
-          'thead',
-          'tbody',
-          'tr',
-          'td',
-          'th',
-        ],
-        ALLOWED_ATTR: [
-          'href',
-          'src',
-          'alt',
-          'title',
-          'style',
-          'target',
-          'width',
-          'height',
-          'class',
-          'id',
-        ],
-        ALLOWED_URI_REGEXP: /^(?:(?:https?|mailto):|[^a-z]|[a-z+.-]+(?:[^a-z+.\-:]|$))/i,
-      })
+      htmlContent = sanitizeHTML(htmlContent)
     } catch (error) {
       console.error('Error converting Lexical to HTML:', error)
       htmlContent =

@@ -52,8 +52,8 @@ export const FeaturedPosts: React.FC<FeaturedPostsProps> = ({
     <section className="pt-0 pb-8 sm:pb-12 bg-linear-to-b from-white to-gray-50">
       <div className="container mx-auto px-4">
         <div className="mb-6 sm:mb-10">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div className="flex items-center gap-2 flex-row-reverse">
+          <div className="flex flex-col items-end sm:flex-row-reverse sm:items-center sm:justify-between gap-4">
+            <div className="flex items-center gap-2 flex-row-reverse justify-end w-full sm:w-auto">
               <TrendingUp className="h-5 w-5 text-primary" strokeWidth={2.5} />
               <h2 className="font-sans text-xl sm:text-2xl font-bold text-gray-900 text-right">
                 القصص الشائعة
