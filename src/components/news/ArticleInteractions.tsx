@@ -43,7 +43,7 @@ export const ArticleInteractions: React.FC<ArticleInteractionsProps> = ({ post, 
       setIsFavorited(false)
       setIsLiked(false)
     }
-  }, [currentUser, post.id])
+  }, [currentUser, post])
 
   const handleToggleFavorite = async () => {
     if (!currentUser) {

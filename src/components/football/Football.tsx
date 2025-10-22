@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { ChevronRight, AlertCircle, Loader2 } from 'lucide-react'
+import { ChevronLeft, AlertCircle, Loader2 } from 'lucide-react'
 
 interface FootballProps {
   selectedCompetition: string | null

@@ -2,6 +2,17 @@ import React from 'react'
 import { ExternalLink, FileText, Download } from 'lucide-react'
 import { Media } from '../../../payload-types'
 
+declare global {
+  interface Window {
+    twttr?: {
+      widgets?: {
+        load: (element?: HTMLElement | null) => void
+      }
+    }
+    opera?: string
+  }
+}
+
 // Twitter Embed Block Component
 const TwitterEmbedBlock: React.FC<{
   content: string
@@ -14,7 +25,7 @@ const TwitterEmbedBlock: React.FC<{
   React.useEffect(() => {
     const loadTwitterWidgets = async () => {
       // Check if Twitter widgets script is already loaded
-      if (!(window as any).twttr) {
+      if (!window.twttr) {
         // Load the script
         const script = document.createElement('script')
         script.src = 'https://platform.twitter.com/widgets.js'
@@ -24,8 +35,8 @@ const TwitterEmbedBlock: React.FC<{
         script.onload = () => {
           setIsLoaded(true)
           // Process widgets after script loads
-          if ((window as any).twttr?.widgets && containerRef.current) {
-            ;(window as any).twttr.widgets.load(containerRef.current)
+          if (window.twttr?.widgets && containerRef.current) {
+            window.twttr.widgets.load(containerRef.current)
           }
         }
 
@@ -33,8 +44,8 @@ const TwitterEmbedBlock: React.FC<{
       } else {
         // Script already loaded, just process widgets
         setIsLoaded(true)
-        if ((window as any).twttr?.widgets && containerRef.current) {
-          ;(window as any).twttr.widgets.load(containerRef.current)
+        if (window.twttr?.widgets && containerRef.current) {
+          window.twttr.widgets.load(containerRef.current)
         }
       }
     }
@@ -298,9 +309,9 @@ const PDFBlock: React.FC<{
   React.useEffect(() => {
     // Detect mobile devices
     const checkMobile = () => {
-      const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera
       const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i
-      return mobileRegex.test(userAgent) || window.innerWidth <= 768
+      return mobileRegex.test(userAgent || '') || window.innerWidth <= 768
     }
 
     setIsMobile(checkMobile())
@@ -407,7 +418,7 @@ const PDFBlock: React.FC<{
 
                 {showDownloadButton && (
                   <p className="text-xs text-slate-500 mt-4">
-                    نصيحة: استخدم "فتح في المتصفح" لعرض عارضات PDF على جهازك
+                    نصيحة: استخدم &quot;فتح في المتصفح&quot; لعرض عارضات PDF على جهازك
                   </p>
                 )}
 

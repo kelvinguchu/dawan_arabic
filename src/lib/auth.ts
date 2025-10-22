@@ -264,7 +264,7 @@ export async function resendVerificationUser(email: string): Promise<ResendVerif
 
     const user = users.docs[0]
 
-    if (user._verified || user.isEmailVerified) {
+    if (user.isEmailVerified) {
       return {
         success: false,
         error: 'This email address is already verified.',

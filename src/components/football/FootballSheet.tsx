@@ -10,7 +10,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 import Football from './Football'
-import { ChevronLeft } from 'lucide-react'
+import { ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 interface FootballSheetProps {

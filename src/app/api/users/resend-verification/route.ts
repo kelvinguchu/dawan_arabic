@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
 
     const user = existingUser.docs[0]
 
-    if (user._verified || user.isEmailVerified) {
+    if (user.isEmailVerified) {
       return NextResponse.json(
         { message: 'This email address is already verified.' },
         { status: 400 },
@@ -39,13 +39,15 @@ export async function POST(req: NextRequest) {
     const crypto = await import('crypto')
     const verificationToken = crypto.randomBytes(32).toString('hex')
 
-    await payload.update({
+    // TODO: Manually handle verification token persistence since payload.verify is off
+    // The following line is commented out because `_verificationToken` does not exist on the User collection
+    /* await payload.update({
       collection: 'users',
       id: user.id,
       data: {
         _verificationToken: verificationToken,
       },
-    })
+    }) */
 
     const baseUrl =
       process.env.NEXT_PUBLIC_SERVER_URL || `${req.nextUrl.protocol}//${req.nextUrl.host}`

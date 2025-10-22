@@ -26,9 +26,6 @@ const prioritizedCategoryNames: string[] = [
   'اتصل بنا',
 ]
 
-const UNCATEGORISED_CATEGORY_NAMES = ['Uncategorized', 'Uncategorised']; // Filter out uncategorized categories
-const UNCATEGORISED_CATEGORY_SLUGS = ['uncategorized', 'uncategorised']; // Filter out uncategorized slugs
-
 const CategoryLinks: React.FC<CategoryLinksProps> = ({
   categories,
   isMobile = false,
