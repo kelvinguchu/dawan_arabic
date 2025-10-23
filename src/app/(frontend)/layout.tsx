@@ -212,7 +212,7 @@ export default function RootLayout({ children }: { readonly children: React.Reac
 
   return (
     <html
-      lang="ar"
+      lang="en"
       dir="rtl"
       suppressHydrationWarning
       className={`scroll-smooth ${notoSansArabic.className}`}
