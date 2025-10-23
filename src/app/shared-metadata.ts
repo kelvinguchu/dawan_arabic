@@ -68,7 +68,7 @@ export const sharedMetadata: Metadata = {
     description: siteConfig.description,
     images: [
       {
-        url: '/og-default.png',
+        url: '/logo.png',
         width: 1200,
         height: 630,
         alt: `${siteConfig.name} - ${siteConfig.description}`,
@@ -80,7 +80,7 @@ export const sharedMetadata: Metadata = {
     card: 'summary_large_image',
     title: siteConfig.name,
     description: siteConfig.description,
-    images: ['/og-default.png'],
+    images: ['/logo.png'],
     creator: '@dawanatv',
     site: '@dawanatv',
   },

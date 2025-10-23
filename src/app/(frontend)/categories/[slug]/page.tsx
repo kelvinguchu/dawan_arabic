@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     }
   }
 
-  const ogImageUrl = `${siteConfig.url}/og-default.png`
+  const ogImageUrl = `${siteConfig.url}/logo.png`
 
   return {
     title: `${category.name} - أخبار ومقالات`,

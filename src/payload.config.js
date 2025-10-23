@@ -28,7 +28,7 @@ export default buildConfig({
     meta: {
       titleSuffix: '- بوابة أفريقيا',
       favicon: '/favicon.png',
-      ogImage: '/og-default.png',
+      ogImage: '/logo.png',
       icons: [
         {
           rel: 'icon',

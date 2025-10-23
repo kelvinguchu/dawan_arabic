@@ -101,7 +101,7 @@ export async function sendNotificationToAll(
       body,
       icon: '/logo.png',
       badge: '/favicon.png',
-      image: image || '/og-default.png',
+      image: image || '/logo.png',
       url: url || '/',
       timestamp: Date.now(),
       requireInteraction: false,

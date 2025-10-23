@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/og-default.png',
+        url: '/logo.png',
         width: 1200,
         height: 630,
         alt: 'بوابة أفريقيا - أسواق المال والتحليلات في أفريقيا',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: 'بلوكتشين | بوابة أفريقيا - أسواق المال والتحليلات في أفريقيا',
     description:
       'تابع أسواق المال في أفريقيا، بيانات في الوقت الفعلي، تحليلات الخبراء ورؤى حول الاقتصاد والأعمال.',
-    images: ['/og-default.png'],
+    images: ['/logo.png'],
   },
   alternates: {
     canonical: new URL('/blockchain', siteConfig.url).toString(),

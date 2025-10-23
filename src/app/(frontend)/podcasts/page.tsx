@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/og-default.png',
+        url: '/logo.png',
         width: 1200,
         height: 630,
         alt: 'بوابة أفريقيا - بودكاست وقصص صوتية صومالية',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: 'البودكاست | بوابة أفريقيا - أصوات وقصص صومالية',
     description:
       'استمع إلى بودكاستات صومالية تتناول السياسة والثقافة والأعمال والشؤون المحلية في الصومال.',
-    images: ['/og-default.png'],
+    images: ['/logo.png'],
   },
   keywords: [
     'بودكاست صومالي',
@@ -126,7 +126,8 @@ export default async function PodcastsPage({ searchParams }: Readonly<PodcastsPa
           {podcastsData.totalPages > 1 && (
             <div className="mt-12 flex justify-center">
               <p className="text-sm text-gray-600">
-                                Bogga {podcastsData.page} من {podcastsData.totalPages} • {podcastsData.totalDocs} حلقة إجمالاً
+                Bogga {podcastsData.page} من {podcastsData.totalPages} • {podcastsData.totalDocs}{' '}
+                حلقة إجمالاً
               </p>
             </div>
           )}

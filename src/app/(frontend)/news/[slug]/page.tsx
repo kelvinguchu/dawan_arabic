@@ -29,20 +29,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? coverImageUrl.startsWith('http')
       ? coverImageUrl
       : `${siteConfig.url}${coverImageUrl}`
-    : `${siteConfig.url}/og-default.png`
+    : `${siteConfig.url}/logo.png`
 
   return {
     ...sharedMetadata,
     title: `${post.name} | بوابة أفريقيا`,
     description:
-      excerpt ||
-      'اقرأ مقالًا شيقًا من بوابة أفريقيا — مصدرك الموثوق للأخبار والآراء من الصومال.',
+      excerpt || 'اقرأ مقالًا شيقًا من بوابة أفريقيا — مصدرك الموثوق للأخبار والآراء من الصومال.',
     openGraph: {
       ...sharedMetadata.openGraph,
       title: post.name,
       description:
-        excerpt ||
-        'اقرأ مقالًا شيقًا من بوابة أفريقيا — مصدرك الموثوق للأخبار والآراء من الصومال.',
+        excerpt || 'اقرأ مقالًا شيقًا من بوابة أفريقيا — مصدرك الموثوق للأخبار والآراء من الصومال.',
       url: new URL(`/news/${slug}`, siteConfig.url).toString(),
       type: 'article',
       publishedTime: post.createdAt,

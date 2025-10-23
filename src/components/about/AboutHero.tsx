@@ -7,7 +7,7 @@ export const AboutHero: React.FC = () => {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url(/og-default.png)',
+          backgroundImage: 'url(/logo.png)',
         }}
       />
 
@@ -30,9 +30,8 @@ export const AboutHero: React.FC = () => {
                   أخبار وتحليلات معمقة حول العالم العربي
                 </p>
                 <p className="text-xs sm:text-sm md:text-base text-gray-100 leading-relaxed max-w-2xl mx-auto drop-shadow-sm text-right">
-                  وسيلة إعلامية حيوية تأسست في 2023، تركز على العالم العربي،
-                  وتقدم أخباراً شاملة، تحليلات معمقة، وقصص ثقافية
-                  مهمة.
+                  وسيلة إعلامية حيوية تأسست في 2023، تركز على العالم العربي، وتقدم أخباراً شاملة،
+                  تحليلات معمقة، وقصص ثقافية مهمة.
                 </p>
               </div>
             </div>
@@ -58,7 +57,9 @@ export const AboutHero: React.FC = () => {
               <h3 className="text-xs sm:text-sm md:text-base font-bold text-white mb-1 drop-shadow-md text-right">
                 لغات متعددة
               </h3>
-              <p className="text-xs text-gray-200 drop-shadow-sm hidden sm:block text-right">3 لغات</p>
+              <p className="text-xs text-gray-200 drop-shadow-sm hidden sm:block text-right">
+                3 لغات
+              </p>
             </div>
 
             <div className="bg-white/15 backdrop-blur-2xl border border-white/30 rounded-xl p-3 sm:p-4 text-center group hover:bg-white/25 hover:shadow-xl hover:shadow-primary/80 hover:border-primary/40 transition-all duration-500 hover:scale-105">
@@ -68,7 +69,9 @@ export const AboutHero: React.FC = () => {
               <h3 className="text-xs sm:text-sm md:text-base font-bold text-white mb-1 drop-shadow-md text-right">
                 تأسست
               </h3>
-              <p className="text-xs text-gray-200 drop-shadow-sm hidden sm:block text-right">2023</p>
+              <p className="text-xs text-gray-200 drop-shadow-sm hidden sm:block text-right">
+                2023
+              </p>
             </div>
           </div>
 
