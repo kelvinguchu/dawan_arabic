@@ -136,10 +136,10 @@ export default function ResetPasswordPage() {
       <div className="w-full max-w-md">
         <Card className="border-slate-200 shadow-lg overflow-hidden">
           <CardHeader className="bg-white space-y-1 pb-6">
-            <CardTitle className="text-2xl font-semibold text-slate-900 text-center">
+            <CardTitle className="text-3xl font-semibold text-slate-900 text-center">
               إعادة تعيين كلمة المرور
             </CardTitle>
-            <CardDescription className="text-slate-500 text-center">
+            <CardDescription className="text-slate-500 text-center text-base">
               أدخل كلمة المرور الجديدة أدناه
             </CardDescription>
           </CardHeader>
@@ -147,7 +147,7 @@ export default function ResetPasswordPage() {
           <CardContent className="bg-white pt-2 pb-8 px-6">
             <form className="space-y-5" onSubmit={handleSubmit}>
               <div className="space-y-1.5 text-right">
-                <Label htmlFor="password" className="text-sm font-medium text-slate-700">
+                <Label htmlFor="password" className="text-base font-medium text-slate-700">
                   كلمة المرور الجديدة
                 </Label>
                 <div className="relative">
@@ -160,7 +160,7 @@ export default function ResetPasswordPage() {
                     type={showPassword ? 'text' : 'password'}
                     autoComplete="new-password"
                     required
-                    className="pr-10 pl-10 bg-white border-slate-200 focus:border-primary focus:ring-primary/80 text-sm text-right"
+                    className="pr-10 pl-10 bg-white border-slate-200 focus:border-primary focus:ring-primary/80 text-base text-right"
                     placeholder="أدخل كلمة مرور جديدة"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -177,7 +177,7 @@ export default function ResetPasswordPage() {
               </div>
 
               <div className="space-y-1.5 text-right">
-                <Label htmlFor="confirmPassword" className="text-sm font-medium text-slate-700">
+                <Label htmlFor="confirmPassword" className="text-base font-medium text-slate-700">
                   تأكيد كلمة المرور الجديدة
                 </Label>
                 <div className="relative">
@@ -190,7 +190,7 @@ export default function ResetPasswordPage() {
                     type={showConfirmPassword ? 'text' : 'password'}
                     autoComplete="new-password"
                     required
-                    className="pr-10 pl-10 bg-white border-slate-200 focus:border-primary focus:ring-primary/80 text-sm text-right"
+                    className="pr-10 pl-10 bg-white border-slate-200 focus:border-primary focus:ring-primary/80 text-base text-right"
                     placeholder="تأكيد كلمة المرور الجديدة"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
@@ -211,8 +211,8 @@ export default function ResetPasswordPage() {
               </div>
 
               <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 text-right">
-                <p className="text-xs font-medium text-slate-600 mb-2">متطلبات كلمة المرور:</p>
-                <ul className="text-xs text-slate-500 space-y-1">
+                <p className="text-sm font-medium text-slate-600 mb-2">متطلبات كلمة المرور:</p>
+                <ul className="text-sm text-slate-500 space-y-1">
                   <li className="flex items-center gap-1 flex-row-reverse">
                     <div
                       className={`w-1.5 h-1.5 rounded-full ${password.length >= 8 ? 'bg-green-500' : 'bg-slate-300'}`}
@@ -254,7 +254,7 @@ export default function ResetPasswordPage() {
                     <AlertCircle className="h-4 w-4 text-red-600" />
                   )}
                   <AlertDescription
-                    className={`${message.type === 'success' ? 'text-green-800' : 'text-red-800'}`}
+                    className={`${message.type === 'success' ? 'text-green-800' : 'text-red-800'} text-base`}
                   >
                     {message.text}
                   </AlertDescription>
@@ -264,7 +264,7 @@ export default function ResetPasswordPage() {
               <div className="pt-2">
                 <Button
                   type="submit"
-                  className="w-full bg-primary hover:bg-primary/80 shadow-sm transition-colors text-sm"
+                  className="w-full bg-primary hover:bg-primary/80 shadow-sm transition-colors text-base"
                   disabled={isLoading || !token || !password || !confirmPassword}
                 >
                   {isLoading ? (
@@ -280,7 +280,7 @@ export default function ResetPasswordPage() {
             </form>
 
             <div className="mt-6 text-center space-y-4">
-              <p className="text-sm text-slate-500">
+              <p className="text-base text-slate-500">
                 هل تذكرت كلمة المرور؟{' '}
                 <Link href="/login" className="font-medium text-primary hover:text-primary/80">
                   سجل الدخول من هنا
@@ -289,7 +289,7 @@ export default function ResetPasswordPage() {
 
               <Link
                 href="/"
-                className="inline-flex items-center text-sm text-slate-500 hover:text-primary transition-colors"
+                className="inline-flex items-center text-base text-slate-500 hover:text-primary transition-colors"
               >
                 <ArrowLeft className="h-4 w-4 ml-1" />
                 العودة إلى الصفحة الرئيسية
@@ -299,7 +299,7 @@ export default function ResetPasswordPage() {
         </Card>
 
         <div className="mt-6 text-center">
-          <p className="text-xs text-slate-500 leading-relaxed">
+          <p className="text-sm text-slate-500 leading-relaxed">
             بعد إعادة تعيين كلمة المرور بنجاح، سيتم توجيهك إلى صفحة تسجيل الدخول.
           </p>
         </div>

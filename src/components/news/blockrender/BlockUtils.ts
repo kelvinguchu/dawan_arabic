@@ -526,7 +526,7 @@ export const CSS_CLASSES = {
   BUTTON_SECONDARY:
     'px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition-colors',
   TEXT_MUTED: 'text-gray-600',
-  TEXT_SMALL: 'text-sm',
+  TEXT_SMALL: 'text-base',
   LOADING: 'animate-pulse bg-gray-200 rounded',
   ERROR: 'text-red-600 bg-red-50 border border-red-200 p-4 rounded-lg',
   SUCCESS: 'text-green-600 bg-green-50 border border-green-200 p-4 rounded-lg',

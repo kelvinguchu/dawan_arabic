@@ -129,7 +129,7 @@ export const CategoryPostsList: React.FC<CategoryPostsListProps> = ({
   if (isError) {
     return (
       <div className="container mx-auto px-4 py-12 text-center">
-        <p className="text-red-500 text-right">
+        <p className="text-red-500 text-right text-lg">
           خطأ في جلب الأخبار: {error?.message || 'خطأ غير متوقع'}
         </p>
       </div>
@@ -140,22 +140,22 @@ export const CategoryPostsList: React.FC<CategoryPostsListProps> = ({
     <div className="container mx-auto px-4 py-6 sm:py-8 md:py-12">
       <div className="mb-6 sm:mb-8 md:mb-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 sm:gap-6 flex-row-reverse">
         <div className="text-right">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-sans font-bold text-gray-900 mb-1 sm:mb-2 text-right">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-gray-900 mb-1 sm:mb-2 text-right">
             {categoryName}
           </h1>
-          <p className="text-gray-600 text-sm sm:text-base md:text-lg text-right">
+          <p className="text-gray-600 text-base sm:text-lg md:text-xl text-right">
             ابحث في مقالات حول {categoryName.toLowerCase()}.
           </p>
         </div>
         <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full md:w-auto flex-row-reverse">
           <CategorySearch
-            inputClassName="h-9 sm:h-10 w-full bg-white shadow-sm text-sm"
+            inputClassName="h-9 sm:h-10 w-full bg-white shadow-sm text-base"
             className="w-full sm:flex-grow"
             categorySlug={categorySlug}
             onSearchChange={handleSearchChange}
           />
           <Select value={sortBy} onValueChange={handleSortChange}>
-            <SelectTrigger className="h-9 sm:h-10 w-full sm:w-40 md:w-48 bg-white shadow-sm text-xs sm:text-sm">
+            <SelectTrigger className="h-9 sm:h-10 w-full sm:w-40 md:w-48 bg-white shadow-sm text-sm sm:text-base">
               <ListFilter className="h-3.5 w-3.5 sm:h-4 sm:w-4 ml-1.5 sm:ml-2 text-gray-500" />
               <SelectValue placeholder="ترتيب حسب" />
             </SelectTrigger>
@@ -183,9 +183,9 @@ export const CategoryPostsList: React.FC<CategoryPostsListProps> = ({
         </div>
       ) : (
         <div className="text-center py-6 sm:py-8 md:py-10 text-right">
-          <p className="text-lg sm:text-xl text-gray-500">لم يتم العثور على مقالات في هذا القسم.</p>
+          <p className="text-xl sm:text-2xl text-gray-500">لم يتم العثور على مقالات في هذا القسم.</p>
           {searchTerm && (
-            <p className="text-sm text-gray-400 mt-2">
+            <p className="text-base text-gray-400 mt-2">
               حاول تغيير البحث أو التصفية.
             </p>
           )}
@@ -203,7 +203,7 @@ export const CategoryPostsList: React.FC<CategoryPostsListProps> = ({
           >
             <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
           </Button>
-          <span className="text-xs sm:text-sm text-gray-700">
+          <span className="text-sm sm:text-base text-gray-700">
             الصفحة {currentPage} من {totalPages}
           </span>
           <Button

@@ -30,14 +30,14 @@ const Footer: React.FC = () => {
                 width={140}
                 height={42}
                 priority
-                className="mb-3 sm:mb-4 w-auto h-[36px] sm:h-[42px]"
+                className="mb-3 sm:mb-4 w-auto h-[43px] sm:h-[50px]"
               />
-              <p className="text-slate-300 text-sm max-w-xs">
+              <p className="text-slate-300 text-base max-w-xs">
                 أخبار وتحليلات شاملة حول الصومال وقرن أفريقيا
               </p>
             </div>
 
-            <div className="flex flex-col space-y-2 sm:space-y-3 text-slate-300 text-sm">
+            <div className="flex flex-col space-y-2 sm:space-y-3 text-slate-300 text-base">
               <div className="flex items-center flex-row-reverse">
                 <BiMap className="h-4 w-4 sm:h-5 sm:w-5 ml-3 text-primary" />
                 <span>شارع مارينيو، مقديشو، الصومال</span>
@@ -88,10 +88,10 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="hidden sm:block sm:col-span-1 lg:col-span-2">
-            <h4 className="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-white relative pb-2 before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-10 sm:before:w-12 before:h-0.5 before:bg-primary text-right">
+            <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white relative pb-2 before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-10 sm:before:w-12 before:h-0.5 before:bg-primary text-right">
               روابط سريعة
             </h4>
-            <ul className="space-y-1.5 sm:space-y-2 text-sm">
+            <ul className="space-y-1.5 sm:space-y-2 text-base">
               <li>
                 <Link
                   href="/"
@@ -130,10 +130,10 @@ const Footer: React.FC = () => {
         <FooterNewsletter />
 
         <div className="border-t border-slate-800 mt-6 pt-6 flex flex-col sm:flex-row justify-between items-center">
-          <p className="text-slate-400 text-xs sm:text-sm">
+          <p className="text-slate-400 text-sm sm:text-base">
             &copy; {currentYear} بوابة أفريقيا. جميع الحقوق محفوظة.
           </p>
-          <p className="text-slate-500 text-xs mt-2 sm:mt-0">
+          <p className="text-slate-500 text-sm mt-2 sm:mt-0">
             صمم وطور بواسطة{' '}
             <a
               href="https://www.kulmi.digital"
@@ -147,11 +147,11 @@ const Footer: React.FC = () => {
           <div className="mt-4 sm:mt-0 flex flex-wrap justify-center gap-4 sm:gap-6">
             <Link
               href="/privacy-policy"
-              className="text-slate-400 hover:text-primary text-xs sm:text-sm"
+              className="text-slate-400 hover:text-primary text-sm sm:text-base"
             >
               سياسة الخصوصية
             </Link>
-            <Link href="/terms" className="text-slate-400 hover:text-primary text-xs sm:text-sm">
+            <Link href="/terms" className="text-slate-400 hover:text-primary text-sm sm:text-base">
               شروط الخدمة
             </Link>
           </div>

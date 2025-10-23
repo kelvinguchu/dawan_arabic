@@ -24,6 +24,7 @@ export const RichText: Block = {
           }),
     ],
       }),
+      localized: true,
     },
   ],
 }

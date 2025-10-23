@@ -43,20 +43,20 @@ export const TopPosts: React.FC<TopPostsProps> = ({ posts }) => {
                   />
                 ) : (
                   <div className="h-full w-full bg-linear-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                    <span className="text-gray-400 text-xs sm:text-sm">لا توجد صورة</span>
+                    <span className="text-gray-400 text-sm sm:text-base">لا توجد صورة</span>
                   </div>
                 )}
               </div>
               <CardContent className="p-3 sm:p-5 flex flex-col grow">
                 <div className="grow">
-                  <h3 className="font-sans text-base sm:text-lg font-bold leading-tight line-clamp-2 mb-2 sm:mb-3 text-gray-800 group-hover:text-primary transition-colors text-right">
+                  <h3 className="font-sans text-lg sm:text-xl font-bold leading-tight line-clamp-2 mb-2 sm:mb-3 text-gray-800 group-hover:text-primary transition-colors text-right">
                     {post.name}
                   </h3>
-                  <p className="text-xs sm:text-sm text-gray-600 line-clamp-2 mb-3 sm:mb-4">
+                  <p className="text-sm sm:text-base text-gray-600 line-clamp-2 mb-3 sm:mb-4">
                     {excerpt}
                   </p>
                 </div>
-                <div className="flex items-center text-[10px] sm:text-xs text-gray-500 mb-2 sm:mb-3 gap-2 sm:gap-3 flex-wrap flex-row-reverse">
+                <div className="flex items-center text-xs sm:text-sm text-gray-500 mb-2 sm:mb-3 gap-2 sm:gap-3 flex-wrap flex-row-reverse">
                   <span className="flex items-center">
                     <Clock className="ml-1 h-2.5 w-2.5 sm:h-3 sm:w-3" />
                     <TimeAgo dateString={post.createdAt} />
@@ -69,7 +69,7 @@ export const TopPosts: React.FC<TopPostsProps> = ({ posts }) => {
                   )}
                 </div>
                 <div className="flex items-center text-primary group-hover:text-primary/80 flex-row-reverse">
-                  <span className="text-xs sm:text-sm">اقرأ المزيد</span>
+                  <span className="text-sm sm:text-base">اقرأ المزيد</span>
                   <ArrowRight className="mr-1 sm:mr-2 h-3 w-3 sm:h-3.5 sm:w-3.5 transition-transform duration-300 group-hover:-translate-x-1 rotate-180" />
                 </div>
               </CardContent>

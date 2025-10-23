@@ -4,6 +4,7 @@ import { Media } from '@/payload-types'
 import { FileText } from 'lucide-react'
 import { LexicalContent } from './BlockUtils'
 import ImageStructuredData from '@/components/structured-data/ImageStructuredData'
+import { getLocalizedField, extractPlainTextFromLexical } from '@/utils/postUtils'
 
 interface ImageBlockProps {
   image: Media | string | null
@@ -59,7 +60,7 @@ export const ImageBlock: React.FC<ImageBlockProps> = ({ image, altText }) => {
             className="w-full h-auto object-contain max-h-[500px] sm:max-h-[600px] md:max-h-[700px]"
           />
         </div>
-        {alt && <figcaption className="text-center text-sm text-gray-600 mt-3">{alt}</figcaption>}
+        {alt && <figcaption className="text-center text-base text-gray-600 mt-3">{alt}</figcaption>}
       </figure>
       {imageObj && (
         <ImageStructuredData
@@ -81,25 +82,19 @@ export const CoverBlock: React.FC<CoverBlockProps> = ({
   const imageUrl = typeof image === 'string' ? null : image?.url
   const imageObj = typeof image === 'string' ? null : image
 
-  // Extract heading text from Lexical data structure if available
-  let headingText = 'عنوان المقال'
+  let processedHeadingText: string = 'عنوان المقال'; // Default fallback
 
-  if (heading && typeof heading === 'object') {
-    // Try to extract from Lexical structure
-    const lexicalHeading = heading as LexicalContent
-    if (lexicalHeading.root?.children?.[0]) {
-      const firstChild = lexicalHeading.root.children[0]
-      if (
-        'children' in firstChild &&
-        firstChild.children?.[0] &&
-        'text' in firstChild.children[0]
-      ) {
-        headingText = String(firstChild.children[0].text)
-      }
+  if (heading) {
+    if (typeof heading === 'string') {
+      processedHeadingText = heading;
+    } else if (typeof heading === 'object' && 'root' in heading) {
+      processedHeadingText = extractPlainTextFromLexical(heading);
+    } else {
+      processedHeadingText = getLocalizedField(heading, 'عنوان المقال');
     }
-  } else if (typeof heading === 'string') {
-    headingText = heading
   }
+
+  const processedSubheading = getLocalizedField(subheading, '');
 
   return (
     <div className="my-8 sm:my-10 md:my-12 relative rounded-xl overflow-hidden shadow-xl min-h-[300px] sm:min-h-[400px] md:min-h-[500px]">
@@ -108,7 +103,7 @@ export const CoverBlock: React.FC<CoverBlockProps> = ({
         <>
           <Image
             src={imageUrl}
-            alt={imageObj?.alt || headingText}
+            alt={getLocalizedField(imageObj?.alt, processedHeadingText)}
             fill
             className="object-cover"
             priority
@@ -123,12 +118,12 @@ export const CoverBlock: React.FC<CoverBlockProps> = ({
 
       {!hideTextOverlay && (
         <div className="relative z-10 flex flex-col justify-center items-center text-center h-full p-6 sm:p-10 md:p-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 max-w-3xl drop-shadow-md">
-            {headingText}
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 max-w-3xl drop-shadow-md">
+            {processedHeadingText}
           </h2>
-          {subheading && (
-            <p className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-2xl font-light drop-shadow-sm">
-              {subheading}
+          {processedSubheading && (
+            <p className="text-xl sm:text-2xl md:text-3xl text-white/90 max-w-2xl font-light drop-shadow-sm">
+              {processedSubheading}
             </p>
           )}
         </div>
@@ -220,7 +215,7 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
       </div>
 
       {caption && (
-        <figcaption className="text-center text-gray-600 mt-3 text-sm">{caption}</figcaption>
+        <figcaption className="text-center text-gray-600 mt-3 text-base">{caption}</figcaption>
       )}
     </figure>
   )

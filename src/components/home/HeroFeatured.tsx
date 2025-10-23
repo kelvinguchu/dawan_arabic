@@ -34,7 +34,7 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({ post }) => {
         <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
 
         <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6">
-          <div className="mb-2 flex items-center gap-2 text-xs text-gray-200">
+          <div className="mb-2 flex items-center gap-2 text-sm text-gray-200">
             <span className="inline-flex items-center gap-1 bg-white/15 text-white px-2 py-0.5 rounded">
               مميز
             </span>
@@ -49,15 +49,15 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({ post }) => {
               </span>
             )}
           </div>
-          <h2 className="text-white font-sans font-bold text-xl sm:text-2xl md:text-3xl leading-tight mb-2 text-right">
+          <h2 className="text-white font-sans font-bold text-2xl sm:text-3xl md:text-4xl leading-tight mb-2 text-right">
             {post.name}
           </h2>
           {excerpt && (
-            <p className="text-gray-200/95 text-sm sm:text-base leading-relaxed line-clamp-2 sm:line-clamp-3 max-w-2xl text-right">
+            <p className="text-gray-200/95 text-base sm:text-lg leading-relaxed line-clamp-2 sm:line-clamp-3 max-w-2xl text-right">
               {excerpt}
             </p>
           )}
-          <div className="mt-3 inline-flex items-center gap-2 rounded-md bg-primary text-white px-3 py-2 text-xs sm:text-sm flex-row-reverse">
+          <div className="mt-3 inline-flex items-center gap-2 rounded-md bg-primary text-white px-3 py-2 text-sm sm:text-base flex-row-reverse">
             اقرأ القصة كاملة
             <ArrowRight className="h-4 w-4 rotate-180" />
           </div>

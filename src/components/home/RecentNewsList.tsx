@@ -19,12 +19,12 @@ export const RecentNewsList: React.FC<RecentNewsListProps> = ({ posts, postsToSh
       >
         <div className="flex items-center gap-1 sm:gap-2 flex-row-reverse">
           <Newspaper className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-          <h2 className="font-sans text-base sm:text-xl font-bold text-gray-900 text-right">
+          <h2 className="font-sans text-lg sm:text-2xl font-bold text-gray-900 text-right">
             أحدث الأخبار
           </h2>
         </div>
-        <div className="text-[10px] sm:text-xs text-primary font-medium">
-          {postsToShow} مقالات
+        <div className="text-xs sm:text-sm text-primary font-medium">
+          {postsToShow} مقالاً
         </div>
       </div>
 

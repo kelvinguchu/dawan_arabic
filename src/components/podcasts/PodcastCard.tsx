@@ -63,19 +63,19 @@ export const PodcastCard: React.FC<PodcastCardProps> = ({ podcast, variant = 'de
             <div className="grow min-w-0 space-y-1 text-right">
               <div className="flex items-center gap-2 text-xs text-slate-500 flex-row-reverse">
                 {podcast.episodeNumber && (
-                  <Badge className="bg-primary/80 text-white border-primary/80 text-xs">
+                  <Badge className="bg-primary/80 text-white border-primary/80 text-sm">
                     حلقة {podcast.episodeNumber}
                   </Badge>
                 )}
                 {podcast.publishedAt && (
-                  <div className="flex items-center gap-1 flex-row-reverse">
+                  <div className="flex items-center gap-1 flex-row-reverse text-sm">
                     <Calendar className="w-3 h-3" />
                     {formatDate(podcast.publishedAt)}
                   </div>
                 )}
               </div>
 
-              <h3 className="font-semibold text-slate-900 line-clamp-2 text-sm group-hover:text-primary transition-colors duration-300 text-right">
+              <h3 className="font-semibold text-slate-900 line-clamp-2 text-base group-hover:text-primary transition-colors duration-300 text-right">
                 <Link
                   href={`/podcasts/${podcast.slug}`}
                   className="hover:text-primary transition-colors"
@@ -137,7 +137,7 @@ export const PodcastCard: React.FC<PodcastCardProps> = ({ podcast, variant = 'de
             {/* Episode number and date */}
             <div className="absolute top-3 right-3 flex gap-2">
               {podcast.episodeNumber && (
-                <Badge className="bg-black/60 text-white border-0 backdrop-blur-md text-xs font-semibold">
+                <Badge className="bg-black/60 text-white border-0 backdrop-blur-md text-sm font-semibold">
                   حلقة #{podcast.episodeNumber}
                 </Badge>
               )}
@@ -145,7 +145,7 @@ export const PodcastCard: React.FC<PodcastCardProps> = ({ podcast, variant = 'de
 
             {podcast.publishedAt && (
               <div className="absolute top-3 left-3">
-                <Badge className="bg-black/60 text-white border-0 backdrop-blur-md text-xs font-semibold flex items-center gap-1 flex-row-reverse">
+                <Badge className="bg-black/60 text-white border-0 backdrop-blur-md text-sm font-semibold flex items-center gap-1 flex-row-reverse">
                   <Calendar className="w-3 h-3" />
                   {formatDate(podcast.publishedAt)}
                 </Badge>
@@ -154,7 +154,7 @@ export const PodcastCard: React.FC<PodcastCardProps> = ({ podcast, variant = 'de
 
             {/* Title overlay */}
             <div className="absolute bottom-0 left-0 right-0 p-4">
-              <h3 className="font-bold text-white text-lg leading-tight line-clamp-2 text-right">
+              <h3 className="font-bold text-white text-xl leading-tight line-clamp-2 text-right">
                 <Link
                   href={`/podcasts/${podcast.slug}`}
                   className="hover:text-primary transition-colors duration-300"
@@ -171,7 +171,7 @@ export const PodcastCard: React.FC<PodcastCardProps> = ({ podcast, variant = 'de
           <div className="flex gap-2 flex-row-reverse">
             <Button
               variant="outline"
-              className="flex-1 h-9 font-semibold transition-all duration-300 rounded-lg text-sm border-primary/80 text-primary hover:bg-primary/80 hover:border-primary/40"
+              className="flex-1 h-9 font-semibold transition-all duration-300 rounded-lg text-base border-primary/80 text-primary hover:bg-primary/80 hover:border-primary/40"
             >
               <Play className="w-4 h-4 ml-2" />
               عرض التفاصيل

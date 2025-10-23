@@ -74,7 +74,7 @@ export default function AccountPageClient(): JSX.Element {
   if (!authUser) {
     return (
       <div className="bg-white min-h-screen flex items-center justify-center">
-        <p className="text-slate-600 text-sm">جاري تسجيل الدخول...</p>
+        <p className="text-slate-600 text-base">جاري تسجيل الدخول...</p>
       </div>
     )
   }
@@ -97,8 +97,8 @@ export default function AccountPageClient(): JSX.Element {
                 </svg>
               </div>
               <div className="flex-1">
-                <h3 className="text-sm font-medium text-amber-800 text-right">التحقق من البريد الإلكتروني مطلوب</h3>
-                <p className="mt-1 text-sm text-amber-700 text-right">
+                <h3 className="text-base font-medium text-amber-800 text-right">التحقق من البريد الإلكتروني مطلوب</h3>
+                <p className="mt-1 text-base text-amber-700 text-right">
                   يرجى تأكيد عنوان بريدك الإلكتروني لاستخدام جميع الخدمات. تحقق من صندوق الوارد الخاص بك للحصول على رابط التحقق.
                 </p>
               </div>
@@ -111,19 +111,19 @@ export default function AccountPageClient(): JSX.Element {
             <TabsList className="bg-white border border-slate-200 rounded-md p-1 mb-4 max-w-full overflow-x-auto md:overflow-visible">
               <TabsTrigger
                 value="profile"
-                className="data-[state=active]:bg-slate-50 data-[state=active]:text-slate-800 text-sm whitespace-nowrap"
+                className="data-[state=active]:bg-slate-50 data-[state=active]:text-slate-800 text-base whitespace-nowrap"
               >
                 الملف الشخصي
               </TabsTrigger>
               <TabsTrigger
                 value="posts"
-                className="data-[state=active]:bg-slate-50 data-[state=active]:text-slate-800 text-sm whitespace-nowrap"
+                className="data-[state=active]:bg-slate-50 data-[state=active]:text-slate-800 text-base whitespace-nowrap"
               >
                 المحتوى
               </TabsTrigger>
               <TabsTrigger
                 value="settings"
-                className="data-[state=active]:bg-slate-50 data-[state=active]:text-slate-800 text-sm whitespace-nowrap"
+                className="data-[state=active]:bg-slate-50 data-[state=active]:text-slate-800 text-base whitespace-nowrap"
               >
                 الحساب
               </TabsTrigger>

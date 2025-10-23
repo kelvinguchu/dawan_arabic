@@ -11,10 +11,10 @@ export default function CategoryNotFound() {
             <div className="w-24 h-24 mx-auto mb-6 bg-gray-200 rounded-full flex items-center justify-center">
               <Search className="w-12 h-12 text-gray-400" />
             </div>
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
               لم يتم العثور على القسم
             </h1>
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-xl text-gray-600 mb-8">
               القسم الذي تبحث عنه غير موجود أو تم نقله.
             </p>
           </div>
@@ -34,7 +34,7 @@ export default function CategoryNotFound() {
           </div>
 
           <div className="mt-12 pt-8 border-t border-gray-200">
-            <p className="text-sm text-gray-500">
+            <p className="text-base text-gray-500">
               يمكنك أيضًا استخدام البحث للعثور على مقالات أو مواضيع محددة.
             </p>
           </div>

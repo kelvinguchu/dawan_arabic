@@ -41,10 +41,10 @@ export const OurPlatforms: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 text-right">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 text-right">
               منصاتنا
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed text-right">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed text-right">
               ثلاث منصات تخدم جماهير مختلفة باللغات العربية والإنجليزية، مع التركيز على العالم
               العربي.
             </p>
@@ -63,16 +63,16 @@ export const OurPlatforms: React.FC = () => {
                   >
                     {platform.icon}
                   </div>
-                  <span className="text-xs sm:text-sm bg-gray-200 text-gray-700 px-2 sm:px-3 py-1 rounded-full font-medium">
+                  <span className="text-sm sm:text-base bg-gray-200 text-gray-700 px-2 sm:px-3 py-1 rounded-full font-medium">
                     {platform.language}
                   </span>
                 </div>
 
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4 group-hover:text-primary transition-colors duration-300 text-right">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 group-hover:text-primary transition-colors duration-300 text-right">
                   {platform.name}
                 </h3>
 
-                <p className="text-sm sm:text-base text-gray-600 mb-6 leading-relaxed grow text-right">
+                <p className="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed grow text-right">
                   {platform.description}
                 </p>
 
@@ -81,7 +81,7 @@ export const OurPlatforms: React.FC = () => {
                     href={platform.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-flex items-center justify-center w-full ${platform.bgColor} ${platform.hoverColor} text-white px-4 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl text-sm sm:text-base font-medium transition-colors duration-300 flex-row-reverse`}
+                    className={`inline-flex items-center justify-center w-full ${platform.bgColor} ${platform.hoverColor} text-white px-4 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl text-base sm:text-lg font-medium transition-colors duration-300 flex-row-reverse`}
                   >
                     زيارة {platform.displayUrl}
                     <BiGlobe className="mr-2 h-4 w-4" />
@@ -93,10 +93,10 @@ export const OurPlatforms: React.FC = () => {
 
           <div className="text-center mt-12 sm:mt-16">
             <div className="bg-primary rounded-lg sm:rounded-xl p-6 sm:p-8 text-white">
-              <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-right">
+              <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 text-right">
                 ربط المجتمعات ذات اللغات المختلفة
               </h3>
-              <p className="text-base sm:text-lg max-w-2xl mx-auto leading-relaxed text-right">
+              <p className="text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed text-right">
                 ربط الثقافات وتعزيز الفهم داخل العالم العربي.
               </p>
             </div>

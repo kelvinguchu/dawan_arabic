@@ -31,9 +31,7 @@ async function getPublishedPosts(limit: number = 50): Promise<BlogPost[]> {
 
 export async function GET(request: NextRequest): Promise<Response> {
   try {
-    const { searchParams } = new URL(request.url)
-    const limitParam = searchParams.get('limit')
-    const limit = limitParam ? Math.min(parseInt(limitParam, 10), 100) : 50
+    const limit = 50;
 
     const posts = await getPublishedPosts(limit)
 

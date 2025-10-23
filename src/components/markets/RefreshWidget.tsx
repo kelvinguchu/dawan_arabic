@@ -31,7 +31,7 @@ export const RefreshWidget: React.FC = () => {
         size="sm"
         onClick={handleRefresh}
         disabled={isRefreshing}
-        className="h-8 text-xs"
+        className="h-8 text-sm"
       >
         {isRefreshing ? (
           <>

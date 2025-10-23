@@ -8,7 +8,7 @@ export async function MarketStats({ className }: { className?: string }) {
 
   if (!stats) {
     return (
-      <div className={`text-red-500 text-xs text-right ${className}`}>
+      <div className={`text-red-500 text-sm text-right ${className}`}>
         لم يتم تحميل بيانات السوق. الرجاء المحاولة مرة أخرى لاحقاً.
       </div>
     )
@@ -39,7 +39,7 @@ export async function MarketStats({ className }: { className?: string }) {
   ]
 
   return (
-    <div className={`border rounded-md bg-white shadow-sm py-1.5 px-2 text-xs ${className}`}>
+    <div className={`border rounded-md bg-white shadow-sm py-1.5 px-2 text-sm ${className}`}>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-2 gap-y-1.5">
         {statsList.map((stat, index) => (
           <div key={index} className="flex items-center flex-row-reverse">
@@ -54,7 +54,7 @@ export async function MarketStats({ className }: { className?: string }) {
                 ) : (
                   <ArrowDownIcon className="w-2.5 h-2.5" />
                 )}
-                <span className="text-[10px]">{formatPercentage(Math.abs(stat.change))}</span>
+                <span className="text-xs">{formatPercentage(Math.abs(stat.change))}</span>
               </span>
             )}
           </div>

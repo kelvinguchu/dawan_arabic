@@ -34,7 +34,7 @@ const UserAuth: React.FC = () => {
       <div className="flex items-center space-x-2">
         <Link
           href="/account"
-          className="flex items-center text-xs text-gray-500 hover:text-primary transition-colors flex-row-reverse"
+          className="flex items-center text-sm text-gray-500 hover:text-primary transition-colors flex-row-reverse"
         >
           <div className="flex items-center">
             <Avatar className="h-6 w-6 ml-1.5 border border-slate-200">
@@ -48,7 +48,7 @@ const UserAuth: React.FC = () => {
                 }
                 alt={user.name ?? 'User'}
               />
-              <AvatarFallback className="text-[10px] font-medium bg-slate-100 text-slate-500">
+              <AvatarFallback className="text-xs font-medium bg-slate-100 text-slate-500">
                 {getInitials(user.name, user.email)}
               </AvatarFallback>
             </Avatar>
@@ -76,14 +76,14 @@ const UserAuth: React.FC = () => {
     <>
       <Link
         href="/login"
-        className="flex items-center text-xs text-gray-500 hover:text-primary transition-colors flex-row-reverse"
+        className="flex items-center text-sm text-gray-500 hover:text-primary transition-colors flex-row-reverse"
       >
         <BiUser size={16} className="ml-1" />
         <span className="hidden sm:inline">تسجيل الدخول</span>
       </Link>
       <Link
         href="/register"
-        className="hidden sm:flex items-center text-xs text-gray-500 hover:text-primary transition-colors flex-row-reverse"
+        className="hidden sm:flex items-center text-sm text-gray-500 hover:text-primary transition-colors flex-row-reverse"
       >
         <BiUserPlus size={16} className="ml-1" />
         <span className="hidden sm:inline">إنشاء حساب</span>

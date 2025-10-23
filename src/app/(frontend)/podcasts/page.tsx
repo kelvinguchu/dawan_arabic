@@ -4,7 +4,7 @@ import { PodcastList } from '@/components/podcasts/PodcastList'
 import { Skeleton } from '@/components/ui/skeleton'
 import { sharedMetadata } from '@/app/shared-metadata'
 import siteConfig from '@/app/shared-metadata'
-import ErrorFallback from '@/components/ErrorFallback'
+import ErrorFallback from '@/components/podcasts/ErrorFallback'
 import { getPodcasts } from '@/lib/podcast-actions'
 
 export const metadata: Metadata = {
@@ -125,7 +125,7 @@ export default async function PodcastsPage({ searchParams }: Readonly<PodcastsPa
 
           {podcastsData.totalPages > 1 && (
             <div className="mt-12 flex justify-center">
-              <p className="text-sm text-gray-600">
+              <p className="text-base text-gray-600">
                 Bogga {podcastsData.page} من {podcastsData.totalPages} • {podcastsData.totalDocs}{' '}
                 حلقة إجمالاً
               </p>

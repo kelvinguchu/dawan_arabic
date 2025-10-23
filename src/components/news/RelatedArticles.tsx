@@ -63,7 +63,7 @@ export const RelatedArticles: React.FC<RelatedArticlesProps> = ({ posts, current
 
   return (
     <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-200">
-      <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-6 sm:mb-8 text-right">
+      <h2 className="text-2xl sm:text-3xl font-semibold text-gray-800 mb-6 sm:mb-8 text-right">
         مقالات ذات صلة
       </h2>
       <div className={gridClass}>
@@ -95,13 +95,13 @@ export const RelatedArticles: React.FC<RelatedArticlesProps> = ({ posts, current
               )}
 
               <div className="flex flex-col flex-grow p-4">
-                <h3 className="text-base sm:text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors duration-300 mb-2 line-clamp-2 text-right">
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-800 group-hover:text-primary transition-colors duration-300 mb-2 line-clamp-2 text-right">
                   {post.name}
                 </h3>
 
                 <div className="mt-auto pt-4">
                   {postDate && (
-                    <div className="flex items-center text-gray-500 text-xs sm:text-sm mb-3 flex-row-reverse">
+                    <div className="flex items-center text-gray-500 text-sm sm:text-base mb-3 flex-row-reverse">
                       <Calendar className="h-3.5 w-3.5 mr-1.5" />
                       <span>{postDate}</span>
                     </div>
@@ -121,7 +121,7 @@ export const RelatedArticles: React.FC<RelatedArticlesProps> = ({ posts, current
                             return (
                               <span
                                 key={index}
-                                className="inline-block px-2 py-0.5 text-xs bg-primary/80 text-white rounded-full"
+                                className="inline-block px-2 py-0.5 text-sm bg-primary/80 text-white rounded-full"
                               >
                                 {categoryName}
                               </span>
@@ -133,7 +133,7 @@ export const RelatedArticles: React.FC<RelatedArticlesProps> = ({ posts, current
                 </div>
 
                 <div className="mt-3 pt-3 border-t border-gray-100 text-right">
-                  <span className="inline-block text-xs sm:text-sm font-medium text-primary group-hover:translate-x-1 transition-transform duration-300">
+                  <span className="inline-block text-sm sm:text-base font-medium text-primary group-hover:translate-x-1 transition-transform duration-300">
                     اقرأ المزيد →
                   </span>
                 </div>

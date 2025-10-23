@@ -60,7 +60,7 @@ export default async function HomePage() {
 
       <section className=" bg-gray-50">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">أقسام الأخبار</h2>
+          <h2 className="text-4xl font-bold text-gray-900 mb-10 text-center">أقسام الأخبار</h2>
           <CategorySection categoriesWithPosts={categoriesWithPosts} />
         </div>
       </section>

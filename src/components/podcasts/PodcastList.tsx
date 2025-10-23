@@ -115,7 +115,7 @@ export const PodcastList: React.FC<PodcastListProps> = ({
           <div className="lg:hidden">
             {/* Title and Switcher on same line */}
             <div className="flex items-center justify-between mb-4 flex-row-reverse">
-              <h1 className="text-2xl font-bold text-primary text-right">{title}</h1>
+              <h1 className="text-3xl font-bold text-primary text-right">{title}</h1>
 
               {/* View Mode Switcher */}
               <div className="flex items-center rounded-lg border border-slate-200 bg-white p-1 shadow-sm">
@@ -180,7 +180,7 @@ export const PodcastList: React.FC<PodcastListProps> = ({
 
           {/* Desktop Layout */}
           <div className="hidden lg:flex lg:items-center justify-between gap-6 flex-row-reverse">
-            <h1 className="text-3xl font-bold text-primary text-right">{title}</h1>
+            <h1 className="text-4xl font-bold text-primary text-right">{title}</h1>
 
             <div className="flex items-center gap-4 flex-row-reverse">
               {/* Search Bar */}
@@ -266,9 +266,9 @@ export const PodcastList: React.FC<PodcastListProps> = ({
         {/* Empty State */}
         {filteredPodcasts.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-slate-500">لم يتم العثور على بودكاستات</p>
+            <p className="text-slate-500 text-lg">لم يتم العثور على بودكاستات</p>
             {hasActiveFilters && (
-              <Button onClick={clearFilters} variant="outline" className="mt-4">
+              <Button onClick={clearFilters} variant="outline" className="mt-4 text-base">
                 مسح المرشحات
               </Button>
             )}

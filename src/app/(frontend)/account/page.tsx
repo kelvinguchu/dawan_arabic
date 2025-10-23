@@ -5,7 +5,7 @@ export default function AccountPage() {
     <Suspense
       fallback={
         <div className="flex items-center justify-center min-h-screen bg-slate-50">
-          <p className="animate-pulse text-slate-500 text-sm">جاري تحميل تفاصيل الحساب…</p>
+          <p className="animate-pulse text-slate-500 text-base">جاري تحميل تفاصيل الحساب…</p>
         </div>
       }
     >

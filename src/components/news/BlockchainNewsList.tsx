@@ -62,10 +62,10 @@ export const BlockchainNewsList: React.FC<BlockchainNewsListProps> = async ({ li
     <section className="bg-white py-12">
       <div className="container mx-auto px-4">
         <div className="mb-8 text-right">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
             أحدث أخبار البلوك تشين
           </h2>
-          <p className="text-gray-600">
+          <p className="text-gray-600 text-lg">
             تابع آخر التطورات والرؤى حول البلوك تشين
           </p>
         </div>
@@ -78,8 +78,8 @@ export const BlockchainNewsList: React.FC<BlockchainNewsListProps> = async ({ li
           </div>
         ) : (
           <div className="text-center py-8">
-            <p className="text-gray-500">لم يتم العثور على مقالات حول البلوك تشين بعد.</p>
-            <p className="text-sm text-gray-400 mt-2">
+            <p className="text-gray-500 text-lg">لم يتم العثور على مقالات حول البلوك تشين بعد.</p>
+            <p className="text-base text-gray-400 mt-2">
               يرجى التحقق مرة أخرى لاحقًا لرؤية آخر الأخبار والتحليلات.
             </p>
           </div>

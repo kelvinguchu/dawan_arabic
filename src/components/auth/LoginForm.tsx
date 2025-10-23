@@ -57,17 +57,17 @@ export const LoginForm: React.FC = () => {
     <div className="mx-auto max-w-md w-full px-4 sm:px-0">
       <Card className="border-slate-200 shadow-sm overflow-hidden">
         <CardHeader className="bg-white space-y-1 pb-6">
-          <CardTitle className="text-2xl font-semibold text-slate-900 text-center">
+          <CardTitle className="text-3xl font-semibold text-slate-900 text-center">
             تسجيل الدخول
           </CardTitle>
-          <CardDescription className="text-slate-500 text-center">
+          <CardDescription className="text-slate-500 text-center text-base">
             أدخل معلوماتك للوصول إلى حسابك
           </CardDescription>
         </CardHeader>
         <CardContent className="bg-white pt-2 pb-8 px-6">
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div className="space-y-1.5">
-              <Label htmlFor="email-address" className="text-sm font-medium text-slate-700 text-right">
+              <Label htmlFor="email-address" className="text-base font-medium text-slate-700 text-right">
                 البريد الإلكتروني
               </Label>
               <div className="relative">
@@ -80,7 +80,7 @@ export const LoginForm: React.FC = () => {
                   type="email"
                   autoComplete="email"
                   required
-                  className="pr-10 bg-white border-slate-200 focus:border-primary focus:ring-primary/80 text-sm text-right"
+                  className="pr-10 bg-white border-slate-200 focus:border-primary focus:ring-primary/80 text-base text-right"
                   placeholder="الاسم@مثال.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -90,12 +90,12 @@ export const LoginForm: React.FC = () => {
 
             <div className="space-y-1.5">
               <div className="flex items-center justify-between flex-row-reverse">
-                <Label htmlFor="password" className="text-sm font-medium text-slate-700 text-right">
+                <Label htmlFor="password" className="text-base font-medium text-slate-700 text-right">
                   كلمة المرور
                 </Label>
                 <Link
                   href="/forgot-password"
-                  className="text-xs font-medium text-primary hover:text-primary/80"
+                  className="text-sm font-medium text-primary hover:text-primary/80"
                 >
                   نسيت كلمة المرور؟
                 </Link>
@@ -110,7 +110,7 @@ export const LoginForm: React.FC = () => {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="pr-10 bg-white border-slate-200 focus:border-primary focus:ring-primary/80 text-sm text-right"
+                  className="pr-10 bg-white border-slate-200 focus:border-primary focus:ring-primary/80 text-base text-right"
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -119,19 +119,19 @@ export const LoginForm: React.FC = () => {
             </div>
 
             {error && (
-              <div className="text-sm text-red-500 bg-red-50 px-3 py-2 rounded-md text-right">
+              <div className="text-base text-red-500 bg-red-50 px-3 py-2 rounded-md text-right">
                 {error}
                 {error.includes('verify your email') && (
                   <div className="mt-3 pt-3 border-t border-red-100">
                     <div className="flex items-center justify-between flex-row-reverse">
-                      <p className="text-xs text-red-600 text-right">لم تستلم البريد؟</p>
+                      <p className="text-sm text-red-600 text-right">لم تستلم البريد؟</p>
                       <Button
                         type="button"
                         variant="outline"
                         size="sm"
                         onClick={handleResendVerification}
                         disabled={isResending}
-                        className="h-7 px-3 text-xs border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700 flex-row-reverse"
+                        className="h-7 px-3 text-sm border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700 flex-row-reverse"
                       >
                         <Mail className="h-3 w-3 ml-1" />
                         {isResending ? 'جاري الإرسال...' : 'إعادة إرسال البريد'}
@@ -145,7 +145,7 @@ export const LoginForm: React.FC = () => {
             <div className="pt-2">
               <Button
                 type="submit"
-                className="w-full bg-primary hover:bg-primary/80 shadow-sm transition-colors text-sm"
+                className="w-full bg-primary hover:bg-primary/80 shadow-sm transition-colors text-base"
                 disabled={isLoading}
               >
                 {isLoading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
@@ -154,7 +154,7 @@ export const LoginForm: React.FC = () => {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-sm text-slate-500">
+            <p className="text-base text-slate-500">
               ليس لديك حساب؟{' '}
               <Link href="/register" className="font-medium text-primary hover:text-primary/80">
                 إنشاء حساب

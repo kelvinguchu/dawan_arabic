@@ -114,7 +114,7 @@ export const PodcastDetailsSheet: React.FC<PodcastDetailsSheetProps> = ({
                 <div className="absolute top-6 left-6 right-6 flex justify-between items-start flex-row-reverse">
                   {podcast.episodeNumber && (
                     <div className="bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl px-4 py-2">
-                      <span className="text-white font-bold text-sm">
+                      <span className="text-white font-bold text-base">
                         حلقة {podcast.episodeNumber}
                       </span>
                     </div>
@@ -122,7 +122,7 @@ export const PodcastDetailsSheet: React.FC<PodcastDetailsSheetProps> = ({
 
                   {podcast.publishedAt && (
                     <div className="bg-black/30 backdrop-blur-xl border border-white/20 rounded-2xl px-4 py-2">
-                      <div className="flex items-center gap-2 text-white/90 text-sm">
+                      <div className="flex items-center gap-2 text-white/90 text-base">
                         <Calendar className="w-4 h-4" />
                         {formatDate(podcast.publishedAt)}
                       </div>
@@ -131,11 +131,11 @@ export const PodcastDetailsSheet: React.FC<PodcastDetailsSheetProps> = ({
                 </div>
 
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h1 className="text-3xl lg:text-4xl font-black text-white leading-tight mb-2 drop-shadow-lg">
+                  <h1 className="text-4xl lg:text-5xl font-black text-white leading-tight mb-2 drop-shadow-lg">
                     {displayTitle}
                   </h1>
                   {peopleInvolved && (
-                    <p className="text-white/90 text-lg font-medium">{peopleInvolved}</p>
+                    <p className="text-white/90 text-xl font-medium">{peopleInvolved}</p>
                   )}
                 </div>
               </div>
@@ -146,8 +146,8 @@ export const PodcastDetailsSheet: React.FC<PodcastDetailsSheetProps> = ({
                     <div className="group relative overflow-hidden bg-linear-to-br from-primary/80 via-primary/5 to-transparent p-6 rounded-3xl border border-primary/80 hover:border-primary/40 transition-all duration-500">
                       <div className="absolute top-0 right-0 w-20 h-20 bg-primary/80 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-700"></div>
                       <Clock className="w-8 h-8 text-primary mb-3 relative z-10" />
-                      <div className="text-sm text-slate-500 mb-1 relative z-10">المدة</div>
-                      <div className="text-2xl font-black text-slate-900 relative z-10">
+                      <div className="text-base text-slate-500 mb-1 relative z-10">المدة</div>
+                      <div className="text-3xl font-black text-slate-900 relative z-10">
                         {formatDuration(podcast.duration)}
                       </div>
                     </div>
@@ -157,8 +157,8 @@ export const PodcastDetailsSheet: React.FC<PodcastDetailsSheetProps> = ({
                     <div className="group relative overflow-hidden bg-linear-to-br from-emerald-50 via-emerald-25 to-transparent p-6 rounded-3xl border border-emerald-200 hover:border-emerald-300 transition-all duration-500">
                       <div className="absolute top-0 right-0 w-20 h-20 bg-emerald-100 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-700"></div>
                       <Headphones className="w-8 h-8 text-emerald-600 mb-3 relative z-10" />
-                      <div className="text-sm text-slate-500 mb-1 relative z-10">إجمالي التشغيل</div>
-                      <div className="text-2xl font-black text-slate-900 relative z-10">
+                      <div className="text-base text-slate-500 mb-1 relative z-10">إجمالي التشغيل</div>
+                      <div className="text-3xl font-black text-slate-900 relative z-10">
                         {Number(podcast.playCount).toLocaleString()}
                       </div>
                     </div>
@@ -166,8 +166,8 @@ export const PodcastDetailsSheet: React.FC<PodcastDetailsSheetProps> = ({
                     <div className="group relative overflow-hidden bg-linear-to-br from-rose-50 via-rose-25 to-transparent p-6 rounded-3xl border border-rose-200 hover:border-rose-300 transition-all duration-500">
                       <div className="absolute top-0 right-0 w-20 h-20 bg-rose-100 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-700"></div>
                       <Heart className="w-8 h-8 text-rose-500 mb-3 relative z-10" />
-                      <div className="text-sm text-slate-500 mb-1 relative z-10">الإعجابات</div>
-                      <div className="text-2xl font-black text-slate-900 relative z-10">
+                      <div className="text-base text-slate-500 mb-1 relative z-10">الإعجابات</div>
+                      <div className="text-3xl font-black text-slate-900 relative z-10">
                         {podcast.likes || 0}
                       </div>
                     </div>
@@ -194,8 +194,8 @@ export const PodcastDetailsSheet: React.FC<PodcastDetailsSheetProps> = ({
                         <Users className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h3 className="font-bold text-xl text-slate-900 mb-2">المشاركون</h3>
-                        <p className="text-slate-700 font-medium text-lg">{peopleInvolved}</p>
+                        <h3 className="font-bold text-2xl text-slate-900 mb-2">المشاركون</h3>
+                        <p className="text-slate-700 font-medium text-xl">{peopleInvolved}</p>
                       </div>
                     </div>
                   </div>
@@ -203,12 +203,12 @@ export const PodcastDetailsSheet: React.FC<PodcastDetailsSheetProps> = ({
 
                 {categories && categories.length > 0 && (
                   <div>
-                    <h3 className="font-bold text-xl text-slate-900 mb-4">التصنيفات</h3>
+                    <h3 className="font-bold text-2xl text-slate-900 mb-4">التصنيفات</h3>
                     <div className="flex flex-wrap gap-3">
                       {categories.map((category, index) => (
                         <Badge
                           key={index}
-                          className="bg-linear-to-r from-primary/15 via-primary/80 to-primary/5 text-primary border-primary/30 hover:from-primary/25 hover:via-primary/80 hover:to-primary/80 hover:border-primary/50 transition-all duration-300 px-4 py-2 text-sm font-semibold rounded-xl"
+                          className="bg-linear-to-r from-primary/15 via-primary/80 to-primary/5 text-primary border-primary/30 hover:from-primary/25 hover:via-primary/80 hover:to-primary/80 hover:border-primary/50 transition-all duration-300 px-4 py-2 text-base font-semibold rounded-xl"
                         >
                           {typeof category === 'object' && category !== null
                             ? (category as BlogCategory).name || 'تصنيف'
@@ -222,10 +222,10 @@ export const PodcastDetailsSheet: React.FC<PodcastDetailsSheetProps> = ({
                 {podcast.description && podcast.description.trim() !== '' && (
                   <div className="relative overflow-hidden bg-linear-to-br from-amber-50/50 via-white to-orange-50/30 p-6 rounded-3xl border border-amber-200/40">
                     <div className="absolute bottom-0 left-0 w-24 h-24 bg-amber-100/50 rounded-full translate-y-12 -translate-x-12"></div>
-                    <h3 className="font-bold text-xl text-slate-900 mb-4 relative z-10">
+                    <h3 className="font-bold text-2xl text-slate-900 mb-4 relative z-10">
                       حول هذه الحلقة
                     </h3>
-                    <p className="text-slate-700 leading-relaxed text-lg relative z-10">
+                    <p className="text-slate-700 leading-relaxed text-xl relative z-10">
                       {podcast.description}
                     </p>
                   </div>
@@ -237,13 +237,13 @@ export const PodcastDetailsSheet: React.FC<PodcastDetailsSheetProps> = ({
                     <div className="relative overflow-hidden bg-linear-to-br from-primary/8 via-primary/4 to-transparent p-6 rounded-3xl border border-primary/25">
                       <div className="absolute top-0 left-0 w-40 h-40 bg-primary/80 rounded-full -translate-y-20 -translate-x-20"></div>
                       <div className="relative z-10">
-                        <h3 className="font-bold text-xl text-slate-900 mb-3">السلسلة</h3>
+                        <h3 className="font-bold text-2xl text-slate-900 mb-3">السلسلة</h3>
                         <div className="bg-white/60 backdrop-blur-sm p-4 rounded-2xl border border-white/40">
-                          <p className="font-bold text-primary text-lg">
+                          <p className="font-bold text-primary text-xl">
                             {(podcast.series as PodcastSery).name}
                           </p>
                           {(podcast.series as PodcastSery).description && (
-                            <p className="text-slate-600 mt-2">
+                            <p className="text-slate-600 mt-2 text-base">
                               {(podcast.series as PodcastSery).description}
                             </p>
                           )}
@@ -253,8 +253,8 @@ export const PodcastDetailsSheet: React.FC<PodcastDetailsSheetProps> = ({
                   )}
 
                 <div className="bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 p-6 rounded-3xl text-white">
-                  <h3 className="font-bold text-lg mb-4 text-slate-200">بيانات الحلقة</h3>
-                  <div className="grid grid-cols-1 gap-3 text-sm">
+                  <h3 className="font-bold text-xl mb-4 text-slate-200">بيانات الحلقة</h3>
+                  <div className="grid grid-cols-1 gap-3 text-base">
                     {podcast.publishedAt && (
                       <div className="flex justify-between items-center py-2 border-b border-slate-700/50">
                         <span className="text-slate-400">تاريخ النشر</span>
@@ -291,7 +291,7 @@ export const PodcastDetailsSheet: React.FC<PodcastDetailsSheetProps> = ({
                 {podcast.externalLinks && podcast.externalLinks.length > 0 && (
                   <div className="relative overflow-hidden bg-linear-to-br from-blue-50/50 via-white to-indigo-50/30 p-6 rounded-3xl border border-blue-200/40">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-blue-100/30 rounded-full -translate-y-16 translate-x-16"></div>
-                    <h3 className="font-bold text-xl text-slate-900 mb-4 relative z-10">
+                    <h3 className="font-bold text-2xl text-slate-900 mb-4 relative z-10">
                       الروابط الخارجية
                     </h3>
                     <div className="space-y-3 relative z-10">
@@ -309,7 +309,7 @@ export const PodcastDetailsSheet: React.FC<PodcastDetailsSheetProps> = ({
                             {link.title}
                           </a>
                           {link.description && (
-                            <p className="text-slate-600 text-sm mt-1">{link.description}</p>
+                            <p className="text-slate-600 text-base mt-1">{link.description}</p>
                           )}
                         </div>
                       ))}

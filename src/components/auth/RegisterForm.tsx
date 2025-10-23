@@ -86,17 +86,17 @@ export const RegisterForm: React.FC = () => {
     <div className="mx-auto max-w-md w-full px-4 sm:px-0">
       <Card className="border-slate-200 shadow-sm overflow-hidden">
         <CardHeader className="bg-white space-y-1 pb-6">
-          <CardTitle className="text-2xl font-semibold text-slate-900 text-center">
+          <CardTitle className="text-3xl font-semibold text-slate-900 text-center">
             إنشاء حساب
           </CardTitle>
-          <CardDescription className="text-slate-500 text-center">
+          <CardDescription className="text-slate-500 text-center text-base">
             أدخل تفاصيلك لإنشاء حساب جديد
           </CardDescription>
         </CardHeader>
         <CardContent className="bg-white pt-2 pb-8 px-6">
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div className="space-y-1.5">
-              <Label htmlFor="name" className="text-sm font-medium text-slate-700 text-right">
+              <Label htmlFor="name" className="text-base font-medium text-slate-700 text-right">
                 الاسم الكامل
               </Label>
               <div className="relative">
@@ -109,7 +109,7 @@ export const RegisterForm: React.FC = () => {
                   type="text"
                   autoComplete="name"
                   required
-                  className="pr-10 bg-white border-slate-200 focus:border-primary focus:ring-primary/80 text-sm text-right"
+                  className="pr-10 bg-white border-slate-200 focus:border-primary focus:ring-primary/80 text-base text-right"
                   placeholder="أحمد علي"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -120,7 +120,7 @@ export const RegisterForm: React.FC = () => {
             <div className="space-y-1.5">
               <Label
                 htmlFor="email-address-register"
-                className="text-sm font-medium text-slate-700 text-right"
+                className="text-base font-medium text-slate-700 text-right"
               >
                 البريد الإلكتروني
               </Label>
@@ -129,12 +129,7 @@ export const RegisterForm: React.FC = () => {
                   <Mail className="h-4 w-4" />
                 </div>
                 <Input
-                  id="email-address-register"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className="pr-10 bg-white border-slate-200 focus:border-primary focus:ring-primary/80 text-sm text-right"
+                  className="pr-10 bg-white border-slate-200 focus:border-primary focus:ring-primary/80 text-base text-right"
                   placeholder="الاسم@مثال.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -143,7 +138,7 @@ export const RegisterForm: React.FC = () => {
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="password-register" className="text-sm font-medium text-slate-700 text-right">
+              <Label htmlFor="password-register" className="text-base font-medium text-slate-700 text-right">
                 كلمة المرور
               </Label>
               <div className="relative">
@@ -156,7 +151,7 @@ export const RegisterForm: React.FC = () => {
                   type="password"
                   autoComplete="new-password"
                   required
-                  className="pr-10 bg-white border-slate-200 focus:border-primary focus:ring-primary/80 text-sm text-right"
+                  className="pr-10 bg-white border-slate-200 focus:border-primary focus:ring-primary/80 text-base text-right"
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -165,7 +160,7 @@ export const RegisterForm: React.FC = () => {
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="confirm-password" className="text-sm font-medium text-slate-700 text-right">
+              <Label htmlFor="confirm-password" className="text-base font-medium text-slate-700 text-right">
                 تأكيد كلمة المرور
               </Label>
               <div className="relative">
@@ -178,7 +173,7 @@ export const RegisterForm: React.FC = () => {
                   type="password"
                   autoComplete="new-password"
                   required
-                  className="pr-10 bg-white border-slate-200 focus:border-primary focus:ring-primary/80 text-sm text-right"
+                  className="pr-10 bg-white border-slate-200 focus:border-primary focus:ring-primary/80 text-base text-right"
                   placeholder="••••••••"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
@@ -195,20 +190,20 @@ export const RegisterForm: React.FC = () => {
               />
               <Label
                 htmlFor="newsletter-subscribe"
-                className="text-sm text-slate-600 font-normal cursor-pointer leading-5 text-right"
+                className="text-base text-slate-600 font-normal cursor-pointer leading-5 text-right"
               >
                 اشترك في نشرتنا الإخبارية لتتابع آخر أخبار الصومال
               </Label>
             </div>
 
             {error && (
-              <div className="text-sm text-red-500 bg-red-50 px-3 py-2 rounded-md text-right">{error}</div>
+              <div className="text-base text-red-500 bg-red-50 px-3 py-2 rounded-md text-right">{error}</div>
             )}
 
             <div className="pt-2">
               <Button
                 type="submit"
-                className="w-full bg-primary hover:bg-primary/80 shadow-sm transition-colors text-sm"
+                className="w-full bg-primary hover:bg-primary/80 shadow-sm transition-colors text-base"
                 disabled={isLoading}
               >
                 {isLoading ? 'جاري إنشاء الحساب...' : 'إنشاء حساب'}
@@ -217,7 +212,7 @@ export const RegisterForm: React.FC = () => {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-sm text-slate-500">
+            <p className="text-base text-slate-500">
               هل لديك حساب بالفعل؟{' '}
               <Link href="/login" className="font-medium text-primary hover:text-primary/80">
                 تسجيل الدخول

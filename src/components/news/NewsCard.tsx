@@ -6,8 +6,9 @@ import Image from 'next/image'
 import { BlogPost as ImportedBlogPost } from '@/payload-types'
 import { ArrowUpRight, Clock, BookOpen } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
-import { getPostImageFromLayout, getPostExcerpt } from '@/utils/postUtils'
+import { getPostImageFromLayout, getPostExcerpt, getLocalizedField } from '@/utils/postUtils'
 import { formatTimeAgo } from '@/utils/dateUtils'
+import { BlogCategory } from '@/payload-types'
 
 interface NewsCardProps {
   post: ImportedBlogPost
@@ -21,6 +22,10 @@ const calculateReadingTime = (text: string): number => {
   return Math.max(1, Math.ceil(wordCount / wordsPerMinute))
 }
 
+const isPopulatedCategory = (category: string | BlogCategory): category is BlogCategory => {
+  return typeof category === 'object' && category !== null && 'id' in category
+}
+
 export const NewsCard: React.FC<NewsCardProps> = ({ post, showCategories = true }) => {
   const imageUrl = getPostImageFromLayout(post.layout)
   const excerpt = getPostExcerpt(post, { maxLength: 150, prioritizeCoverSubheading: false })
@@ -28,22 +33,25 @@ export const NewsCard: React.FC<NewsCardProps> = ({ post, showCategories = true 
   const categories = post.categories
 
   // Calculate reading time from excerpt
-  const readingTime = calculateReadingTime(excerpt || post.name)
+  const readingTime = calculateReadingTime(excerpt || getLocalizedField(post.name, ''))
 
   // Get primary category for display
   const primaryCategory =
-    categories && categories.length > 0 && typeof categories[0] === 'object'
-      ? (categories[0] as { name: string }).name // Type assertion for clarity
-      : null
+    categories && categories.length > 0 && isPopulatedCategory(categories[0])
+      ? getLocalizedField(categories[0].name, '')
+      : '';
+
+  const postName = getLocalizedField(post.name, '')
+  const postSlug = getLocalizedField(post.slug, '')
 
   return (
     <article className="group shadow-md relative flex flex-col h-full overflow-hidden rounded-xl bg-white transition-all duration-500 hover:translate-y-[-4px]">
       <Link
-        href={`/news/${post.slug}`}
+        href={`/news/${postSlug}`}
         className="block h-full"
-        aria-label={`اقرأ المقال: ${post.name}`}
+        aria-label={`اقرأ المقال: ${postName}`}
         data-article-id={post.id}
-        data-article-slug={post.slug}
+        data-article-slug={postSlug}
       >
         {/* Card top accent line */}
         <div
@@ -58,7 +66,7 @@ export const NewsCard: React.FC<NewsCardProps> = ({ post, showCategories = true 
               <>
                 <Image
                   src={imageUrl}
-                  alt={post.name}
+                  alt={postName}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
@@ -69,7 +77,7 @@ export const NewsCard: React.FC<NewsCardProps> = ({ post, showCategories = true 
               <div
                 className="h-full w-full flex items-center justify-center shadow-md shadow-primary bg-linear-to-br from-primary/10 to-primary/5"
               >
-                <span className="text-sm font-medium opacity-60 text-primary">
+                <span className="text-base font-medium opacity-60 text-primary">
                   {primaryCategory ?? 'مقال أخبار'}
                 </span>
               </div>
@@ -79,7 +87,7 @@ export const NewsCard: React.FC<NewsCardProps> = ({ post, showCategories = true 
             {showCategories && primaryCategory && (
               <div className="absolute top-3 right-3 z-10">
                 <div
-                  className="px-2.5 py-1 rounded-full text-xs bg-primary font-medium tracking-wide text-white shadow-md"
+                  className="px-2.5 py-1 rounded-full text-sm bg-primary font-medium tracking-wide text-white shadow-md"
                 >
                   {primaryCategory}
                 </div>
@@ -88,7 +96,7 @@ export const NewsCard: React.FC<NewsCardProps> = ({ post, showCategories = true 
 
             {/* Reading time indicator */}
             <div className="absolute top-3 left-3 z-10">
-              <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-black/30 backdrop-blur-md text-white text-xs flex-row-reverse">
+              <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-black/30 backdrop-blur-md text-white text-sm flex-row-reverse">
                 <BookOpen className="h-3 w-3" />
                 <span>{readingTime} دقائق قراءة</span>
               </div>
@@ -98,7 +106,7 @@ export const NewsCard: React.FC<NewsCardProps> = ({ post, showCategories = true 
           {/* Content section */}
           <div className="flex flex-col grow p-5">
             {/* Article metadata with date only */}
-            <div className="flex items-center text-xs text-gray-500 mb-3 flex-row-reverse justify-end">
+            <div className="flex items-center text-sm text-gray-500 mb-3 flex-row-reverse justify-end">
               <span className="flex items-center flex-row-reverse">
                 <Clock className="mr-1 h-3.5 w-3.5 text-gray-400" />
                 {timeAgo}
@@ -106,12 +114,12 @@ export const NewsCard: React.FC<NewsCardProps> = ({ post, showCategories = true 
             </div>
 
             {/* Title with simple hover effect */}
-            <h3 className="font-sans text-base leading-tight text-gray-900 group-hover:text-primary text-right transition-colors">
-              {post.name}
+            <h3 className="font-sans text-lg leading-tight text-gray-900 group-hover:text-primary text-right transition-colors">
+              {postName}
             </h3>
 
             {excerpt && (
-              <p className="font-sans text-[15px] text-gray-600 line-clamp-3 mb-2 leading-relaxed text-right">
+              <p className="font-sans text-base text-gray-600 line-clamp-3 mb-2 leading-relaxed text-right">
                 {excerpt}
               </p>
             )}
@@ -132,9 +140,9 @@ export const NewsCard: React.FC<NewsCardProps> = ({ post, showCategories = true 
                       <Badge
                         key={category.id}
                         variant="outline"
-                        className="text-xs font-normal px-1.5 py-0 border-primary/40 text-primary"
+                        className="text-sm font-normal px-1.5 py-0 border-primary/40 text-primary"
                       >
-                        {category.name}
+                        {getLocalizedField(category.name, '')}
                       </Badge>
                     ) : null,
                   )}
@@ -142,7 +150,7 @@ export const NewsCard: React.FC<NewsCardProps> = ({ post, showCategories = true 
 
               {/* Read more indicator with animated arrow */}
               <div
-                className="flex items-center text-sm font-medium transition-colors group-hover:text-slate-900 flex-row-reverse text-primary"
+                className="flex items-center text-base font-medium transition-colors group-hover:text-slate-900 flex-row-reverse text-primary"
               >
                 <span className="mr-1">اقرأ المقال</span>
                 <span className="relative overflow-hidden inline-block w-4 h-4">

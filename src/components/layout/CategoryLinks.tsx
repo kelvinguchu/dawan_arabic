@@ -45,8 +45,8 @@ const CategoryLinks: React.FC<CategoryLinksProps> = ({
     key?: string,
   ) => {
     const commonClasses = isMobile
-      ? 'px-3 py-2 rounded-md text-gray-700 hover:bg-gray-50 hover:text-primary block'
-      : 'text-gray-700 hover:text-primary hover:bg-transparent rounded-md whitespace-nowrap flex-shrink-0'
+      ? 'px-3 py-2 rounded-md text-base text-gray-700 hover:bg-gray-50 hover:text-primary block'
+      : 'text-base text-gray-700 hover:text-primary hover:bg-transparent rounded-md whitespace-nowrap flex-shrink-0'
 
     const content = icon ? (
       <span className="flex items-center">
@@ -79,9 +79,17 @@ const CategoryLinks: React.FC<CategoryLinksProps> = ({
   }
 
   const renderCategoryLinkNode = (category: BlogCategory, forMobile: boolean) => {
+    const categoryName = (category.name && typeof category.name === 'object' && 'ar' in category.name)
+      ? (category.name as { ar: string }).ar
+      : (category.name as string); // Fallback for non-localized data
+
+    const categorySlug = (category.slug && typeof category.slug === 'object' && 'ar' in category.slug)
+      ? (category.slug as { ar: string }).ar
+      : (category.slug as string); // Fallback for non-localized data
+
     return renderLink(
-      `/categories/${category.slug}`,
-      category.name,
+      `/categories/${categorySlug}`,
+      categoryName,
       undefined,
       !forMobile,
       category.id,
@@ -137,7 +145,7 @@ const CategoryLinks: React.FC<CategoryLinksProps> = ({
     return (
       <>
         <div className="pt-2 pb-1" key="mobile-news-categories-header">
-          <DropdownMenuLabel className="px-3 text-xs font-normal text-gray-500">
+          <DropdownMenuLabel className="px-3 text-sm font-normal text-gray-500">
             أقسام الأخبار
           </DropdownMenuLabel>
           {orderedDynamicCategoriesData.length === 0 &&

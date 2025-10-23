@@ -20,7 +20,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ latestPost, recentPost
         <div className="container mx-auto px-4">
           <Card>
             <CardContent className="p-6">
-              <p className="text-gray-500 font-sans text-right">لا يمكن العثور على أخبار جديدة.</p>
+              <p className="text-gray-500 font-sans text-right">لا توجد أخبار جديدة حالياً</p>
             </CardContent>
           </Card>
         </div>

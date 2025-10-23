@@ -71,10 +71,10 @@ export default function ForgotPasswordPage() {
       <div className="w-full max-w-md">
         <Card className="border-slate-200 shadow-lg overflow-hidden">
           <CardHeader className="bg-white space-y-1 pb-6">
-            <CardTitle className="text-2xl font-semibold text-slate-900 text-center">
+            <CardTitle className="text-3xl font-semibold text-slate-900 text-center">
               هل نسيت كلمة المرور؟
             </CardTitle>
-            <CardDescription className="text-slate-500 text-center">
+            <CardDescription className="text-slate-500 text-center text-base">
               أدخل عنوان بريدك الإلكتروني، وسنرسل لك تعليمات إعادة التعيين
             </CardDescription>
           </CardHeader>
@@ -82,7 +82,7 @@ export default function ForgotPasswordPage() {
           <CardContent className="bg-white pt-2 pb-8 px-6">
             <form className="space-y-5" onSubmit={handleSubmit}>
               <div className="space-y-1.5 text-right">
-                <Label htmlFor="email-address" className="text-sm font-medium text-slate-700">
+                <Label htmlFor="email-address" className="text-base font-medium text-slate-700">
                   عنوان البريد الإلكتروني
                 </Label>
                 <div className="relative">
@@ -95,7 +95,7 @@ export default function ForgotPasswordPage() {
                     type="email"
                     autoComplete="email"
                     required
-                    className="pr-10 bg-white border-slate-200 focus:border-primary focus:ring-primary/80 text-sm text-right"
+                    className="pr-10 bg-white border-slate-200 focus:border-primary focus:ring-primary/80 text-base text-right"
                     placeholder="mail@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -118,7 +118,7 @@ export default function ForgotPasswordPage() {
                     <AlertCircle className="h-4 w-4 text-red-600" />
                   )}
                   <AlertDescription
-                    className={`${message.type === 'success' ? 'text-green-800' : 'text-red-800'}`}
+                    className={`${message.type === 'success' ? 'text-green-800' : 'text-red-800'} text-base`}
                   >
                     {message.text}
                   </AlertDescription>
@@ -128,7 +128,7 @@ export default function ForgotPasswordPage() {
               <div className="pt-2">
                 <Button
                   type="submit"
-                  className="w-full bg-primary hover:bg-primary/80 shadow-sm transition-colors text-sm"
+                  className="w-full bg-primary hover:bg-primary/80 shadow-sm transition-colors text-base"
                   disabled={isLoading || !email.trim()}
                 >
                   {isLoading ? (
@@ -144,7 +144,7 @@ export default function ForgotPasswordPage() {
             </form>
 
             <div className="mt-6 text-center space-y-4">
-              <p className="text-sm text-slate-500">
+              <p className="text-base text-slate-500">
                 هل تذكرت كلمة المرور؟{' '}
                 <Link href="/login" className="font-medium text-primary hover:text-primary/80">
                   سجل الدخول من هنا
@@ -153,7 +153,7 @@ export default function ForgotPasswordPage() {
 
               <Link
                 href="/"
-                className="inline-flex items-center text-sm text-slate-500 hover:text-primary transition-colors"
+                className="inline-flex items-center text-base text-slate-500 hover:text-primary transition-colors"
               >
                 <ArrowLeft className="h-4 w-4 ml-1" />
                 العودة إلى الصفحة الرئيسية
@@ -163,7 +163,7 @@ export default function ForgotPasswordPage() {
         </Card>
 
         <div className="mt-6 text-center">
-          <p className="text-xs text-slate-500 leading-relaxed">
+          <p className="text-sm text-slate-500 leading-relaxed">
             لأسباب أمنية، تنتهي صلاحية روابط إعادة التعيين بعد ساعة واحدة. إذا لم تستلم البريد الإلكتروني، يرجى التحقق من مجلد الرسائل غير المرغوب فيها.
           </p>
         </div>

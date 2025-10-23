@@ -17,7 +17,7 @@ export const Loading: React.FC<LoadingProps> = ({
       className={`flex flex-col items-center justify-center gap-3 ${fullScreen ? 'fixed inset-0 bg-white/80 backdrop-blur-sm z-50' : 'py-6'}`}
     >
       <div className="loader"></div>
-      {message && <p className="text-sm text-gray-600 animate-pulse text-right">{message}</p>}
+      {message && <p className="text-base text-gray-600 animate-pulse text-right">{message}</p>}
     </div>
   )
 }

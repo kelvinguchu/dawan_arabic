@@ -16,6 +16,7 @@ export const PodcastSeries: CollectionConfig = {
       type: 'text',
       label: 'Series Name',
       required: true,
+      localized: true,
     },
     {
       name: 'slug',
@@ -32,11 +33,13 @@ export const PodcastSeries: CollectionConfig = {
           },
         ],
       },
+      localized: true,
     },
     {
       name: 'description',
       type: 'textarea',
       label: 'Description',
+      localized: true,
     },
   ],
 }

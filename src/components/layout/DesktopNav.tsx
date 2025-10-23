@@ -33,7 +33,7 @@ const DesktopNav: React.FC<DesktopNavProps> = ({ categories, countries }) => {
           <div className="col-span-3 relative z-20 bg-white">
             <SearchInput
               isHeaderSearch={true}
-              inputClassName="h-9 rounded-full text-sm border-gray-200 focus-visible:ring-primary bg-white text-right"
+              inputClassName="h-9 rounded-full text-base border-gray-200 focus-visible:ring-primary bg-white text-right"
               buttonClassName="h-9 px-3"
               redirectPath="/news"
               placeholder="ابحث في المقالات..."

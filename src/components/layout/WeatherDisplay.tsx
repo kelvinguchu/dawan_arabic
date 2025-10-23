@@ -153,7 +153,7 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ isMobile = false }) => 
   }
 
   const getWeatherCondition = (code: number) => {
-    if (code === 0) return 'مشمس مشرف'
+    if (code === 0) return 'مشمس'
     if (code === 1) return 'مشمس في الغالب'
     if (code === 2) return 'غيوم جزئية'
     if (code === 3) return 'غيوم'
@@ -172,7 +172,7 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ isMobile = false }) => 
 
   if (isMobile) {
     return (
-      <div className="flex items-center text-xs text-gray-500">
+      <div className="flex items-center text-sm text-gray-500">
         {weather.loading ? (
           <div className="flex items-center">
             <Skeleton className="h-4 w-4 mr-1.5 rounded-full" />
@@ -206,7 +206,7 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ isMobile = false }) => 
   }
 
   return (
-    <div className="hidden md:flex items-center text-xs text-gray-500">
+    <div className="hidden md:flex items-center text-sm text-gray-500">
       {weather.loading ? (
         <div className="flex items-center">
           <Skeleton className="h-3.5 w-3.5 mr-1.5 rounded-full" />

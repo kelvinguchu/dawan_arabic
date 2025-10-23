@@ -197,7 +197,7 @@ export const SharePopover: React.FC<SharePopoverProps> = ({
       </PopoverTrigger>
       <PopoverContent className="w-64 p-3" align="end">
         <div className="space-y-2">
-          <h3 className="font-medium text-sm">شارك المقال</h3>
+          <h3 className="font-medium text-base">شارك المقال</h3>
           <Button
             className="w-full mb-2 bg-primary hover:bg-primary/90 text-white"
             onClick={handleNativeShare}
@@ -241,7 +241,7 @@ export const SharePopover: React.FC<SharePopoverProps> = ({
           {shareResult && (
             <p
               className={cn(
-                'text-xs mt-2 text-center',
+                'text-sm mt-2 text-center',
                 shareResult.type === 'success' ? 'text-green-600' : 'text-red-600',
               )}
             >

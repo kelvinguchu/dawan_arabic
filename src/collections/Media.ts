@@ -17,6 +17,7 @@ export const Media: CollectionConfig = {
       admin: {
         description: 'Alternative text for images (important for accessibility & SEO)',
       },
+      localized: true,
     },
     {
       name: 'caption',
@@ -25,6 +26,7 @@ export const Media: CollectionConfig = {
       admin: {
         description: 'Optional caption for the media file',
       },
+      localized: true,
     },
   ],
   upload: {

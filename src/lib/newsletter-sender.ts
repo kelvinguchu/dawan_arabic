@@ -3,7 +3,7 @@ import type { Payload } from 'payload'
 import config from '@/payload.config'
 import { Newsletter, NewsletterCampaign } from '@/payload-types'
 import crypto from 'crypto'
-import { sanitizeHTML } from './html-sanitizer'
+import { sanitizeHTML } from './html-sanitizer.ts'
 
 interface SendNewsletterOptions {
   campaignId: string

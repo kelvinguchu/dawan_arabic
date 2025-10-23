@@ -48,6 +48,7 @@ export const Embed: Block = {
           return 'Please enter a valid URL or HTML embed code'
         }
       },
+      localized: true,
     },
     {
       name: 'title',
@@ -57,6 +58,7 @@ export const Embed: Block = {
         description: 'Optional title for the embedded content',
         placeholder: 'e.g., Amazing Video Title',
       },
+      localized: true,
     },
     {
       name: 'caption',
@@ -66,6 +68,7 @@ export const Embed: Block = {
         description: 'Optional caption or description for the embedded content',
         rows: 3,
       },
+      localized: true,
     },
   ],
 }

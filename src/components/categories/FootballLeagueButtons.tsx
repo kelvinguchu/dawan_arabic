@@ -120,7 +120,7 @@ export const FootballLeagueButtons = () => {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center gap-3 mb-3 flex-row-reverse">
           <Trophy className="h-5 w-5 text-amber-600" />
-          <span className="font-medium text-gray-900 text-right">دوريات كرة القدم</span>
+          <span className="font-medium text-gray-900 text-right text-lg">دوريات كرة القدم</span>
         </div>
 
         <ScrollArea className="w-full">
@@ -136,7 +136,7 @@ export const FootballLeagueButtons = () => {
                   <span className="inline-flex w-5 h-4 shrink-0 rounded-[3px] overflow-hidden bg-gray-50">
                     <FlagSvg id={league.id} title={league.name} />
                   </span>
-                  <span className="font-medium text-gray-900">{league.name}</span>
+                  <span className="font-medium text-gray-900 text-base">{league.name}</span>
                 </Button>
               </FootballSheet>
             ))}

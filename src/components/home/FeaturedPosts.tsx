@@ -55,7 +55,7 @@ export const FeaturedPosts: React.FC<FeaturedPostsProps> = ({
           <div className="flex flex-col items-end sm:flex-row-reverse sm:items-center sm:justify-between gap-4">
             <div className="flex items-center gap-2 flex-row-reverse justify-end w-full sm:w-auto">
               <TrendingUp className="h-5 w-5 text-primary" strokeWidth={2.5} />
-              <h2 className="font-sans text-xl sm:text-2xl font-bold text-gray-900 text-right">
+              <h2 className="font-sans text-2xl sm:text-3xl font-bold text-gray-900 text-right">
                 القصص الشائعة
               </h2>
             </div>
@@ -67,13 +67,13 @@ export const FeaturedPosts: React.FC<FeaturedPostsProps> = ({
               <TabsList className="bg-gray-100/80 w-full rounded-full h-9 relative z-10">
                 <TabsTrigger
                   value="trending"
-                  className="flex-1 sm:flex-none text-xs sm:text-sm data-[state=active]:bg-white data-[state=active]:text-primary rounded-full h-7"
+                  className="flex-1 sm:flex-none text-sm sm:text-base data-[state=active]:bg-white data-[state=active]:text-primary rounded-full h-7"
                 >
                   الأكثر شهرة
                 </TabsTrigger>
                 <TabsTrigger
                   value="editors"
-                  className="flex-1 sm:flex-none text-xs sm:text-sm data-[state=active]:bg-white data-[state=active]:text-primary rounded-full h-7"
+                  className="flex-1 sm:flex-none text-sm sm:text-base data-[state=active]:bg-white data-[state=active]:text-primary rounded-full h-7"
                 >
                   اختيارات المحررين
                 </TabsTrigger>

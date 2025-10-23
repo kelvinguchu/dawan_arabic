@@ -8,10 +8,10 @@ export async function FooterCategories() {
 
   return (
     <div className="hidden sm:block sm:col-span-1 lg:col-span-2">
-      <h4 className="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-white relative pb-2 before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-10 sm:before:w-12 before:h-0.5 before:bg-primary text-right">
+      <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white relative pb-2 before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-10 sm:before:w-12 before:h-0.5 before:bg-primary text-right">
         الأقسام
       </h4>
-      <ul className="space-y-1.5 sm:space-y-2 text-sm">
+      <ul className="space-y-1.5 sm:space-y-2 text-base">
         {[
           ...categories.map((category) => (
             <li key={category.slug}>

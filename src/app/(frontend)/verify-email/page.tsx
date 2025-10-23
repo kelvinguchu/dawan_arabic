@@ -41,11 +41,11 @@ export default async function VerifyEmailPage({ searchParams }: VerifyEmailPageP
               {status === 'success' && <CheckCircle className="h-12 w-12 text-green-600" />}
               {status === 'error' && <AlertCircle className="h-12 w-12 text-red-600" />}
             </div>
-            <CardTitle className="text-2xl font-semibold text-slate-900">
+            <CardTitle className="text-3xl font-semibold text-slate-900">
               {status === 'success' && 'تم تأكيد البريد الإلكتروني!'}
               {status === 'error' && 'فشل التحقق'}
             </CardTitle>
-            <CardDescription className="text-slate-600">
+            <CardDescription className="text-slate-600 text-base">
               {status === 'success' && 'تم تأكيد بريدك الإلكتروني بنجاح.'}
               {status === 'error' && 'حدثت مشكلة أثناء التحقق من بريدك الإلكتروني.'}
             </CardDescription>
@@ -53,7 +53,7 @@ export default async function VerifyEmailPage({ searchParams }: VerifyEmailPageP
 
           <CardContent className="space-y-4">
             <div
-              className={`p-4 rounded-md text-sm ${
+              className={`p-4 rounded-md text-base ${
                 status === 'success'
                   ? 'bg-green-50 text-green-800 border border-green-200'
                   : 'bg-red-50 text-red-800 border border-red-200'
@@ -64,7 +64,7 @@ export default async function VerifyEmailPage({ searchParams }: VerifyEmailPageP
 
             <div className="space-y-3">
               <Link href="/" className="block">
-                <Button className="w-full bg-primary hover:bg-primary/80 text-white">
+                <Button className="w-full bg-primary hover:bg-primary/80 text-white text-lg">
                   الذهاب إلى الصفحة الرئيسية
                 </Button>
               </Link>

@@ -46,11 +46,13 @@ export const Newsletter: CollectionConfig = {
       name: 'firstName',
       type: 'text',
       label: 'First Name',
+      localized: true,
     },
     {
       name: 'lastName',
       type: 'text',
       label: 'Last Name',
+      localized: true,
     },
 
     {
@@ -102,6 +104,7 @@ export const Newsletter: CollectionConfig = {
           name: 'tag',
           type: 'text',
           required: true,
+          localized: true,
         },
       ],
     },

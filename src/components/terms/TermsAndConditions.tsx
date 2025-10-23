@@ -7,10 +7,10 @@ const TermsAndConditions: React.FC = () => {
       <section className="bg-linear-to-r from-slate-900 to-slate-800 py-16 sm:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4">
               الشروط والأحكام
             </h1>
-            <p className="text-lg sm:text-xl text-gray-300">محدث في: 3 يونيو، 2025</p>
+            <p className="text-xl sm:text-2xl text-gray-300">محدث في: 3 يونيو، 2025</p>
           </div>
         </div>
       </section>
@@ -18,7 +18,7 @@ const TermsAndConditions: React.FC = () => {
       {/* Content Section */}
       <section className="py-12 sm:py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto prose prose-lg prose-slate ">
+          <div className="max-w-4xl mx-auto prose prose-xl prose-slate ">
             <div className="mb-8">
               <p className="text-gray-600 leading-relaxed">
                 هذه الشروط والأحكام (&quot;الشروط&quot;، &quot;الشروط والأحكام&quot;) تحكم العلاقة

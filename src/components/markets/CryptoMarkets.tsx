@@ -30,10 +30,10 @@ export async function CryptoMarkets({ page, sortBy, searchTerm }: { page: number
   return (
     <div className="container mx-auto px-4 py-6 sm:py-8 md:py-12">
       <div className="mb-6 sm:mb-8 md:mb-10 text-right">
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2 text-right">
+        <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-2 text-right">
           أسواق العملات المشفرة
         </h1>
-        <p className="text-gray-600 text-lg text-right">
+        <p className="text-gray-600 text-xl text-right">
           تابع الأسعار في الوقت الفعلي وبيانات السوق للعملات المشفرة الأوائل
         </p>
       </div>

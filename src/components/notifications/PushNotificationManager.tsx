@@ -193,7 +193,7 @@ export function PushNotificationManager() {
   return (
     <div className="flex items-center gap-2">
       {permission === 'denied' ? (
-        <div className="text-xs text-gray-500">الإشعارات محظورة</div>
+        <div className="text-sm text-gray-500">الإشعارات محظورة</div>
       ) : (
         <button
           onClick={isSubscribed ? unsubscribeFromNotifications : subscribeToNotifications}
@@ -207,7 +207,7 @@ export function PushNotificationManager() {
           ) : (
             <BellOff className="h-4 w-4" />
           )}
-          <span className="text-xs">
+          <span className="text-sm">
             {isLoading ? 'جاري التحميل...' : isSubscribed ? 'إلغاء الإشعارات' : 'تفعيل الإشعارات'}
           </span>
         </button>

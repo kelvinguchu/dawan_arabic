@@ -74,7 +74,7 @@ export const ArticleServerView: React.FC<ArticleServerViewProps> = ({
                     })()}
                   </div>
                   <div className="flex-1 min-w-0 text-right">
-                    <span className="font-medium text-gray-900 text-sm sm:text-base leading-relaxed wrap-break-word">
+                    <span className="font-medium text-gray-900 text-base sm:text-lg leading-relaxed wrap-break-word">
                       كتبه{' '}
                       <Link
                         href={getReporterUrl(post)}

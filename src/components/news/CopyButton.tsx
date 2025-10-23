@@ -12,7 +12,7 @@ export const CopyButton: React.FC<CopyButtonProps> = ({ text }) => {
   }
 
   return (
-    <button className="text-gray-400 hover:text-white transition-colors" onClick={handleCopy}>
+    <button className="text-base text-gray-400 hover:text-white transition-colors" onClick={handleCopy}>
       نسخ
     </button>
   )

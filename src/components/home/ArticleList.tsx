@@ -38,14 +38,14 @@ export const ArticleList: React.FC<ArticleListProps> = ({ posts, className }) =>
               </div>
               <div className="p-3 sm:p-4 flex flex-col grow">
                 <div className="grow">
-                  <h3 className="font-sans text-sm sm:text-base font-semibold text-gray-900 line-clamp-2 group-hover:text-primary transition-colors text-right">
+                  <h3 className="font-sans text-base sm:text-lg font-semibold text-gray-900 line-clamp-2 group-hover:text-primary transition-colors text-right">
                     {post.name}
                   </h3>
                   {excerpt && (
-                    <p className="mt-1 text-xs sm:text-sm text-gray-600 line-clamp-2 text-right">{excerpt}</p>
+                    <p className="mt-1 text-sm sm:text-base text-gray-600 line-clamp-2 text-right">{excerpt}</p>
                   )}
                 </div>
-                <div className="mt-2 text-[11px] sm:text-xs text-gray-500 text-right">{formatTimeAgo(post.createdAt)}</div>
+                <div className="mt-2 text-xs sm:text-sm text-gray-500 text-right">{formatTimeAgo(post.createdAt)}</div>
               </div>
             </Link>
           )

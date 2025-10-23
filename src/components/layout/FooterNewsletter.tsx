@@ -86,10 +86,10 @@ export function FooterNewsletter() {
   return (
     <div className="border-t border-slate-800 mt-6 sm:mt-10 pt-6 sm:pt-8">
       <div className="max-w-2xl mx-auto text-center">
-        <h4 className="text-lg sm:text-xl font-bold text-white mb-2">
+        <h4 className="text-xl sm:text-2xl font-bold text-white mb-2">
           تابع آخر أخبار الصومال
         </h4>
-        <p className="text-slate-300 text-sm mb-6">
+        <p className="text-slate-300 text-base mb-6">
           احصل على آخر الأخبار والتحليلات مباشرة في صندوق بريدك.
         </p>
 
@@ -155,7 +155,7 @@ export function FooterNewsletter() {
           )}
         </form>
 
-        <p className="text-slate-400 text-xs mt-4">
+        <p className="text-slate-400 text-sm mt-4">
           انضم إلى مجتمع القراء النشطين. يمكنك إلغاء الاشتراك في أي وقت.
         </p>
       </div>

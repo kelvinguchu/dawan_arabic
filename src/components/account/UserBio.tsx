@@ -114,7 +114,7 @@ export const UserBio: React.FC<UserBioProps> = ({ user, onUpdate }) => {
                 alt={user.name ?? 'صورة الملف الشخصي'}
                 className="object-cover"
               />
-              <AvatarFallback className="text-xl sm:text-2xl font-semibold bg-gradient-to-br from-slate-100 to-slate-200 text-slate-500">
+              <AvatarFallback className="text-2xl sm:text-3xl font-semibold bg-gradient-to-br from-slate-100 to-slate-200 text-slate-500">
                 {getInitials(user.name, user.email)}
               </AvatarFallback>
             </Avatar>
@@ -128,15 +128,14 @@ export const UserBio: React.FC<UserBioProps> = ({ user, onUpdate }) => {
           </div>
 
           <div className="flex-1 min-w-0">
-            <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight truncate text-right">
+            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight truncate text-right">
               {user.name || user.email?.split('@')[0]}
             </h1>
             <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-4 mt-2">
-              <div className="flex items-center text-xs sm:text-sm text-slate-500 flex-row-reverse">
-                <Mail className="h-3.5 w-3.5 sm:h-4 sm:w-4 ml-1.5 sm:ml-2 flex-shrink-0" />
+              <div className="flex items-center text-sm sm:text-base text-slate-500 flex-row-reverse">
                 <span className="truncate">{user.email}</span>
               </div>
-              <div className="flex items-center text-xs sm:text-sm text-slate-500 flex-row-reverse">
+              <div className="flex items-center text-sm sm:text-base text-slate-500 flex-row-reverse">
                 <Calendar className="h-3.5 w-3.5 sm:h-4 sm:w-4 ml-1.5 sm:ml-2 flex-shrink-0" />
                 <span className="truncate">عضو منذ {joinDate}</span>
               </div>
@@ -150,7 +149,7 @@ export const UserBio: React.FC<UserBioProps> = ({ user, onUpdate }) => {
               size="sm"
               onClick={() => fileInputRef.current?.click()}
               disabled={isUploadingPicture}
-              className="text-xs sm:text-sm shadow-sm w-full sm:w-auto"
+              className="text-sm sm:text-base shadow-sm w-full sm:w-auto"
             >
               <UploadCloud className="ml-1.5 h-3.5 w-3.5 sm:ml-2 sm:h-4 sm:w-4" />
               تغيير الصورة
@@ -161,7 +160,7 @@ export const UserBio: React.FC<UserBioProps> = ({ user, onUpdate }) => {
                 size="sm"
                 onClick={handlePictureUpload}
                 disabled={isUploadingPicture || !previewUrl}
-                className="bg-primary hover:bg-primary/80 text-xs sm:text-sm shadow-sm w-full sm:w-auto"
+                className="bg-primary hover:bg-primary/80 text-sm sm:text-base shadow-sm w-full sm:w-auto"
               >
                 {isUploadingPicture ? 'جاري الرفع...' : 'رفع'}
               </Button>

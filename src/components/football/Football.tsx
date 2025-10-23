@@ -44,7 +44,7 @@ const Football: React.FC<FootballProps> = ({ selectedCompetition, onSelectCompet
                 onClick={() => onSelectCompetition(competition.id)}
                 className="w-full text-right px-4 py-2 rounded-md hover:bg-gray-100 flex items-center justify-between group flex-row-reverse"
               >
-                <span className="font-medium text-gray-800">{competition.name}</span>
+                <span className="font-medium text-gray-800 text-lg">{competition.name}</span>
                 <ChevronLeft className="h-4 w-4 text-gray-400 group-hover:text-primary group-hover:-translate-x-1 transition-transform" />
               </button>
             </li>
@@ -78,7 +78,7 @@ const Football: React.FC<FootballProps> = ({ selectedCompetition, onSelectCompet
           <div className="absolute inset-0 flex items-center justify-center bg-gray-50 bg-opacity-80 z-10">
             <div className="flex flex-col items-center">
               <Loader2 className="h-8 w-8 text-primary animate-spin mb-2" />
-              <p className="text-gray-600 text-right">جاري تحميل الترتيب...</p>
+              <p className="text-gray-600 text-right text-base">جاري تحميل الترتيب...</p>
             </div>
           </div>
         )}
@@ -87,10 +87,10 @@ const Football: React.FC<FootballProps> = ({ selectedCompetition, onSelectCompet
           <div className="absolute inset-0 flex items-center justify-center bg-gray-50 z-10">
             <div className="flex flex-col items-center max-w-md mx-auto text-center p-6">
               <AlertCircle className="h-8 w-8 text-red-500 mb-2" />
-              <h3 className="text-lg font-medium text-gray-900 mb-1 text-right">
+              <h3 className="text-xl font-medium text-gray-900 mb-1 text-right">
                 فشل تحميل الترتيب
               </h3>
-              <p className="text-gray-600 mb-4 text-right">
+              <p className="text-gray-600 mb-4 text-right text-base">
                 لا يمكن تحميل ترتيب {selectedComp.name}. الرجاء التحقق من اتصال
                 الإنترنت الخاص بك والمحاولة مرة أخرى.
               </p>
@@ -110,7 +110,7 @@ const Football: React.FC<FootballProps> = ({ selectedCompetition, onSelectCompet
                     }, 100)
                   }
                 }}
-                className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/80 transition-colors"
+                className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/80 transition-colors text-base"
               >
                 إعادة المحاولة
               </button>

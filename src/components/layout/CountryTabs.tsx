@@ -54,7 +54,7 @@ const CountryTabs: React.FC<CountryTabsProps> = ({
     ? 'border-t border-gray-100 bg-white lg:hidden'
     : 'border-t border-gray-100 bg-white hidden lg:block'
 
-  const labelSize = isMobile ? 'text-sm' : 'text-[15px]'
+  const labelSize = isMobile ? 'text-base' : 'text-lg'
 
   return (
     <div className={WrapperClasses}>

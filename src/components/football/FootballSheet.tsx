@@ -81,7 +81,7 @@ const FootballSheet: React.FC<FootballSheetProps> = ({ children, defaultCompetit
               <SheetTitle className="text-right">
                 {selectedCompetition ? competitionName : 'ترتيب كرة القدم'}
               </SheetTitle>
-              <SheetDescription className="text-right">
+              <SheetDescription className="text-right text-base">
                 {selectedCompetition
                   ? 'الترتيب والنتائج الأخيرة'
                   : 'اختر البطولة لعرض الترتيب'}

@@ -15,6 +15,7 @@ export const BlogCategories: CollectionConfig = {
       type: 'text',
       label: 'Name',
       required: true,
+      localized: true,
     },
     {
       name: 'slug',
@@ -24,6 +25,7 @@ export const BlogCategories: CollectionConfig = {
       admin: {
         position: 'sidebar',
       },
+      localized: true,
     },
   ],
 }

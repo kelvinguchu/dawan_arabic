@@ -20,7 +20,7 @@ function RegisterClientBoundary() {
   if (authLoading || (!authLoading && user)) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-slate-50">
-        <div className="animate-pulse text-slate-500 text-sm">جاري التحميل...</div>
+        <div className="animate-pulse text-slate-500 text-base">جاري التحميل...</div>
       </div>
     )
   }
@@ -33,7 +33,7 @@ export default function RegisterPage() {
       <Suspense
         fallback={
           <div className="flex items-center justify-center grow">
-            <div className="animate-pulse text-slate-500 text-sm">جاري تحميل معلومات الصفحة...</div>
+            <div className="animate-pulse text-slate-500 text-base">جاري تحميل معلومات الصفحة...</div>
           </div>
         }
       >

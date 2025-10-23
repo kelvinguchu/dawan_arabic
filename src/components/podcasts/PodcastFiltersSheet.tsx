@@ -80,7 +80,7 @@ export const PodcastFiltersSheet: React.FC<PodcastFiltersSheetProps> = ({
           <div className="bg-primary p-4">
             <div className="flex items-center gap-2 flex-row-reverse">
               <Filter className="w-5 h-5 text-white" />
-              <h2 className="text-lg font-semibold text-white">المرشحات</h2>
+              <h2 className="text-xl font-semibold text-white">المرشحات</h2>
             </div>
           </div>
 
@@ -89,7 +89,7 @@ export const PodcastFiltersSheet: React.FC<PodcastFiltersSheetProps> = ({
             <div className="p-4 space-y-4">
               {/* Category Filter */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-700 text-right">التصنيف</label>
+                <label className="text-base font-medium text-slate-700 text-right">التصنيف</label>
                 <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                   <SelectTrigger className="h-10 text-right">
                     <SelectValue placeholder="جميع التصنيفات" />
@@ -107,7 +107,7 @@ export const PodcastFiltersSheet: React.FC<PodcastFiltersSheetProps> = ({
 
               {/* Series Filter */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-700 text-right">السلسلة</label>
+                <label className="text-base font-medium text-slate-700 text-right">السلسلة</label>
                 <Select value={selectedSeries} onValueChange={setSelectedSeries}>
                   <SelectTrigger className="h-10 text-right">
                     <SelectValue placeholder="جميع السلاسل" />
@@ -125,7 +125,7 @@ export const PodcastFiltersSheet: React.FC<PodcastFiltersSheetProps> = ({
 
               {/* Sort Filter */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-700 text-right">الترتيب</label>
+                <label className="text-base font-medium text-slate-700 text-right">الترتيب</label>
                 <Select
                   value={sortBy}
                   onValueChange={(value) =>
@@ -147,10 +147,10 @@ export const PodcastFiltersSheet: React.FC<PodcastFiltersSheetProps> = ({
               {/* Active Filters */}
               {hasActiveFilters && (
                 <div className="space-y-2 pt-4 border-t border-slate-200">
-                  <label className="text-sm font-medium text-slate-700 text-right">المرشحات النشطة</label>
+                  <label className="text-base font-medium text-slate-700 text-right">المرشحات النشطة</label>
                   <div className="flex flex-wrap gap-2 flex-row-reverse">
                     {searchTerm && (
-                      <Badge variant="secondary" className="text-xs">
+                      <Badge variant="secondary" className="text-sm">
                         البحث: &quot;{searchTerm}&quot;
                         <button
                           onClick={() => setSearchTerm('')}

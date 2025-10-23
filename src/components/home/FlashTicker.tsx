@@ -47,7 +47,7 @@ export const FlashTicker: React.FC<FlashTickerProps> = ({ posts, intervalMs = 50
       <div className="flex items-stretch h-full">
         <div className="flex items-center gap-1 px-3 sm:px-4 text-white bg-primary">
           <Zap className="h-3 w-3 sm:h-4 sm:w-4 animate-pulse" />
-          <span className="text-xs sm:text-sm font-bold uppercase tracking-wide">عاجل</span>
+          <span className="text-sm sm:text-base font-bold uppercase tracking-wide">عاجل</span>
         </div>
 
         <AnimatePresence mode="wait" initial={false}>
@@ -63,13 +63,13 @@ export const FlashTicker: React.FC<FlashTickerProps> = ({ posts, intervalMs = 50
               href={`/news/${current.slug}`}
               className="text-gray-900 hover:text-primary hover:underline transition-colors"
             >
-              <span className="line-clamp-1 text-xs sm:text-sm font-medium text-right">{current.name}</span>
+              <span className="line-clamp-1 text-sm sm:text-base font-medium text-right">{current.name}</span>
             </Link>
           </motion.div>
         </AnimatePresence>
 
         <div
-          className="hidden sm:flex items-center px-4 text-xs border-l border-primary/20 text-primary/80"
+          className="hidden sm:flex items-center px-4 text-sm border-l border-primary/20 text-primary/80"
         >
           {formatTimeAgo(current.createdAt)}
         </div>

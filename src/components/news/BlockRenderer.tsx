@@ -51,6 +51,7 @@ import {
   FigcaptionBlockData,
   AudioBlockData,
 } from './blockrender/BlockUtils'
+import { getLocalizedField } from '@/utils/postUtils'
 
 // Helper function to convert null to undefined for component props
 const nullToUndefined = <T,>(value: T | null | undefined): T | undefined => {
@@ -120,9 +121,9 @@ export const BlockRenderer: React.FC<BlockRendererProps> = ({ block, hideTextOve
       const embedBlock = typedBlock as EmbedBlockData
       return (
         <EmbedBlock
-          content={embedBlock.content}
-          title={nullToUndefined(embedBlock.title)}
-          caption={nullToUndefined(embedBlock.caption)}
+          content={getLocalizedField(embedBlock.content, '')}
+          title={nullToUndefined(getLocalizedField(embedBlock.title, ''))}
+          caption={nullToUndefined(getLocalizedField(embedBlock.caption, ''))}
         />
       )
     }

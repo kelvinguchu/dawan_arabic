@@ -86,7 +86,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
               }
               alt={user.name ?? 'User'}
             />
-            <AvatarFallback className="text-[10px] font-medium bg-slate-100 text-slate-500">
+            <AvatarFallback className="text-xs font-medium bg-slate-100 text-slate-500">
               {getInitials(user.name, user.email)}
             </AvatarFallback>
           </Avatar>
@@ -138,22 +138,24 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
           />
 
           <div className="border-t mt-4 pt-4 space-y-3">
-            <div className="flex items-center px-3 py-2 text-sm text-gray-600 flex-row-reverse">
+            <div className="flex items-center px-3 py-2 text-base text-gray-600 flex-row-reverse">
               <BiCalendar className="ml-2 h-4 w-4" />
               <span>{format(new Date(), 'EEEE، d MMMM yyyy', { locale: ar })}</span>
             </div>
 
             <div className="px-3 py-2">
-              <WeatherDisplay />
+              <span dir="ltr">
+                <WeatherDisplay />
+              </span>
             </div>
 
             <div className="px-3 py-2">
-              <div className="text-sm text-gray-600 mb-2">الإشعارات</div>
+              <div className="text-base text-gray-600 mb-2">الإشعارات</div>
               <PushNotificationManager />
             </div>
 
             <div className="px-3 py-2">
-              <div className="text-sm text-gray-600 mb-2">تابعنا</div>
+              <div className="text-base text-gray-600 mb-2">تابعنا</div>
               <SocialIcons className="flex items-center space-x-4" iconSize={20} />
             </div>
 

@@ -21,11 +21,11 @@ export const RecentNewsItem: React.FC<RecentNewsItemProps> = ({ post, imageUrl }
     >
       <div className="flex gap-2 sm:gap-3 flex-row-reverse">
         <div className="flex-1 min-w-0">
-          <div className="mb-1 text-[10px] sm:text-xs font-medium text-gray-500 flex items-center flex-row-reverse">
+          <div className="mb-1 text-xs sm:text-sm font-medium text-gray-500 flex items-center flex-row-reverse">
             <Clock className="h-2.5 w-2.5 sm:h-3 sm:w-3 ml-1 text-primary" />
             {formatTimeAgo(post.createdAt)}
           </div>
-          <h3 className="mb-1 sm:mb-2 font-sans text-xs sm:text-sm font-medium text-gray-900 transition-colors group-hover:text-primary line-clamp-2 text-right">
+          <h3 className="mb-1 sm:mb-2 font-sans text-sm sm:text-base font-medium text-gray-900 transition-colors group-hover:text-primary line-clamp-2 text-right">
             {post.name}
           </h3>
         </div>
@@ -41,7 +41,7 @@ export const RecentNewsItem: React.FC<RecentNewsItemProps> = ({ post, imageUrl }
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center bg-muted">
-              <span className="text-[10px] sm:text-xs text-primary">
+              <span className="text-xs sm:text-sm text-primary">
                 لا توجد صورة
               </span>
             </div>

@@ -5,7 +5,7 @@ import { format } from 'date-fns'
 import { arSA } from 'date-fns/locale'
 import { CalendarDays, Clock } from 'lucide-react'
 
-import { getPostImageFromLayout } from '@/utils/postUtils'
+import { getPostImageFromLayout, getLocalizedField, extractPlainTextFromLexical } from '@/utils/postUtils'
 import { SharePopoverClient } from './SharePopoverClient'
 
 interface ArticleHeaderProps {
@@ -17,34 +17,23 @@ export const ArticleHeader: React.FC<ArticleHeaderProps> = ({ post, currentUrl }
   const publishedDate = format(new Date(post.createdAt), 'd MMMM yyyy', { locale: arSA })
   const wordCount =
     post.layout?.reduce((acc, block) => {
-      if (block.blockType === 'richtext' && block.content?.root?.children) {
-        return (
-          acc +
-          block.content.root.children
-            .map(
-              (child: {
-                type: string
-                version: number
-                children?: { text?: string }[]
-                [k: string]: unknown
-              }) => {
-                const children = child.children ?? []
-                const text = children
-                  .map((span: { text?: string }) => span.text || '')
-                  .join(' ')
-                  .trim()
+      if (block.blockType === 'richtext' && block.content) {
+        let textContent = '';
+        if (typeof block.content === 'string') {
+          textContent = block.content;
+        } else if (typeof block.content === 'object' && 'root' in block.content) {
+          textContent = extractPlainTextFromLexical(block.content);
+        } else {
+          textContent = getLocalizedField(block.content, '');
+        }
 
-                if (!text) return 0
-
-                return text.split(/\s+/).filter((word) => word.length > 0).length
-              },
-            )
-            .reduce((sum: number, count: number) => sum + count, 0)
-        )
+        if (textContent) {
+          return acc + textContent.trim().split(/\s+/).filter((word) => word.length > 0).length;
+        }
       }
-      return acc
+      return acc;
     }, 0) ??
-    post.name
+    getLocalizedField(post.name, '')
       .trim()
       .split(/\s+/)
       .filter((word) => word.length > 0).length
@@ -61,7 +50,7 @@ export const ArticleHeader: React.FC<ArticleHeaderProps> = ({ post, currentUrl }
             <div className="w-full h-[40vh] sm:h-[50vh] md:h-[60vh] lg:h-[70vh] relative">
               <Image
                 src={coverImageUrl}
-                alt={post.name}
+                alt={getLocalizedField(post.name, '')}
                 fill
                 className="object-cover"
                 priority
@@ -81,11 +70,11 @@ export const ArticleHeader: React.FC<ArticleHeaderProps> = ({ post, currentUrl }
 
         <div className="absolute bottom-0 left-0 right-0 z-20 p-4 sm:p-6 md:p-8 lg:p-16 text-white">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold mb-3 sm:mb-6 leading-tight text-shadow wrap-break-word hyphens-auto">
-              {post.name}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold mb-3 sm:mb-6 leading-tight text-shadow wrap-break-word hyphens-auto">
+              {getLocalizedField(post.name, '')}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-2 sm:gap-y-3 text-white/90 text-xs sm:text-sm md:text-base flex-row-reverse">
+            <div className="flex flex-wrap items-center gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-2 sm:gap-y-3 text-white/90 text-sm sm:text-base md:text-lg flex-row-reverse">
               <div className="flex items-center flex-row-reverse">
                 <CalendarDays className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 mr-1.5 sm:mr-2 md:mr-3 text-white" />
                 <span>{publishedDate}</span>
@@ -101,7 +90,7 @@ export const ArticleHeader: React.FC<ArticleHeaderProps> = ({ post, currentUrl }
 
       <div className="fixed right-4 sm:right-8 top-24 sm:top-32 z-50">
         <SharePopoverClient
-          title={post.name}
+          title={getLocalizedField(post.name, '')}
           url={currentUrl}
           buttonVariant="outline"
           buttonSize="icon"

@@ -151,8 +151,8 @@ const Header: React.FC<HeaderProps> = ({ initialCategories = [] }) => {
                   src="/logo.png"
                   alt="بوابة أفريقيا"
                   width={200}
-                  height={30}
-                  className="h-[30px] w-auto"
+                  height={36}
+                  className="h-[36px] w-auto"
                 />
               </Link>
             </div>
@@ -164,8 +164,8 @@ const Header: React.FC<HeaderProps> = ({ initialCategories = [] }) => {
                     src="/logo.png"
                     alt="بوابة أفريقيا"
                     width={140}
-                    height={32}
-                    className="h-[32px] w-auto"
+                    height={38}
+                    className="h-[38px] w-auto"
                   />
                 </Link>
               </div>
@@ -174,7 +174,7 @@ const Header: React.FC<HeaderProps> = ({ initialCategories = [] }) => {
                 <SocialIcons />
               </div>
 
-              <div className="hidden md:flex items-center text-xs text-gray-500">
+              <div className="hidden md:flex items-center text-sm text-gray-500">
                 <BiCalendar className="mr-1.5 h-3.5 w-3.5" />
                 <span>{formattedDate}</span>
               </div>
@@ -182,7 +182,9 @@ const Header: React.FC<HeaderProps> = ({ initialCategories = [] }) => {
 
             <div className="flex items-center space-x-4">
               <div className="hidden md:block">
-                <WeatherDisplay />
+                <span dir="ltr">
+                  <WeatherDisplay />
+                </span>
               </div>
 
               <div className="hidden md:block">
@@ -195,7 +197,7 @@ const Header: React.FC<HeaderProps> = ({ initialCategories = [] }) => {
                   className="hidden cursor-pointer md:flex items-center gap-2 px-1 py-1.5 text-gray-600 hover:text-primary hover:bg-gray-100 rounded-md transition-colors"
                 >
                   <BiDownload className="h-4 w-4" />
-                  <span className="text-xs">تثبيت التطبيق</span>
+                  <span className="text-sm">تثبيت التطبيق</span>
                 </button>
               )}
 

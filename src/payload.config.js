@@ -67,7 +67,24 @@ export default buildConfig({
     PodcastSeries,
     PushSubscriptions,
   ],
+
   editor: lexicalEditor(),
+
+  localization: {
+    locales: [
+      {
+        label: 'English',
+        code: 'en',
+      },
+      {
+        label: 'Arabic',
+        code: 'ar',
+        rtl: true,
+      },
+    ],
+    defaultLocale: 'ar',
+    fallback: true,
+  },
 
   secret: process.env.PAYLOAD_SECRET ?? '',
   typescript: {

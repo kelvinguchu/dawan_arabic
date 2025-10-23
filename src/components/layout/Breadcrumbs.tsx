@@ -70,7 +70,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ customItems, className = '' }
 
       <nav className={`bg-gray-50 border-b border-gray-200 ${className}`} aria-label="Breadcrumb">
         <div className="container mx-auto px-4 py-3">
-          <ol className="flex items-center space-x-2 text-sm flex-row-reverse">
+          <ol className="flex items-center space-x-2 text-base flex-row-reverse">
             {breadcrumbs.map((item, index) => (
               <li key={item.href} className="flex items-center">
                 {index > 0 && <BiChevronRight className="w-4 h-4 text-gray-400 mx-2 rotate-180" />}

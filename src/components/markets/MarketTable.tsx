@@ -96,12 +96,12 @@ export const MarketTable: React.FC<MarketTableProps> = ({ initialData }) => {
               placeholder="ابحث عن عملة مشفرة..."
               defaultValue={searchTerm}
               onChange={handleSearch}
-              className="pr-8 h-9 bg-white shadow-sm text-sm w-full sm:w-64 text-right"
+              className="pr-8 h-9 bg-white shadow-sm text-base w-full sm:w-64 text-right"
             />
           </div>
         </div>
         <Select value={sortBy} onValueChange={handleSort}>
-          <SelectTrigger className="h-9 w-full sm:w-44 bg-white shadow-sm text-xs">
+          <SelectTrigger className="h-9 w-full sm:w-44 bg-white shadow-sm text-sm">
             <ListFilter className="h-3.5 w-3.5 ml-1.5 text-gray-500" />
             <SelectValue placeholder="ترتيب حسب" />
           </SelectTrigger>
@@ -147,7 +147,7 @@ export const MarketTable: React.FC<MarketTableProps> = ({ initialData }) => {
                     />
                     <div className="text-right">
                       <span className="font-medium">{crypto.name}</span>
-                      <span className="text-gray-500 text-xs mr-2">{crypto.symbol}</span>
+                      <span className="text-gray-500 text-sm mr-2">{crypto.symbol}</span>
                     </div>
                   </div>
                 </TableCell>
@@ -222,7 +222,7 @@ export const MarketTable: React.FC<MarketTableProps> = ({ initialData }) => {
               )}
 
               <PaginationItem className="sm:hidden">
-                <span className="flex h-9 items-center justify-center px-2 text-sm text-muted-foreground text-right">
+                <span className="flex h-9 items-center justify-center px-2 text-base text-muted-foreground text-right">
                   الصفحة {page} من {totalPages}
                 </span>
               </PaginationItem>

@@ -219,6 +219,7 @@ export const BlogPost: CollectionConfig = {
       type: 'text',
       label: 'Title',
       required: true,
+      localized: true,
     },
     {
       name: 'slug',
@@ -237,6 +238,7 @@ export const BlogPost: CollectionConfig = {
         ],
       },
       required: true,
+      localized: true,
     },
     {
       name: 'statusDisplay',
@@ -355,6 +357,7 @@ export const BlogPost: CollectionConfig = {
           admin: {
             description: 'Full name of the reporter',
           },
+          localized: true,
         },
         {
           name: 'useCustomRole',
@@ -408,6 +411,7 @@ export const BlogPost: CollectionConfig = {
               }
             },
           },
+          localized: true,
         },
       ],
     },

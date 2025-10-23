@@ -167,10 +167,10 @@ export const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ delay = 5000 }
               />
             </div>
             <DialogHeader>
-              <DialogTitle className="text-2xl hidden sm:text-3xl font-bold text-gray-900 leading-tight">
+              <DialogTitle className="text-3xl hidden sm:text-4xl font-bold text-gray-900 leading-tight">
                 لا تفوت القصة
               </DialogTitle>
-              <DialogDescription className="hidden text-base text-gray-600 mt-2 text-right">
+              <DialogDescription className="hidden text-lg text-gray-600 mt-2 text-right">
                 اشترك في نشرتنا البريدية للحصول على خصومات حصرية، ومقالات معمقة،
                 وأحدث أخبار الصومال — تُرسل مباشرة إلى صندوق بريدك.
               </DialogDescription>
@@ -181,7 +181,7 @@ export const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ delay = 5000 }
         <div className="p-6 sm:p-8 bg-white">
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
-              <Label htmlFor="popup-firstName" className="text-sm font-medium text-slate-700 text-right">
+              <Label htmlFor="popup-firstName" className="text-base font-medium text-slate-700 text-right">
                 الاسم الأول
               </Label>
               <Input
@@ -196,7 +196,7 @@ export const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ delay = 5000 }
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="popup-email" className="text-sm font-medium text-slate-700 text-right">
+              <Label htmlFor="popup-email" className="text-base font-medium text-slate-700 text-right">
                 البريد الإلكتروني *
               </Label>
               <div className="relative">
@@ -232,13 +232,13 @@ export const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ delay = 5000 }
                   <AlertCircle className="h-4 w-4 text-blue-600" />
                 )}
                 <AlertDescription
-                  className={`${
+                  className={`${' '}
                     message.type === 'success'
                       ? 'text-green-800'
                       : message.type === 'error'
                         ? 'text-red-800'
                         : 'text-blue-800'
-                  } text-right`}
+                  } text-right text-base`}
                 >
                   {message.text}
                 </AlertDescription>
@@ -248,7 +248,7 @@ export const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ delay = 5000 }
             <div className="flex flex-col pt-3">
               <Button
                 type="submit"
-                className="w-full h-11 bg-primary hover:bg-primary/80 text-white font-medium"
+                className="w-full h-11 bg-primary hover:bg-primary/80 text-white font-medium text-lg"
                 disabled={isLoading || !email.trim()}
               >
                 {isLoading ? (
@@ -262,7 +262,7 @@ export const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ delay = 5000 }
               </Button>
             </div>
 
-            <p className="text-xs text-slate-500 text-center leading-relaxed">
+            <p className="text-sm text-slate-500 text-center leading-relaxed">
               انضم إلى آلاف القراء الذين يتابعون أخبار الصومال. يمكنك إلغاء الاشتراك في أي وقت.
             </p>
           </form>

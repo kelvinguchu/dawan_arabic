@@ -76,7 +76,7 @@ export const CollapsibleBlock: React.FC<{
 export const SpoilerBlock: React.FC<{ text?: string; content?: string }> = ({ text, content }) => {
   return (
     <details className="my-4 inline-block">
-      <summary className="cursor-pointer px-2 py-1 bg-gray-800 text-white rounded text-sm hover:bg-gray-700 transition-colors">
+      <summary className="cursor-pointer px-2 py-1 bg-gray-800 text-white rounded text-base hover:bg-gray-700 transition-colors">
         محتوى مخفي
       </summary>
       <span className="mr-2">{text || content || ''}</span>
@@ -87,7 +87,7 @@ export const SpoilerBlock: React.FC<{ text?: string; content?: string }> = ({ te
 // Hashtag Block Component
 export const HashtagBlock: React.FC<{ text?: string; content?: string }> = ({ text, content }) => {
   return (
-    <span className="inline-block px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium ml-2">
+    <span className="inline-block px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-base font-medium ml-2">
       #{text || content || 'وسم'}
     </span>
   )
@@ -104,7 +104,7 @@ export const MentionBlock: React.FC<{ text?: string; content?: string }> = ({ te
 
 // Emoji Block Component
 export const EmojiBlock: React.FC<{ text?: string; content?: string }> = ({ text, content }) => {
-  return <span className="text-lg">{text || content || '😊'}</span>
+  return <span className="text-xl">{text || content || '😊'}</span>
 }
 
 // Link Block Component
@@ -160,7 +160,7 @@ export const MarkBlock: React.FC<{ text?: string; content?: string }> = ({ text,
 // Keyboard Block Component
 export const KeyboardBlock: React.FC<{ text?: string; content?: string }> = ({ text, content }) => {
   return (
-    <kbd className="px-2 py-1 bg-gray-100 border border-gray-300 rounded text-sm font-mono text-right">
+    <kbd className="px-2 py-1 bg-gray-100 border border-gray-300 rounded text-base font-mono text-right">
       {text || content || ''}
     </kbd>
   )
@@ -174,7 +174,7 @@ export const MathBlock: React.FC<{
 }> = ({ equation, content, text }) => {
   return (
     <div className="my-4 p-4 bg-gray-50 border border-gray-200 rounded-lg text-center">
-      <code className="font-mono text-sm">{equation || content || text || 'معادلة رياضية'}</code>
+      <code className="font-mono text-base">{equation || content || text || 'معادلة رياضية'}</code>
     </div>
   )
 }
@@ -201,7 +201,7 @@ export const SimpleIframeBlock: React.FC<{
           title={title || 'محتوى مضمّن'}
         />
       </div>
-      {caption && <p className="text-center text-gray-600 mt-3 text-sm">{caption}</p>}
+      {caption && <p className="text-center text-gray-600 mt-3 text-base">{caption}</p>}
     </div>
   )
 }
@@ -216,7 +216,7 @@ export const SimpleTweetBlock: React.FC<{
     <div className="my-8 max-w-md mx-auto">
       <blockquote className="border border-gray-200 rounded-lg p-4 bg-gray-50 text-right">
         <p className="text-gray-800 mb-3">{text || content || ''}</p>
-        <cite className="text-sm text-gray-600">— @{username || 'twitter'} على تويتر</cite>
+        <cite className="text-base text-gray-600">— @{username || 'twitter'} على تويتر</cite>
       </blockquote>
     </div>
   )
@@ -228,7 +228,7 @@ export const FigcaptionBlock: React.FC<{ text?: string; content?: string }> = ({
   content,
 }) => {
   return (
-    <figcaption className="text-center text-gray-600 mt-3 text-sm italic">
+    <figcaption className="text-center text-gray-600 mt-3 text-base italic">
       {text || content || ''}
     </figcaption>
   )
@@ -251,7 +251,7 @@ export const AudioBlock: React.FC<{
         متصفحك لا يدعم عنصر الصوت.
       </audio>
       {caption && (
-        <figcaption className="text-center text-gray-600 mt-3 text-sm">{caption}</figcaption>
+        <figcaption className="text-center text-gray-600 mt-3 text-base">{caption}</figcaption>
       )}
     </figure>
   )
@@ -275,7 +275,7 @@ export const FallbackBlock: React.FC<{ block: BlockType }> = ({ block }) => {
       <p className="font-medium text-amber-800 mb-3">
         Unsupported content block: {fallbackData.blockType}
       </p>
-      <pre className="text-xs bg-white/50 p-4 rounded border border-amber-200 text-amber-700 overflow-x-auto">
+      <pre className="text-base bg-white/50 p-4 rounded border border-amber-200 text-amber-700 overflow-x-auto">
         {fallbackData.serializedBlock}
       </pre>
     </div>

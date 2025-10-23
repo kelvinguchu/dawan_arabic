@@ -81,7 +81,7 @@ export const PodcastPlayer: React.FC<PodcastPlayerProps> = ({
 
             {/* Content */}
             <div className="grow min-w-0 space-y-1 text-right">
-              <h3 className="font-semibold text-slate-900 text-sm line-clamp-1">
+              <h3 className="font-semibold text-slate-900 text-base line-clamp-1">
                 <Link
                   href={`/podcasts/${podcast.slug}`}
                   className="hover:text-primary transition-colors duration-300"
@@ -89,12 +89,12 @@ export const PodcastPlayer: React.FC<PodcastPlayerProps> = ({
                   {displayTitle}
                 </Link>
               </h3>
-              <p className="text-xs text-slate-600 line-clamp-1 flex items-center gap-1 flex-row-reverse">
+              <p className="text-sm text-slate-600 line-clamp-1 flex items-center gap-1 flex-row-reverse">
                 <Users className="w-3 h-3" />
                 {peopleInvolved}
               </p>
               {podcast.duration && (
-                <p className="text-xs text-slate-500 flex items-center gap-1 flex-row-reverse">
+                <p className="text-sm text-slate-500 flex items-center gap-1 flex-row-reverse">
                   <Clock className="w-3 h-3" />
                   {formatDuration(podcast.duration)}
                 </p>
@@ -154,7 +154,7 @@ export const PodcastPlayer: React.FC<PodcastPlayerProps> = ({
                 )}
               </div>
 
-              <h1 className="text-3xl font-bold text-slate-900 leading-tight text-right">{displayTitle}</h1>
+              <h1 className="text-4xl font-bold text-slate-900 leading-tight text-right">{displayTitle}</h1>
 
               <div className="flex items-center gap-6 text-slate-600 flex-row-reverse">
                 <span className="flex items-center gap-2 font-medium flex-row-reverse">
@@ -163,14 +163,14 @@ export const PodcastPlayer: React.FC<PodcastPlayerProps> = ({
                 </span>
 
                 {podcast.publishedAt && (
-                  <span className="flex items-center gap-2 text-sm flex-row-reverse">
+                  <span className="flex items-center gap-2 text-base flex-row-reverse">
                     <Calendar className="w-4 h-4 text-primary" />
                     {formatTimeAgo(podcast.publishedAt || podcast.createdAt)}
                   </span>
                 )}
 
                 {podcast.duration && (
-                  <span className="flex items-center gap-2 text-sm flex-row-reverse">
+                  <span className="flex items-center gap-2 text-base flex-row-reverse">
                     <Clock className="w-4 h-4 text-primary" />
                     {formatDuration(podcast.duration)}
                   </span>
@@ -255,14 +255,14 @@ export const PodcastPlayer: React.FC<PodcastPlayerProps> = ({
           <div className="grow space-y-8 text-right">
             {/* Audio player controls removed */}
             <div className="flex items-center justify-center">
-              <p className="text-slate-500 text-sm">
+              <p className="text-slate-500 text-base">
                 تم تعطيل مشغل الصوت المؤقت
               </p>
             </div>
 
             <div className="flex items-center gap-2 flex-row-reverse">
               {podcast.playCount && podcast.playCount > 0 && (
-                <span className="text-sm text-slate-500 flex items-center gap-1 flex-row-reverse">
+                <span className="text-base text-slate-500 flex items-center gap-1 flex-row-reverse">
                   <Headphones className="w-4 h-4" />
                   {podcast.playCount.toLocaleString()} مرة استماع
                 </span>
@@ -288,8 +288,8 @@ export const PodcastPlayer: React.FC<PodcastPlayerProps> = ({
             }`}
           >
             <div className="max-w-4xl">
-              <h3 className="font-semibold text-slate-900 mb-4 text-lg text-right">حول هذه الحلقة</h3>
-              <p className="text-slate-700 leading-relaxed text-base text-right">{excerpt}</p>
+              <h3 className="font-semibold text-slate-900 mb-4 text-xl text-right">حول هذه الحلقة</h3>
+              <p className="text-slate-700 leading-relaxed text-lg text-right">{excerpt}</p>
             </div>
           </div>
         )}
@@ -301,7 +301,7 @@ export const PodcastPlayer: React.FC<PodcastPlayerProps> = ({
               isExpanded ? 'opacity-100' : 'opacity-0 max-h-0 overflow-hidden pt-0 mt-0 border-t-0'
             }`}
           >
-            <h3 className="font-semibold text-slate-900 mb-4 text-lg text-right">الموارد والروابط</h3>
+            <h3 className="font-semibold text-slate-900 mb-4 text-xl text-right">الموارد والروابط</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {podcast.externalLinks.map((link, index) => (
                 <a
@@ -319,7 +319,7 @@ export const PodcastPlayer: React.FC<PodcastPlayerProps> = ({
                       {link.title}
                     </h4>
                     {link.description && (
-                      <p className="text-sm text-slate-600 mt-1">{link.description}</p>
+                      <p className="text-base text-slate-600 mt-1">{link.description}</p>
                     )}
                   </div>
                 </a>

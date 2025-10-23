@@ -31,10 +31,10 @@ export const AboutContent: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 text-right">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 text-right">
               مهمتنا
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed text-right">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed text-right">
               مجموعة دوان الإعلامية هي وسيلة إعلامية حيوية تأسست في 2023، تركز
               على العالم العربي. نقدم أخباراً شاملة، تحليلات معمقة،
               رؤى اقتصادية، تغطية سياسية، وقصص ثقافية مهمة.
@@ -51,10 +51,10 @@ export const AboutContent: React.FC = () => {
                 <div className="text-primary mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
                   {service.icon}
                 </div>
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4 text-right">
+                <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-3 sm:mb-4 text-right">
                   {service.title}
                 </h3>
-                <p className="text-sm sm:text-base text-gray-600 leading-relaxed text-right">
+                <p className="text-base sm:text-lg text-gray-600 leading-relaxed text-right">
                   {service.description}
                 </p>
               </div>
@@ -62,10 +62,10 @@ export const AboutContent: React.FC = () => {
           </div>
 
           <div className="bg-white rounded-lg sm:rounded-xl p-8 sm:p-12 shadow-sm text-center">
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 text-right">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 text-right">
               رؤيتنا
             </h3>
-            <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed text-right">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed text-right">
               مجموعة دوان الإعلامية مكرسة لإلهام، والمشاركة، والربط بين المجتمعات. نؤمن بقوة
               القصص الحقيقية التي تربط الثقافات وتعزز الفهم داخل العالم العربي والمجتمعات العربية في الخارج.
             </p>

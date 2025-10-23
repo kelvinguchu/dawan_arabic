@@ -36,7 +36,9 @@ export const getPostExcerpt = (
   if (prioritizeCoverSubheading) {
     for (const block of post.layout) {
       if (block.blockType === 'cover' && block.subheading) {
-        const subheading = block.subheading as string
+        const subheading = (block.subheading && typeof block.subheading === 'object' && 'ar' in block.subheading)
+          ? (block.subheading as { ar: string }).ar
+          : '';
         return subheading.length > maxLength
           ? `${subheading.substring(0, maxLength)}...`
           : subheading
@@ -45,9 +47,15 @@ export const getPostExcerpt = (
   }
 
   for (const block of post.layout) {
-    if (block.blockType === 'richtext' && block.content?.root?.children?.[0]?.text) {
-      const text = block.content.root.children[0].text as string
-      return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text
+    if (block.blockType === 'richtext' && block.content) {
+      const localizedContent = (block.content && typeof block.content === 'object' && 'ar' in block.content)
+        ? (block.content as Record<string, typeof block.content>).ar
+        : null;
+
+      if (localizedContent?.root?.children?.[0]?.text) {
+        const text = localizedContent.root.children[0].text as string
+        return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text
+      }
     }
   }
 
@@ -105,9 +113,55 @@ export const getAuthorRole = (author: BlogPost['author']): string => {
   return 'Contributor'
 }
 
+export const getLocalizedField = (field: string | { ar: string } | undefined | null, fallback: string): string => {
+  if (field && typeof field === 'object' && 'ar' in field) {
+    return field.ar;
+  }
+  // If it's not a localized object, assume it's the non-localized string value.
+  // This handles cases where data might not be localized yet, but `field` is directly a string.
+  return (typeof field === 'string' ? field : fallback);
+};
+
+interface LexicalNode {
+  type?: string
+  text?: string
+  children?: LexicalNode[]
+  tag?: string
+  fields?: { url?: string }
+  url?: string
+}
+
+export const extractPlainTextFromLexical = (content: any): string => {
+  if (!content || typeof content !== 'object' || !('root' in content)) {
+    return '';
+  }
+
+  const rootContent = content as { root?: { children?: LexicalNode[] } };
+  if (!rootContent.root?.children) {
+    return '';
+  }
+
+  const convertLexicalNodesToText = (nodes: LexicalNode[]): string => {
+    return nodes
+      .map((node) => {
+        if (!node) return ''
+        if (node.type === 'text') {
+          return node.text || ''
+        }
+        if (node.children) {
+          return convertLexicalNodesToText(node.children)
+        }
+        return ''
+      })
+      .join('')
+  }
+
+  return convertLexicalNodesToText(rootContent.root.children).trim();
+};
+
 export const getPostAuthorName = (post: BlogPost): string => {
   if (post.useManualReporter && post.manualReporter?.name) {
-    return post.manualReporter.name
+    return getLocalizedField(post.manualReporter.name, '')
   }
 
   return getAuthorName(post.author)
@@ -116,7 +170,7 @@ export const getPostAuthorName = (post: BlogPost): string => {
 export const getPostAuthorRole = (post: BlogPost): string => {
   if (post.useManualReporter && post.manualReporter) {
     if (post.manualReporter.useCustomRole && post.manualReporter.customRole) {
-      return post.manualReporter.customRole
+      return getLocalizedField(post.manualReporter.customRole, '')
     }
 
     if (post.manualReporter.role) {
@@ -142,7 +196,7 @@ export const getPostAuthorRole = (post: BlogPost): string => {
 
 export const getPostAuthorDisplayName = (post: BlogPost): string => {
   if (post.useManualReporter && post.manualReporter?.name) {
-    return post.manualReporter.name
+    return getLocalizedField(post.manualReporter.name, '')
   }
 
   return getAuthorDisplayName(post.author)

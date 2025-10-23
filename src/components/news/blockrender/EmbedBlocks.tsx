@@ -1,6 +1,7 @@
 import React from 'react'
 import { ExternalLink, FileText, Download } from 'lucide-react'
 import { Media } from '../../../payload-types'
+import { getLocalizedField } from '@/utils/postUtils'
 
 declare global {
   interface Window {
@@ -69,10 +70,10 @@ const TwitterEmbedBlock: React.FC<{
         />
       </div>
       {!isLoaded && (
-        <div className="text-center text-sm text-gray-500 mt-2">جاري تحميل محتوى تويتر...</div>
+        <div className="text-center text-base text-gray-500 mt-2">جاري تحميل محتوى تويتر...</div>
       )}
       {caption && (
-        <figcaption className="text-center text-gray-600 mt-3 text-sm">{caption}</figcaption>
+        <figcaption className="text-center text-gray-600 mt-3 text-base">{caption}</figcaption>
       )}
     </figure>
   )
@@ -203,7 +204,7 @@ const EmbedBlock: React.FC<{
     // For other HTML embeds
     return (
       <figure className="my-8">
-        {title && <h3 className="text-lg font-semibold mb-4">{title}</h3>}
+        {title && <h3 className="text-xl font-semibold mb-4">{title}</h3>}
         <div className="rounded-lg overflow-hidden shadow-lg">
           <div
             className="embed-html-content [&_iframe]:w-full [&_iframe]:aspect-video [&_iframe]:border-0"
@@ -211,7 +212,7 @@ const EmbedBlock: React.FC<{
           />
         </div>
         {caption && (
-          <figcaption className="text-center text-gray-600 mt-3 text-sm">{caption}</figcaption>
+          <figcaption className="text-center text-gray-600 mt-3 text-base">{caption}</figcaption>
         )}
       </figure>
     )
@@ -235,12 +236,11 @@ const EmbedBlock: React.FC<{
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
             title={title || 'Spotify Embed'}
-            className="w-full"
           />
         </div>
-        {title && <h3 className="text-lg font-semibold mt-4 mb-2">{title}</h3>}
+        {title && <h3 className="text-xl font-semibold mt-4 mb-2">{title}</h3>}
         {caption && (
-          <figcaption className="text-center text-gray-600 text-sm">{caption}</figcaption>
+          <figcaption className="text-center text-gray-600 text-base">{caption}</figcaption>
         )}
       </figure>
     )
@@ -253,7 +253,7 @@ const EmbedBlock: React.FC<{
         <div className="max-w-md mx-auto">
           <blockquote className="border border-gray-200 rounded-lg p-4 bg-gray-50 text-right">
             <p className="text-gray-800 mb-3">محتوى مضمّن من X/تويتر</p>
-            <cite className="text-sm text-gray-600">
+            <cite className="text-base text-gray-600">
               <a
                 href={url}
                 target="_blank"
@@ -265,9 +265,9 @@ const EmbedBlock: React.FC<{
             </cite>
           </blockquote>
         </div>
-        {title && <h3 className="text-lg font-semibold mt-4 mb-2">{title}</h3>}
+        {title && <h3 className="text-xl font-semibold mt-4 mb-2">{title}</h3>}
         {caption && (
-          <figcaption className="text-center text-gray-600 text-sm">{caption}</figcaption>
+          <figcaption className="text-center text-gray-600 text-base">{caption}</figcaption>
         )}
       </figure>
     )
@@ -276,7 +276,7 @@ const EmbedBlock: React.FC<{
   // For other platforms, use iframe
   return (
     <figure className="my-8">
-      {title && <h3 className="text-lg font-semibold mb-4">{title}</h3>}
+      {title && <h3 className="text-xl font-semibold mb-4">{title}</h3>}
       <div className="rounded-lg overflow-hidden shadow-lg">
         <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
           <iframe
@@ -291,7 +291,7 @@ const EmbedBlock: React.FC<{
         </div>
       </div>
       {caption && (
-        <figcaption className="text-center text-gray-600 mt-3 text-sm">{caption}</figcaption>
+        <figcaption className="text-center text-gray-600 mt-3 text-base">{caption}</figcaption>
       )}
     </figure>
   )
@@ -325,7 +325,7 @@ const PDFBlock: React.FC<{
   const pdfUrl = typeof pdf === 'string' ? pdf : pdf?.url
   const pdfObj = typeof pdf === 'string' ? null : pdf
   const fileName = pdfObj?.filename || 'Document'
-  const caption = pdfObj?.caption
+  const caption = getLocalizedField(pdfObj?.caption, '')
   const fileSize = pdfObj?.filesize ? `${Math.round(pdfObj.filesize / 1024)} KB` : null
 
   if (!pdfUrl) {
@@ -344,9 +344,9 @@ const PDFBlock: React.FC<{
           <div className="flex items-center flex-row-reverse">
             <FileText className="h-5 w-5 text-red-600 ml-2" />
             <div className="text-right">
-              <h3 className="font-medium text-slate-900">{fileName}</h3>
-              {caption && <p className="text-sm text-slate-600 mt-1">{caption}</p>}
-              {fileSize && <p className="text-xs text-slate-500 mt-0.5">{fileSize}</p>}
+              <h3 className="font-medium text-slate-900 text-lg">{fileName}</h3>
+              {caption && <p className="text-base text-slate-600 mt-1">{caption}</p>}
+              {fileSize && <p className="text-sm text-slate-500 mt-0.5">{fileSize}</p>}
             </div>
           </div>
 
@@ -356,7 +356,7 @@ const PDFBlock: React.FC<{
               href={pdfUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-3 py-2 border border-slate-300 shadow-sm text-sm leading-4 font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 transition-colors flex-row-reverse"
+              className="inline-flex items-center px-3 py-2 border border-slate-300 shadow-sm text-base leading-4 font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 transition-colors flex-row-reverse"
             >
               <ExternalLink className="h-4 w-4 ml-2" />
               عرض
@@ -387,8 +387,8 @@ const PDFBlock: React.FC<{
                 <div className="w-20 h-20 mx-auto mb-4 bg-white rounded-full flex items-center justify-center shadow-sm border border-slate-200">
                   <FileText className="h-10 w-10 text-red-600" />
                 </div>
-                <h4 className="text-lg font-semibold text-slate-900 mb-2">مستند PDF</h4>
-                <p className="text-sm text-slate-600 mb-6">
+                <h4 className="text-xl font-semibold text-slate-900 mb-2">مستند PDF</h4>
+                <p className="text-base text-slate-600 mb-6">
                   معاينة PDF غير مدعومة على الأجهزة المحمولة.
                   {fileSize && ` (حجم الملف: ${fileSize})`}
                 </p>
@@ -417,7 +417,7 @@ const PDFBlock: React.FC<{
                 )}
 
                 {showDownloadButton && (
-                  <p className="text-xs text-slate-500 mt-4">
+                  <p className="text-base text-slate-500 mt-4">
                     نصيحة: استخدم &quot;فتح في المتصفح&quot; لعرض عارضات PDF على جهازك
                   </p>
                 )}

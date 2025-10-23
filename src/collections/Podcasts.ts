@@ -48,6 +48,7 @@ export const Podcasts: CollectionConfig = {
       type: 'text',
       label: 'Podcast Title',
       required: true,
+      localized: true,
     },
     {
       name: 'slug',
@@ -66,12 +67,14 @@ export const Podcasts: CollectionConfig = {
       },
       required: true,
       unique: true,
+      localized: true,
     },
     {
       name: 'description',
       type: 'textarea',
       label: 'Description',
       required: true,
+      localized: true,
     },
     {
       name: 'audioFile',
@@ -142,6 +145,7 @@ export const Podcasts: CollectionConfig = {
           type: 'text',
           label: 'Name',
           required: true,
+          localized: true,
         },
         {
           name: 'role',
@@ -164,6 +168,7 @@ export const Podcasts: CollectionConfig = {
           name: 'bio',
           type: 'textarea',
           label: 'Brief Bio',
+          localized: true,
         },
       ],
     },
@@ -237,6 +242,7 @@ export const Podcasts: CollectionConfig = {
           type: 'text',
           label: 'Link Title',
           required: true,
+          localized: true,
         },
         {
           name: 'url',
@@ -255,6 +261,7 @@ export const Podcasts: CollectionConfig = {
           name: 'description',
           type: 'text',
           label: 'Description',
+          localized: true,
         },
       ],
     },

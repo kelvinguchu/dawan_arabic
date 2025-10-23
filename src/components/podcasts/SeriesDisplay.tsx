@@ -109,7 +109,7 @@ export const SeriesDisplay: React.FC<SeriesDisplayProps> = ({
                     </Badge>
                   </div>
 
-                  <h2 className="text-2xl font-bold text-slate-900 leading-tight text-right line-clamp-1">
+                  <h2 className="text-3xl font-bold text-slate-900 leading-tight text-right line-clamp-1">
                     <Link
                       href={`/podcasts/series/${series.slug}`}
                       className="hover:text-primary transition-colors duration-300"
@@ -119,7 +119,7 @@ export const SeriesDisplay: React.FC<SeriesDisplayProps> = ({
                   </h2>
 
                   {series.description && (
-                    <p className="text-slate-600 leading-relaxed line-clamp-2 max-w-2xl">
+                    <p className="text-slate-600 leading-relaxed line-clamp-2 max-w-2xl text-lg">
                       {series.description}
                     </p>
                   )}
@@ -145,7 +145,7 @@ export const SeriesDisplay: React.FC<SeriesDisplayProps> = ({
               </div>
 
               {/* Series Stats */}
-              <div className="flex flex-wrap items-center gap-6 text-sm">
+              <div className="flex flex-wrap items-center gap-6 text-base">
                 <div className="flex items-center gap-2 text-slate-600">
                   <div className="w-2 h-2 rounded-full bg-primary" />
                   <span className="font-medium">{seriesEpisodes.length} حلقات</span>
@@ -197,7 +197,7 @@ export const SeriesDisplay: React.FC<SeriesDisplayProps> = ({
                     <div className="flex items-center gap-4">
                       {/* Episode Number */}
                       <div className="shrink-0 w-10 h-10 rounded-full bg-primary/80 flex items-center justify-center">
-                        <span className="text-sm font-bold text-primary">
+                        <span className="text-base font-bold text-primary">
                           {podcast.episodeNumber || seriesEpisodes.length - index}
                         </span>
                       </div>
@@ -224,7 +224,7 @@ export const SeriesDisplay: React.FC<SeriesDisplayProps> = ({
                       {/* Episode Info */}
                       <div className="grow min-w-0 space-y-2">
                         <div className="flex items-start justify-between gap-3">
-                          <h4 className="font-semibold text-slate-900 text-base line-clamp-2 leading-tight group-hover:text-primary transition-colors duration-300">
+                          <h4 className="font-semibold text-slate-900 text-lg line-clamp-2 leading-tight group-hover:text-primary transition-colors duration-300">
                             <Link
                               href={`/podcasts/${podcast.slug}`}
                               className="hover:text-primary transition-colors duration-300"
@@ -242,7 +242,7 @@ export const SeriesDisplay: React.FC<SeriesDisplayProps> = ({
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-4 text-sm text-slate-500">
+                        <div className="flex items-center gap-4 text-base text-slate-500">
                           <div className="flex items-center gap-1">
                             <Users className="w-3 h-3" />
                             <span className="truncate max-w-32">{peopleInvolved}</span>
@@ -269,7 +269,7 @@ export const SeriesDisplay: React.FC<SeriesDisplayProps> = ({
                         </div>
 
                         {podcast.description && (
-                          <p className="text-sm text-slate-600 line-clamp-2 leading-relaxed">
+                          <p className="text-base text-slate-600 line-clamp-2 leading-relaxed">
                             {podcast.description}
                           </p>
                         )}
@@ -288,7 +288,7 @@ export const SeriesDisplay: React.FC<SeriesDisplayProps> = ({
                 <div className="text-center">
                   <Button
                     onClick={() => setShowAll(true)}
-                    className="bg-primary hover:bg-primary/90 text-white h-11 px-8 rounded-full shadow-lg hover:shadow-xl hover:shadow-primary/30 transition-all duration-300"
+                    className="bg-primary hover:bg-primary/90 text-white h-11 px-8 rounded-full shadow-lg hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 text-lg"
                   >
                     أظهر {seriesEpisodes.length - maxEpisodesPreview} حلقات إضافية
                   </Button>
@@ -298,7 +298,7 @@ export const SeriesDisplay: React.FC<SeriesDisplayProps> = ({
                   <Button
                     variant="ghost"
                     onClick={() => setShowAll(false)}
-                    className="text-slate-600 hover:text-primary h-11 px-8 rounded-full hover:bg-primary/80 transition-all duration-300"
+                    className="text-slate-600 hover:text-primary h-11 px-8 rounded-full hover:bg-primary/80 transition-all duration-300 text-lg"
                   >
                     أظهر أقل
                   </Button>

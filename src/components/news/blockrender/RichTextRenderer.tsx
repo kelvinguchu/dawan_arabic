@@ -27,8 +27,7 @@ export const RichTextRenderer: React.FC<{ content: LexicalContent | string | nul
   if (typeof content === 'string') {
     return (
       <div
-        className="prose prose-sm sm:prose-base lg:prose-lg max-w-none article-content"
-        dangerouslySetInnerHTML={{ __html: content }}
+        className="prose prose-base sm:prose-lg lg:prose-xl max-w-none article-content"
       />
     )
   }
@@ -40,7 +39,7 @@ export const RichTextRenderer: React.FC<{ content: LexicalContent | string | nul
   if ('text' in blockContent && typeof blockContent.text === 'string') {
     return (
       <div
-        className="prose prose-sm sm:prose-base lg:prose-lg max-w-none article-content"
+        className="prose prose-base sm:prose-lg lg:prose-xl max-w-none article-content"
         dangerouslySetInnerHTML={{ __html: blockContent.text }}
       />
     )
@@ -459,7 +458,7 @@ export const RichTextRenderer: React.FC<{ content: LexicalContent | string | nul
                   .join('\n') || ''
               return (
                 <div key={index} className="my-6">
-                  <div className="flex items-center justify-between bg-gray-800 text-gray-200 px-4 py-2 text-sm rounded-t-md flex-row-reverse">
+                  <div className="flex items-center justify-between bg-gray-800 text-gray-200 px-4 py-2 text-base rounded-t-md flex-row-reverse">
                     <div className="flex items-center flex-row-reverse">
                       <FileText className="h-4 w-4 ml-2" />
                       <span>الكود</span>
@@ -487,7 +486,7 @@ export const RichTextRenderer: React.FC<{ content: LexicalContent | string | nul
                       />
                     </div>
                     {imageNode.caption && (
-                      <figcaption className="text-center text-gray-600 mt-3 text-sm">
+                      <figcaption className="text-center text-gray-600 mt-3 text-base">
                         {imageNode.caption}
                       </figcaption>
                     )}
@@ -513,7 +512,7 @@ export const RichTextRenderer: React.FC<{ content: LexicalContent | string | nul
                     key={index}
                     className="my-8 p-4 bg-gray-50 border border-gray-300 rounded-lg text-center"
                   >
-                    <p className="text-gray-600 text-sm">
+                    <p className="text-gray-600 text-base">
                       Media content (ID:{' '}
                       {typeof uploadNode.value === 'string' ? uploadNode.value : 'unknown'}) -
                       requires population to display
@@ -540,7 +539,7 @@ export const RichTextRenderer: React.FC<{ content: LexicalContent | string | nul
                       </video>
                     </div>
                     {uploadData.caption && (
-                      <figcaption className="text-center text-gray-600 mt-3 text-sm">
+                      <figcaption className="text-center text-gray-600 mt-3 text-base">
                         {uploadData.caption}
                       </figcaption>
                     )}
@@ -561,14 +560,14 @@ export const RichTextRenderer: React.FC<{ content: LexicalContent | string | nul
                               {uploadData.filename || 'المستند'}
                             </h3>
                             {uploadData.caption && (
-                              <p className="text-sm text-gray-600 mt-1">{uploadData.caption}</p>
+                              <p className="text-base text-gray-600 mt-1">{uploadData.caption}</p>
                             )}
                           </div>
                         </div>
                         <a
                           href={uploadData.url || ''}
                           download
-                          className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 transition-colors flex-row-reverse"
+                          className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-base leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 transition-colors flex-row-reverse"
                         >
                           <Download className="h-4 w-4 ml-2" />
                           تحميل
@@ -609,7 +608,7 @@ export const RichTextRenderer: React.FC<{ content: LexicalContent | string | nul
                       />
                     </div>
                     {uploadData.caption && (
-                      <figcaption className="text-center text-gray-600 mt-3 text-sm">
+                      <figcaption className="text-center text-gray-600 mt-3 text-base">
                         {uploadData.caption}
                       </figcaption>
                     )}

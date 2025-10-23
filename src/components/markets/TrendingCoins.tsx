@@ -21,12 +21,12 @@ export async function TrendingCoins() {
     return (
       <Card className="shadow-sm">
         <CardHeader className="py-2 px-3">
-          <CardTitle className="text-sm flex items-center flex-row-reverse">
+          <CardTitle className="text-base flex items-center flex-row-reverse">
             <TrendingUp className="h-3.5 w-3.5 ml-1.5" /> العملات الرائجة
           </CardTitle>
         </CardHeader>
         <CardContent className="p-3">
-          <p className="text-muted-foreground text-center text-xs text-right">لم يتم تحميل العملات الرائجة.</p>
+          <p className="text-muted-foreground text-center text-sm text-right">لم يتم تحميل العملات الرائجة.</p>
         </CardContent>
       </Card>
     )
@@ -55,14 +55,14 @@ export async function TrendingCoins() {
                   className="w-5 h-5 ml-2"
                 />
                 <div className="text-right">
-                  <div className="font-medium text-xs">{coin.name}</div>
-                  <div className="text-[10px] text-gray-500">{coin.symbol}</div>
+                  <div className="font-medium text-sm">{coin.name}</div>
+                  <div className="text-xs text-gray-500">{coin.symbol}</div>
                 </div>
               </div>
               <div className="flex flex-col items-end">
-                <div className="font-medium text-xs text-right">{formatCurrency(coin.price)}</div>
+                <div className="font-medium text-sm text-right">{formatCurrency(coin.price)}</div>
                 <div
-                  className={`text-[10px] flex items-center flex-row-reverse ${coin.percentChange24h >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                  className={`text-xs flex items-center flex-row-reverse ${coin.percentChange24h >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                   {coin.percentChange24h >= 0 ? (
                     <ArrowUpIcon className="w-2.5 h-2.5 ml-0.5" />
                   ) : (

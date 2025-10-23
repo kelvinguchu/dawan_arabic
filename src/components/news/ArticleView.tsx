@@ -12,7 +12,7 @@ import { RelatedArticles } from './RelatedArticles'
 import { updateUserAndPostEngagement } from '@/utils/engagementApi'
 import { getRelatedPostsForView } from '@/utils/relatedPostsApi'
 import { SharePopover } from './SharePopover'
-import { getPostAuthorName, getPostAuthorRole, getReporterUrl } from '@/utils/postUtils'
+import { getPostAuthorName, getPostAuthorRole, getReporterUrl, getLocalizedField } from '@/utils/postUtils'
 import type { BlockType } from './blockrender/BlockUtils'
 import { useAuth } from '@/contexts/AuthContext'
 
@@ -238,15 +238,15 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
                       console.log('Error rendering profile picture:', error)
                     }
 
-                    return <UserCircle className="h-10 w-10 text-[#b01c14]" />
+                    return <UserCircle className="h-10 w-10 text-primary" />
                   })()}
                 </div>
                 <div className="flex-1 min-w-0 text-right">
-                  <span className="font-medium text-gray-900 text-sm sm:text-base leading-relaxed wrap-break-word">
+                  <span className="font-medium text-gray-900 text-base sm:text-lg leading-relaxed wrap-break-word">
                     كتبه{' '}
                     <Link
                       href={getReporterUrl(post)}
-                      className="text-[#b01c14] hover:text-[#b01c14]/80 transition-colors underline decoration-1 underline-offset-2"
+                      className="text-primary hover:text-primary/80 transition-colors underline decoration-1 underline-offset-2"
                     >
                       {getPostAuthorName(post)}
                     </Link>{' '}
@@ -295,15 +295,13 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
                     disabled={isUpdatingLike || isLoadingUser}
                   >
                     {isUpdatingLike ? (
-                      <Loader2 className="h-4 w-4 text-[#b01c14] animate-spin" />
+                      <Loader2 className="h-4 w-4 text-primary animate-spin" />
                     ) : (
                       <ThumbsUp
-                        className={`h-4 w-4 ${isLiked ? 'text-blue-500 fill-blue-500' : 'text-[#b01c14]'}`}
+                        className={`h-4 w-4 ${isLiked ? 'text-blue-500 fill-blue-500' : 'text-primary'}`}
                       />
                     )}
-                    <span className="text-sm font-medium">
-                      {isLiked ? 'تم الإعجاب' : 'أعجبني'} ({currentLikeCount})
-                    </span>
+                    <span className="text-base font-medium"></span>
                   </button>
                   <button
                     className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-white rounded-full shadow-sm hover:shadow transition-all border border-gray-200 disabled:opacity-50 flex-row-reverse"
@@ -311,10 +309,10 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
                     disabled={isUpdatingFavorite || isLoadingUser}
                   >
                     {isUpdatingFavorite ? (
-                      <Loader2 className="h-4 w-4 text-[#b01c14] animate-spin" />
+                      <Loader2 className="h-4 w-4 text-primary animate-spin" />
                     ) : (
                       <Bookmark
-                        className={`h-4 w-4 ${isFavorited ? 'text-red-500 fill-red-500' : 'text-[#b01c14]'}`}
+                        className={`h-4 w-4 ${isFavorited ? 'text-red-500 fill-red-500' : 'text-primary'}`}
                       />
                     )}
                     <span className="text-sm font-medium">
@@ -324,7 +322,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
 
                   <div className="flex items-center flex-row-reverse">
                     <SharePopover
-                      title={post.name}
+                      title={getLocalizedField(post.name, '')}
                       url={currentUrl}
                       buttonVariant="outline"
                       buttonSize="default"
@@ -338,13 +336,13 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
               <div className="flex flex-col sm:flex-row-reverse sm:justify-between gap-3 mb-8">
                 <Link
                   href="/news"
-                  className="px-6 py-3 bg-[#b01c14] hover:bg-[#b01c14]/80 transition-colors text-white font-medium rounded-lg text-center sm:text-left"
+                  className="px-6 py-3 bg-primary hover:bg-primary/80 transition-colors text-white font-medium rounded-lg text-center sm:text-left"
                 >
                   مقالات إضافية
                 </Link>
                 <button
                   onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  className="px-6 py-3 bg-white hover:bg-gray-50 transition-colors text-[#b01c14] font-medium border border-gray-200 rounded-lg text-center sm:text-left"
+                  className="px-6 py-3 bg-white hover:bg-gray-50 transition-colors text-primary font-medium border border-gray-200 rounded-lg text-center sm:text-left"
                 >
                   العودة للأعلى
                 </button>
@@ -352,7 +350,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
 
               {isLoadingRelated ? (
                 <div className="flex justify-center py-8">
-                  <Loader2 className="h-8 w-8 text-[#b01c14] animate-spin" />
+                  <Loader2 className="h-8 w-8 text-primary animate-spin" />
                 </div>
               ) : relatedPosts && relatedPosts.length > 0 ? (
                 <RelatedArticles posts={relatedPosts} currentPostId={post.id} />

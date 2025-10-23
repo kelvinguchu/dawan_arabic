@@ -27,16 +27,16 @@ export const UserPosts: React.FC<UserPostsProps> = ({ user }) => {
             value="favorites"
             className="data-[state=active]:bg-slate-50 data-[state=active]:text-slate-800 rounded-sm h-7 sm:h-8 px-2 sm:px-3 flex-nowrap"
           >
-            <BookmarkIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1 sm:mr-2 flex-shrink-0" />
-            <span className="whitespace-nowrap text-xs sm:text-sm">
-              المفضلة ({favoritedPosts.length})
+            <BookmarkIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1 sm:mr-2 shrink-0" />
+            <span className="whitespace-nowrap text-sm sm:text-base">
+              المقالات المفضلة ({favoritedPosts.length})
             </span>
           </TabsTrigger>
           <TabsTrigger
             value="liked"
             className="data-[state=active]:bg-slate-50 data-[state=active]:text-slate-800 rounded-sm h-7 sm:h-8 px-2 sm:px-3 flex-nowrap"
           >
-            <ThumbsUp className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1 sm:mr-2 flex-shrink-0" />
+            <ThumbsUp className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1 sm:mr-2 shrink-0" />
             <span className="whitespace-nowrap text-xs sm:text-sm">
               المقالات المعجب بها ({likedPosts.length})
             </span>
@@ -87,15 +87,15 @@ const PostCard: React.FC<PostCardProps> = ({ post, type }) => {
         <Link href={`/news/${post.slug}`} className="block">
           <div className="flex items-start flex-row-reverse">
             {type === 'favorite' ? (
-              <BookmarkIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-amber-500 mt-0.5 sm:mt-1 ml-2 sm:ml-3 flex-shrink-0" />
+              <BookmarkIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-amber-500 mt-0.5 sm:mt-1 ml-2 sm:ml-3 shrink-0" />
             ) : (
-              <ThumbsUp className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-500 mt-0.5 sm:mt-1 ml-2 sm:ml-3 flex-shrink-0" />
+              <ThumbsUp className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-500 mt-0.5 sm:mt-1 ml-2 sm:ml-3 shrink-0" />
             )}
             <div className="text-right">
-              <h3 className="font-medium text-sm sm:text-base text-slate-800 leading-tight hover:text-primary">
+              <h3 className="font-medium text-base sm:text-lg text-slate-800 leading-tight hover:text-primary">
                 {post.name}
               </h3>
-              <p className="text-xs text-slate-500 mt-0.5 sm:mt-1">{formattedDate}</p>
+              <p className="text-sm text-slate-500 mt-0.5 sm:mt-1">{formattedDate}</p>
             </div>
           </div>
         </Link>
@@ -117,9 +117,9 @@ const EmptyState: React.FC<EmptyStateProps> = ({ type, message }) => {
       ) : (
         <ThumbsUp className="h-6 w-6 sm:h-8 sm:w-8 text-slate-300 mx-auto mb-2 sm:mb-3" />
       )}
-      <p className="text-sm text-slate-500 text-right">{message}</p>
+      <p className="text-base text-slate-500 text-right">{message}</p>
       <div className="mt-3 sm:mt-4">
-        <Link href="/news" className="text-xs font-medium text-primary hover:text-primary/80">
+        <Link href="/news" className="text-sm font-medium text-primary hover:text-primary/80">
           تصفح المقالات لتقوم {type === 'favorites' ? 'بتفضيلها' : 'بالإعجاب بها'}
         </Link>
       </div>

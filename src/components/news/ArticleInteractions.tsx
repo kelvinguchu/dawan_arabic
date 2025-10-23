@@ -160,7 +160,7 @@ export const ArticleInteractions: React.FC<ArticleInteractionsProps> = ({ post, 
                 className={`h-4 w-4 ${isLiked ? 'text-blue-500 fill-blue-500' : 'text-primary'}`}
               />
             )}
-            <span className="text-sm font-medium">
+            <span className="text-base font-medium">
               {isLiked ? 'تم الإعجاب' : 'أعجبني'} ({currentLikeCount})
             </span>
           </button>

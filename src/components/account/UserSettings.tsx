@@ -90,7 +90,7 @@ export const UserSettings: React.FC<UserSettingsProps> = ({ user }) => {
           <div className="flex items-start flex-row-reverse">
             <BellIcon className="h-4 w-4 sm:h-5 sm:w-5 text-slate-400 mt-0.5 sm:mt-1 ml-2 sm:ml-3 flex-shrink-0" />
             <div className="flex-1">
-              <h3 className="text-base sm:text-lg font-semibold text-slate-800 mb-3 sm:mb-4 text-right">
+              <h3 className="text-lg sm:text-xl font-semibold text-slate-800 mb-3 sm:mb-4 text-right">
                 إعدادات الإشعارات
               </h3>
 
@@ -98,7 +98,7 @@ export const UserSettings: React.FC<UserSettingsProps> = ({ user }) => {
                 <div className="flex items-center justify-between space-x-2 space-x-reverse">
                   <Label
                     htmlFor="email-notifications"
-                    className="text-xs sm:text-sm font-medium text-slate-700 cursor-pointer text-right"
+                    className="text-sm sm:text-base font-medium text-slate-700 cursor-pointer text-right"
                   >
                     النشرة البريدية
                   </Label>
@@ -115,7 +115,7 @@ export const UserSettings: React.FC<UserSettingsProps> = ({ user }) => {
                 </div>
 
                 <div className="border-t border-slate-100 pt-4">
-                  <Label className="text-xs sm:text-sm font-medium text-slate-700 text-right">
+                  <Label className="text-sm sm:text-base font-medium text-slate-700 text-right">
                     إشعارات الدفع
                   </Label>
                   <PushNotificationManager />
@@ -123,7 +123,7 @@ export const UserSettings: React.FC<UserSettingsProps> = ({ user }) => {
                 <div className="border-t border-slate-100 pt-4">
                   <Button
                     variant="outline"
-                    className="w-full border-red-200 hover:bg-red-50 text-red-600 hover:text-red-700 text-xs sm:text-sm h-8 sm:h-9"
+                    className="w-full border-red-200 hover:bg-red-50 text-red-600 hover:text-red-700 text-sm sm:text-base h-8 sm:h-9"
                     onClick={handleLogout}
                   >
                     <LogOut className="h-3.5 w-3.5 sm:h-4 sm:w-4 ml-1.5 sm:ml-2" />

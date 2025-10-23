@@ -92,7 +92,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({ categoriesWith
                   )}
 
                   <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/40 to-transparent flex flex-col justify-end p-4">
-                    <div className={`text-white font-sans font-bold text-2xl`}>{category.name}</div>
+                    <div className={`text-white font-sans font-bold text-3xl`}>{category.name}</div>
                   </div>
                 </div>
               </Link>
@@ -108,7 +108,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({ categoriesWith
                         aria-label={`اقرأ المقال: ${post.name}`}
                       >
                         <div className="flex flex-col">
-                          <h4 className="text-sm font-medium text-gray-900 line-clamp-2 group-hover/article:text-primary transition-colors mb-2 text-right">
+                          <h4 className="text-base font-medium text-gray-900 line-clamp-2 group-hover/article:text-primary transition-colors mb-2 text-right">
                             {post.name}
                           </h4>
                         </div>
@@ -118,7 +118,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({ categoriesWith
                     {/* Category browse link */}
                     <Link href={`/categories/${category.slug}`} className="block">
                       <div className="mt-3 pt-3 border-t border-gray-100 flex justify-between items-center hover:text-primary/80 transition-colors flex-row-reverse">
-                        <span className="text-sm font-medium text-primary">
+                        <span className="text-base font-medium text-primary">
                           تصفح المقالات
                         </span>
                         <div className="h-8 w-8 rounded-full flex items-center justify-center">
@@ -133,12 +133,12 @@ export const CategorySection: React.FC<CategorySectionProps> = ({ categoriesWith
                     className="flex flex-col grow"
                   >
                     <div className="grow">
-                      <p className="text-sm text-gray-600 mb-3 text-right">
+                      <p className="text-base text-gray-600 mb-3 text-right">
                         استكشف أحدث مقالات {category.name}
                       </p>
                     </div>
                     <div className="mt-3 pt-3 border-t border-gray-100 flex justify-between items-center hover:text-primary/80 transition-colors flex-row-reverse">
-                      <span className="text-sm font-medium text-primary">
+                      <span className="text-base font-medium text-primary">
                         تصفح المقالات
                       </span>
                       <div className="h-8 w-8 rounded-full flex items-center justify-center">

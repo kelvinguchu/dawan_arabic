@@ -17,7 +17,7 @@ const MobileSearch: React.FC<MobileSearchProps> = ({ searchOpen }) => {
       <div className="container mx-auto px-4">
         <SearchInput
           isHeaderSearch={true}
-          inputClassName="h-10 rounded-full text-sm border-gray-200 focus-visible:ring-primary text-right"
+          inputClassName="h-10 rounded-full text-base border-gray-200 focus-visible:ring-primary text-right"
           buttonClassName="h-10 px-4"
           redirectPath="/news"
           autoFocus={true}

@@ -39,7 +39,7 @@ export async function FooterRecentPosts() {
 
   return (
     <div className="hidden sm:block sm:col-span-2 lg:col-span-4">
-      <h4 className="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-white relative pb-2 before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-10 sm:before:w-12 before:h-0.5 before:bg-primary text-right">
+      <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white relative pb-2 before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-10 sm:before:w-12 before:h-0.5 before:bg-primary text-right">
         مقالات حديثة
       </h4>
 
@@ -63,15 +63,15 @@ export async function FooterRecentPosts() {
               </div>
             ) : (
               <div className="bg-slate-800 w-full h-full flex items-center justify-center">
-                <span className="text-primary text-[10px] sm:text-xs">لا توجد صورة</span>
+                <span className="text-primary text-xs sm:text-sm">لا توجد صورة</span>
               </div>
             )}
           </div>
           <div>
-            <h5 className="text-xs sm:text-sm font-medium text-white group-hover:text-primary transition-colors line-clamp-2">
+            <h5 className="text-sm sm:text-base font-medium text-white group-hover:text-primary transition-colors line-clamp-2">
               {post.name}
             </h5>
-            <div className="flex items-center mt-1 text-[10px] sm:text-xs text-slate-400 flex-row-reverse">
+            <div className="flex items-center mt-1 text-xs sm:text-sm text-slate-400 flex-row-reverse">
               <BiTime className="h-2.5 w-2.5 sm:h-3 sm:w-3 ml-1" />
               {formatDate(post.createdAt)}
             </div>

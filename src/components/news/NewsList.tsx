@@ -131,9 +131,9 @@ export const NewsList: React.FC<NewsListProps> = async ({ searchParams = {} }) =
         </div>
       ) : (
         <div className="text-center py-6 sm:py-8 md:py-10 mt-6 sm:mt-8 md:mt-10">
-          <p className="text-lg sm:text-xl text-gray-500">لم يتم العثور على مقالات.</p>
+          <p className="text-xl sm:text-2xl text-gray-500">لم يتم العثور على مقالات.</p>
           {searchTerm && (
-            <p className="text-sm text-gray-400 mt-2">حاول تعديل البحث أو المرشحات.</p>
+            <p className="text-base text-gray-400 mt-2">حاول تعديل البحث أو المرشحات.</p>
           )}
         </div>
       )}
