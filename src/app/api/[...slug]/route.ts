@@ -1,6 +1,6 @@
 
 // app/api/[...slug]/route.ts
-import config from '../../../payload.config'
+import config from '@payload-config'
 import '@payloadcms/next/css'
 import {
   REST_DELETE,
