@@ -17,11 +17,11 @@ interface CategoryLinksProps {
 }
 
 const prioritizedCategoryNames: string[] = [
-  'اخبار',
-  'التحليلات',
-  'تقارير المجتمع',
-  'مقالات',
-  'الرئيسة',
+  'أخبار وتحليلات',
+  'سياسة واقتصاد',
+  'بحوث ومقالات',
+  'ثقافة ومجتمع',
+  'فيديوهات',
   'من نحن',
   'اتصل بنا',
 ]
@@ -166,7 +166,7 @@ const CategoryLinks: React.FC<CategoryLinksProps> = ({
 
         <Separator className="my-2" />
 
-        {renderLink('/podcasts', 'البودكاستات', undefined, false, 'mobile-podcasts')}
+        {renderLink('/podcasts', 'بودكاست', undefined, false, 'mobile-podcasts')}
         {renderLink('/blockchain', 'البلوك تشين', undefined, false, 'mobile-blockchain')}
       </>
     )
@@ -178,7 +178,7 @@ const CategoryLinks: React.FC<CategoryLinksProps> = ({
   )
 
   const homeLink = renderLink('/', 'الصفحة الرئيسية', undefined, true, 'desktop-home')
-  const podcastsLink = renderLink('/podcasts', 'البودكاستات', undefined, true, 'desktop-podcasts')
+  const podcastsLink = renderLink('/podcasts', 'بودكاست', undefined, true, 'desktop-podcasts')
   const blockchainLink = renderLink(
     '/blockchain',
     'البلوك تشين',

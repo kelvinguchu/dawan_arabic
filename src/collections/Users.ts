@@ -1,8 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import {
-  generateVerificationEmailHTML,
-  generateVerificationEmailSubject,
-} from '../templates/verification-email.ts'
+
 import {
   generateForgotPasswordEmailHTML,
   generateForgotPasswordEmailSubject,
@@ -30,6 +27,22 @@ export const Users: CollectionConfig = {
       name: 'name',
       type: 'text',
       label: 'Full Name',
+      access: {
+        read: () => true, // Name is publicly readable
+      },
+    },
+    {
+      name: 'email',
+      type: 'email',
+      label: 'Email',
+      required: true,
+      unique: true,
+      access: {
+        read: ({ req }) => {
+          // Only logged-in users can read email addresses
+          return Boolean(req.user)
+        },
+      },
     },
     {
       name: 'profilePicture',
@@ -39,6 +52,12 @@ export const Users: CollectionConfig = {
       maxDepth: 1,
       admin: {
         description: 'Upload a profile picture for the user.',
+      },
+      access: {
+        read: ({ req }) => {
+          // Only logged-in users can see profile pictures
+          return Boolean(req.user)
+        },
       },
     },
     {
@@ -60,6 +79,7 @@ export const Users: CollectionConfig = {
           'Select the roles for this user. Content creators can write posts, admins can approve them.',
       },
       access: {
+        read: () => true, // Roles are publicly readable
         create: ({ req }) => {
           const user = req.user
           return Boolean(user?.roles?.includes('admin'))
@@ -82,6 +102,12 @@ export const Users: CollectionConfig = {
       admin: {
         description: 'User subscription level for premium content access.',
       },
+      access: {
+        read: ({ req }) => {
+          // Only logged-in users can see subscription info
+          return Boolean(req.user)
+        },
+      },
     },
     {
       name: 'isEmailVerified',
@@ -91,6 +117,11 @@ export const Users: CollectionConfig = {
       admin: {
         readOnly: true,
         description: 'Automatically updated when user verifies their email.',
+      },
+      access: {
+        read: ({ req }) => {
+          return Boolean(req.user)
+        },
       },
     },
     {
@@ -102,6 +133,12 @@ export const Users: CollectionConfig = {
       admin: {
         readOnly: true,
       },
+      access: {
+        read: ({ req, doc }) => {
+          // Users can only see their own liked posts
+          return Boolean(req.user && req.user.id === doc?.id)
+        },
+      },
     },
     {
       name: 'favoritedPosts',
@@ -111,6 +148,12 @@ export const Users: CollectionConfig = {
       label: 'Favorited Posts',
       admin: {
         readOnly: true,
+      },
+      access: {
+        read: ({ req, doc }) => {
+          // Users can only see their own favorited posts
+          return Boolean(req.user && req.user.id === doc?.id)
+        },
       },
     },
   ],
@@ -137,24 +180,8 @@ export const Users: CollectionConfig = {
   access: {
     create: () => true,
 
-    read: ({ req }) => {
-      const user = req.user
-      if (!user) return false
-
-      if (user.roles?.includes('admin')) {
-        return true
-      }
-
-      if (
-        user.roles?.some((role: string) =>
-          ['analyst', 'columnist', 'reporter', 'contributor'].includes(role),
-        )
-      ) {
-        return true
-      }
-
-      return { id: { equals: user.id } }
-    },
+    // Allow public reads; sanitize in afterRead
+    read: () => true,
 
     update: ({ req }) => {
       const user = req.user
