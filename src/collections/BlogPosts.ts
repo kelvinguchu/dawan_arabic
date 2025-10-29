@@ -175,16 +175,16 @@ const pushNotificationAfterChangeHook: CollectionAfterChangeHook = async ({
 }
 
 function createArabicSlug(text: string): string {
-  if (!text) return '';
+  if (!text) return ''
   // Replace spaces with hyphens
-  let slug = text.replace(/\s+/g, '-');
+  let slug = text.replace(/\s+/g, '-')
   // Remove any characters that are not Arabic letters, numbers, or hyphens
   // Arabic Unicode range: \u0600-\u06FF
   // Also allow Latin alphanumeric characters (a-zA-Z0-9) and hyphens
-  slug = slug.replace(/[^\u0600-\u06FF\u0030-\u0039\u0041-\u005A\u0061-\u007A-]/g, '');
+  slug = slug.replace(/[^\u0600-\u06FF\u0030-\u0039\u0041-\u005A\u0061-\u007A-]/g, '')
   // Remove leading/trailing hyphens
-  slug = slug.replace(/^-+|-+$/g, '');
-  return slug;
+  slug = slug.replace(/^-+|-+$/g, '')
+  return slug
 }
 
 export const BlogPost: CollectionConfig = {
@@ -427,6 +427,9 @@ export const BlogPost: CollectionConfig = {
           'Select an author from content creators and admins. Regular users are excluded.',
         condition: (data, _siblingData, _user) => {
           return !data?.useManualReporter
+        },
+        components: {
+          Cell: '@/components/admin/cells/AuthorCell',
         },
       },
       filterOptions: () => {
