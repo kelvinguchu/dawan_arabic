@@ -1,14 +1,23 @@
 import type { CollectionConfig } from 'payload'
 
 import {
+  generateVerificationEmailHTML,
+  generateVerificationEmailSubject,
+} from '../templates/verification-email.ts'
+import {
   generateForgotPasswordEmailHTML,
   generateForgotPasswordEmailSubject,
 } from '../templates/forgot-password-email.ts'
 
+const VERIFICATION_EMAIL_LOG_LIMIT = 10
+
 export const Users: CollectionConfig = {
   slug: 'users',
   auth: {
-    verify: false,
+    verify: {
+      generateEmailHTML: generateVerificationEmailHTML,
+      generateEmailSubject: generateVerificationEmailSubject,
+    },
     forgotPassword: {
       generateEmailHTML: generateForgotPasswordEmailHTML,
       generateEmailSubject: generateForgotPasswordEmailSubject,
@@ -156,23 +165,91 @@ export const Users: CollectionConfig = {
         },
       },
     },
+    {
+      name: 'verificationEmailRequests',
+      type: 'array',
+      label: 'سجل رسائل التحقق',
+      admin: {
+        readOnly: true,
+        description:
+          'تسجل هذه القائمة آخر رسائل التحقق المرسلة لهذا المستخدم خلال الفترة الزمنية المحددة.',
+      },
+      access: {
+        read: ({ req, doc }) => {
+          const user = req.user
+          if (!user) return false
+          if (user.roles?.includes('admin')) return true
+          return user.id === doc?.id
+        },
+      },
+      fields: [
+        {
+          name: 'sentAt',
+          type: 'date',
+          label: 'تاريخ الإرسال',
+          required: true,
+        },
+        {
+          name: 'context',
+          type: 'text',
+          label: 'سياق الطلب',
+        },
+      ],
+    },
   ],
   hooks: {
-    /* beforeLogin: [
+    beforeLogin: [
       async ({ user }) => {
         if (!user._verified || !user.isEmailVerified) {
           throw new Error(
-            'Please verify your email address before signing in. Check your email for a verification link.',
+            'يرجى التحقق من عنوان بريدك الإلكتروني قبل تسجيل الدخول. تحقق من بريدك الإلكتروني للحصول على رابط التحقق.',
           )
         }
         return user
       },
-    ], */
+    ],
     beforeChange: [
-      ({ data, req: _req, operation: _operation }) => {
+      ({ data, operation }) => {
         if (data._verified !== undefined) {
           data.isEmailVerified = data._verified
         }
+
+        const nowISOString = new Date().toISOString()
+
+        if (operation === 'create') {
+          const hasExistingLog = Array.isArray(data.verificationEmailRequests)
+            ? data.verificationEmailRequests.length > 0
+            : false
+          if (!hasExistingLog) {
+            data.verificationEmailRequests = [
+              {
+                sentAt: nowISOString,
+                context: 'auto-create',
+              },
+            ]
+          }
+        }
+
+        if (Array.isArray(data.verificationEmailRequests)) {
+          const sanitizedEntries = data.verificationEmailRequests
+            .filter((entry) => {
+              if (!entry?.sentAt) return false
+              const parsed = new Date(entry.sentAt as string)
+              return !Number.isNaN(parsed.getTime())
+            })
+            .map((entry) => ({
+              ...entry,
+              sentAt: new Date(entry.sentAt as string).toISOString(),
+            }))
+            .sort(
+              (a, b) =>
+                new Date(a.sentAt as string).getTime() - new Date(b.sentAt as string).getTime(),
+            )
+            .slice(-VERIFICATION_EMAIL_LOG_LIMIT)
+
+          data.verificationEmailRequests = sanitizedEntries
+        }
+
         return data
       },
     ],

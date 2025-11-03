@@ -6,6 +6,15 @@ import { login as payloadLogin, logout as payloadLogout } from '@payloadcms/next
 import config from '@/payload.config'
 import type { User } from '@/payload-types'
 import type { SanitizedPermissions } from 'payload'
+import {
+  generateVerificationEmailHTML,
+  generateVerificationEmailSubject,
+  generateVerificationEmailText,
+} from '@/templates/verification-email'
+
+const VERIFICATION_EMAIL_LIMIT = 5
+const VERIFICATION_EMAIL_WINDOW_MS = 7 * 24 * 60 * 60 * 1000
+const VERIFICATION_EMAIL_LOG_LIMIT = 10
 
 export interface AuthResult {
   user: User | null
@@ -60,6 +69,7 @@ export interface ResendVerificationResult {
   success: boolean
   message?: string
   error?: string
+  code?: 'rate_limit' | 'already_verified' | 'not_found' | 'invalid_request' | 'unknown'
 }
 
 export interface VerifyEmailResult {
@@ -118,7 +128,7 @@ export async function registerUser(data: RegisterData): Promise<RegisterResult> 
   try {
     const payload = await getPayload({ config })
 
-    const user = (await payload.create({
+    const user: User = await payload.create({
       collection: 'users',
       data: {
         name: data.name.trim(),
@@ -126,7 +136,7 @@ export async function registerUser(data: RegisterData): Promise<RegisterResult> 
         password: data.password,
         roles: ['user'],
       },
-    })) as User
+    })
 
     return {
       success: true,
@@ -241,15 +251,28 @@ export async function resetPasswordUser(data: ResetPasswordData): Promise<ResetP
   }
 }
 
-export async function resendVerificationUser(email: string): Promise<ResendVerificationResult> {
+export async function resendVerificationUser(
+  email: string,
+  options: { context?: string } = {},
+): Promise<ResendVerificationResult> {
   try {
     const payload = await getPayload({ config })
+
+    const normalizedEmail = email.trim().toLowerCase()
+
+    if (!normalizedEmail) {
+      return {
+        success: false,
+        code: 'invalid_request',
+        error: 'يرجى إدخال بريد إلكتروني صالح.',
+      }
+    }
 
     const users = await payload.find({
       collection: 'users',
       where: {
         email: {
-          equals: email.trim().toLowerCase(),
+          equals: normalizedEmail,
         },
       },
       limit: 1,
@@ -258,31 +281,95 @@ export async function resendVerificationUser(email: string): Promise<ResendVerif
     if (!users.docs.length) {
       return {
         success: false,
-        error: 'No account found with this email address.',
+        code: 'not_found',
+        error: 'لم يتم العثور على حساب بهذا البريد الإلكتروني.',
       }
     }
 
-    const user = users.docs[0]
+    const user = users.docs[0] as User & {
+      verificationEmailRequests?:
+        | {
+            id?: string
+            sentAt?: string
+            context?: string | null
+          }[]
+        | null
+    }
 
-    if (user.isEmailVerified) {
+    if (user.isEmailVerified || user._verified) {
       return {
         success: false,
-        error: 'This email address is already verified.',
+        code: 'already_verified',
+        error: 'هذا البريد الإلكتروني تم التحقق منه مسبقاً.',
       }
     }
+
+    const now = new Date()
+    const windowStart = new Date(now.getTime() - VERIFICATION_EMAIL_WINDOW_MS)
+
+    const existingLog = Array.isArray(user.verificationEmailRequests)
+      ? user.verificationEmailRequests
+      : []
+
+    const recentRequests = existingLog
+      .filter((entry) => {
+        if (!entry?.sentAt) return false
+        const parsed = new Date(entry.sentAt)
+        return !Number.isNaN(parsed.getTime()) && parsed >= windowStart
+      })
+      .map((entry) => ({
+        sentAt: new Date(entry.sentAt as string),
+        context: entry.context ?? null,
+      }))
+      .sort((a, b) => a.sentAt.getTime() - b.sentAt.getTime())
+
+    if (recentRequests.length >= VERIFICATION_EMAIL_LIMIT) {
+      return {
+        success: false,
+        code: 'rate_limit',
+        error: 'لقد وصلت إلى الحد الأقصى لعدد طلبات التحقق هذا الأسبوع. يرجى المحاولة لاحقاً.',
+      }
+    }
+
+    const crypto = await import('node:crypto')
+    const verificationToken = crypto.randomBytes(32).toString('hex')
+
+    const updatedLog = [
+      ...recentRequests.map((entry) => ({
+        sentAt: entry.sentAt.toISOString(),
+        context: entry.context ?? null,
+      })),
+      {
+        sentAt: now.toISOString(),
+        context: options.context ?? 'self-service',
+      },
+    ].slice(-VERIFICATION_EMAIL_LOG_LIMIT)
 
     await payload.update({
       collection: 'users',
       id: user.id,
       data: {
-        updatedAt: new Date().toISOString(),
+        _verificationToken: verificationToken,
+        verificationEmailRequests: updatedLog,
       },
       overrideAccess: true,
     })
 
+    const emailPayload = {
+      email: user.email,
+      name: user.name ?? undefined,
+    }
+
+    await payload.sendEmail({
+      to: normalizedEmail,
+      subject: generateVerificationEmailSubject({ user: emailPayload }),
+      html: generateVerificationEmailHTML({ token: verificationToken, user: emailPayload }),
+      text: generateVerificationEmailText({ token: verificationToken, user: emailPayload }),
+    })
+
     return {
       success: true,
-      message: 'Verification email has been resent. Please check your inbox.',
+      message: 'تم إرسال رابط التحقق إلى بريدك الإلكتروني.',
     }
   } catch (error) {
     console.error('Resend verification error:', error)
@@ -291,14 +378,16 @@ export async function resendVerificationUser(email: string): Promise<ResendVerif
       if (error.message.includes('email')) {
         return {
           success: false,
-          error: 'Please provide a valid email address.',
+          code: 'invalid_request',
+          error: 'يرجى إدخال بريد إلكتروني صالح.',
         }
       }
     }
 
     return {
       success: false,
-      error: 'Failed to resend verification email. Please try again.',
+      code: 'unknown',
+      error: 'تعذر إرسال بريد التحقق. يرجى المحاولة مرة أخرى.',
     }
   }
 }
@@ -420,13 +509,13 @@ export async function getUserWithDetails(depth: number = 2): Promise<User | null
 
     if (!user) return null
 
-    const detailedUser = await payload.findByID({
+    const detailedUser: User = await payload.findByID({
       collection: 'users',
       id: user.id,
       depth,
     })
 
-    return detailedUser as User
+    return detailedUser
   } catch (error) {
     console.error('Error fetching detailed user:', error)
     return null
@@ -443,13 +532,13 @@ export async function updateUserName(name: string): Promise<UpdateUserResult> {
       return { success: false, error: 'Not authenticated' }
     }
 
-    const updatedUser = await payload.update({
+    const updatedUser: User = await payload.update({
       collection: 'users',
       id: user.id,
       data: { name },
     })
 
-    return { success: true, user: updatedUser as User }
+    return { success: true, user: updatedUser }
   } catch (error) {
     console.error('Error updating user name:', error)
     return {
@@ -469,13 +558,13 @@ export async function updateUserProfilePicture(mediaId: string): Promise<UpdateU
       return { success: false, error: 'Not authenticated' }
     }
 
-    const updatedUser = await payload.update({
+    const updatedUser: User = await payload.update({
       collection: 'users',
       id: user.id,
       data: { profilePicture: mediaId },
     })
 
-    return { success: true, user: updatedUser as User }
+    return { success: true, user: updatedUser }
   } catch (error) {
     console.error('Error updating profile picture:', error)
     return {

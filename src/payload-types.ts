@@ -156,6 +156,16 @@ export interface User {
   isEmailVerified?: boolean | null;
   likedPosts?: (string | BlogPost)[] | null;
   favoritedPosts?: (string | BlogPost)[] | null;
+  /**
+   * تسجل هذه القائمة آخر رسائل التحقق المرسلة لهذا المستخدم خلال الفترة الزمنية المحددة.
+   */
+  verificationEmailRequests?:
+    | {
+        sentAt: string;
+        context?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -163,6 +173,8 @@ export interface User {
   resetPasswordExpiration?: string | null;
   salt?: string | null;
   hash?: string | null;
+  _verified?: boolean | null;
+  _verificationToken?: string | null;
   loginAttempts?: number | null;
   lockUntil?: string | null;
   sessions?:
@@ -683,6 +695,13 @@ export interface UsersSelect<T extends boolean = true> {
   isEmailVerified?: T;
   likedPosts?: T;
   favoritedPosts?: T;
+  verificationEmailRequests?:
+    | T
+    | {
+        sentAt?: T;
+        context?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -690,6 +709,8 @@ export interface UsersSelect<T extends boolean = true> {
   resetPasswordExpiration?: T;
   salt?: T;
   hash?: T;
+  _verified?: T;
+  _verificationToken?: T;
   loginAttempts?: T;
   lockUntil?: T;
   sessions?:

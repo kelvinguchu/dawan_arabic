@@ -1,5 +1,22 @@
 import type { PayloadRequest } from 'payload'
 
+const resolveBaseUrl = () => process.env.NEXT_PUBLIC_SITE_URL || 'https://bawaba.africa'
+
+const escapeHtml = (unsafe: string): string => {
+  return unsafe
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;')
+}
+
+export const buildVerificationEmailURL = (token?: string): string => {
+  const baseUrl = resolveBaseUrl()
+  const safeToken = encodeURIComponent(token || '')
+  return `${baseUrl}/verify-email?token=${safeToken}`
+}
+
 export const generateVerificationEmailHTML = (args?: {
   req?: PayloadRequest
   token?: string
@@ -10,18 +27,8 @@ export const generateVerificationEmailHTML = (args?: {
 }): string => {
   const { token, user } = args || {}
 
-  const escapeHtml = (unsafe: string): string => {
-    return unsafe
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;')
-  }
-
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bawaba.africa'
-  const safeToken = encodeURIComponent(token || '')
-  const verifyEmailURL = `${baseUrl}/verify-email?token=${safeToken}`
+  const baseUrl = resolveBaseUrl()
+  const verifyEmailURL = buildVerificationEmailURL(token)
   const safeUserEmail = escapeHtml(user?.email || 'Unknown User')
   const safeUserName = escapeHtml(user?.name || 'User')
 
@@ -35,7 +42,7 @@ export const generateVerificationEmailHTML = (args?: {
   </head>
   <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8fafc;">
     <div style="background-color: #0f172a; padding: 40px 30px; text-align: center; border-radius: 8px 8px 0 0;">
-      <img src="${baseUrl}/logo.png" alt="بوابة أفريقيا" style="max-width: 200px; height: auto;">
+  <img src="${baseUrl}/logo.png" alt="بوابة أفريقيا" style="max-width: 200px; height: auto;">
     </div>
     
     <div style="background-color: white; padding: 40px 30px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
@@ -96,4 +103,25 @@ export const generateVerificationEmailSubject = (_args?: {
   }
 }): string => {
   return 'مرحباً بك في بوابة أفريقيا - يرجى التحقق من بريدك الإلكتروني'
+}
+
+export const generateVerificationEmailText = (args?: {
+  req?: PayloadRequest
+  token?: string
+  user?: {
+    email: string
+    name?: string
+  }
+}): string => {
+  const { token, user } = args || {}
+  const verifyEmailURL = buildVerificationEmailURL(token)
+  const safeUserName = user?.name || user?.email || 'المستخدم'
+
+  return `مرحباً ${safeUserName},
+
+شكراً لانضمامك إلى بوابة أفريقيا. لإكمال التسجيل والوصول إلى جميع المزايا، يرجى التحقق من بريدك الإلكتروني عبر الرابط التالي:
+
+${verifyEmailURL}
+
+إذا لم تنشئ حساباً لدينا، يمكنك تجاهل هذا البريد الإلكتروني.`
 }

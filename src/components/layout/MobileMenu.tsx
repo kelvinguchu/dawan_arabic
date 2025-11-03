@@ -84,7 +84,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                   ? user.profilePicture.url
                   : undefined
               }
-              alt={user.name ?? 'User'}
+              alt={user.name ?? 'مستخدم'}
             />
             <AvatarFallback className="text-xs font-medium bg-slate-100 text-slate-500">
               {getInitials(user.name, user.email)}

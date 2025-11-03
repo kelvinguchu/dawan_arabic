@@ -44,9 +44,7 @@ export const FeaturedPosts: React.FC<FeaturedPostsProps> = ({
   const gridPostsData = tabbedPosts.slice(4, 6)
 
   const heroPostIds = heroPosts.slice(0, 6).map((post) => post.id)
-  const filteredRecentNews = recentNewsItems.filter(
-    (post) => !heroPostIds.includes(post.id),
-  )
+  const filteredRecentNews = recentNewsItems.filter((post) => !heroPostIds.includes(post.id))
 
   return (
     <section className="pt-0 pb-8 sm:pb-12 bg-linear-to-b from-white to-gray-50">
@@ -56,20 +54,16 @@ export const FeaturedPosts: React.FC<FeaturedPostsProps> = ({
             <div className="flex items-center gap-2 flex-row-reverse justify-end w-full sm:w-auto">
               <TrendingUp className="h-5 w-5 text-primary" strokeWidth={2.5} />
               <h2 className="font-sans text-2xl sm:text-3xl font-bold text-gray-900 text-right">
-                القصص الشائعة
+                أخبار شائعة
               </h2>
             </div>
-            <Tabs
-              value={activeTab}
-              onValueChange={setActiveTab}
-              className="w-full sm:w-auto"
-            >
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full sm:w-auto">
               <TabsList className="bg-gray-100/80 w-full rounded-full h-9 relative z-10">
                 <TabsTrigger
                   value="trending"
                   className="flex-1 sm:flex-none text-sm sm:text-base data-[state=active]:bg-white data-[state=active]:text-primary rounded-full h-7"
                 >
-                  الأكثر شهرة
+                  الأكثر قراءة
                 </TabsTrigger>
                 <TabsTrigger
                   value="editors"
@@ -82,7 +76,7 @@ export const FeaturedPosts: React.FC<FeaturedPostsProps> = ({
           </div>
         </div>
 
-        <> 
+        <>
           {tabbedPosts.length > 0 ? (
             <>
               <TopPosts posts={topPostsData} />
