@@ -21,6 +21,9 @@ import { PushSubscriptions } from './collections/PushSubscriptions.ts'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+const databaseUrl = process.env.DATABASE_URI ?? ''
+const shouldEnableTls =
+  process.env.MONGODB_TLS !== 'false' && databaseUrl.trim().startsWith('mongodb+srv://')
 
 export default buildConfig({
   admin: {
@@ -92,7 +95,7 @@ export default buildConfig({
   },
 
   db: mongooseAdapter({
-    url: process.env.DATABASE_URI ?? '',
+    url: databaseUrl,
     transactionOptions: false,
     connectOptions: {
       serverSelectionTimeoutMS: 10_000,
