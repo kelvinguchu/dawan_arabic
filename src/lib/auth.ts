@@ -200,16 +200,28 @@ export async function registerUser(data: RegisterData): Promise<RegisterResult> 
     console.error('Registration error:', error)
 
     if (error instanceof Error) {
-      if (error.message.includes('email')) {
+      const normalizedMessage = error.message.toLowerCase()
+
+      if (
+        normalizedMessage.includes('already exists') ||
+        normalizedMessage.includes('duplicate') ||
+        normalizedMessage.includes('unique')
+      ) {
         return {
           success: false,
           error: 'An account with this email already exists.',
         }
       }
-      if (error.message.includes('validation')) {
+      if (normalizedMessage.includes('validation')) {
         return {
           success: false,
           error: 'Please check your information and try again.',
+        }
+      }
+      if (normalizedMessage.includes('email')) {
+        return {
+          success: false,
+          error: 'تعذر إرسال رسالة التحقق. يرجى المحاولة مرة أخرى بعد قليل.',
         }
       }
     }
@@ -373,7 +385,7 @@ export async function resendVerificationUser(
         return !Number.isNaN(parsed.getTime()) && parsed >= windowStart
       })
       .map((entry) => ({
-        sentAt: new Date(entry.sentAt as string),
+        sentAt: new Date(entry.sentAt),
         context: entry.context ?? null,
       }))
       .sort((a, b) => a.sentAt.getTime() - b.sentAt.getTime())
