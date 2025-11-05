@@ -199,12 +199,37 @@ export const Users: CollectionConfig = {
   ],
   hooks: {
     beforeLogin: [
-      async ({ user }) => {
-        if (!user._verified || !user.isEmailVerified) {
+      async ({ user, req }) => {
+        if (!user?._verified) {
           throw new Error(
             'يرجى التحقق من عنوان بريدك الإلكتروني قبل تسجيل الدخول. تحقق من بريدك الإلكتروني للحصول على رابط التحقق.',
           )
         }
+
+        if (!user.isEmailVerified && req?.payload) {
+          try {
+            // Keep the custom flag aligned with Payload's internal verification state.
+            await req.payload.update({
+              collection: 'users',
+              id: user.id,
+              data: {
+                isEmailVerified: true,
+              },
+              overrideAccess: true,
+            })
+
+            user.isEmailVerified = true
+          } catch (error) {
+            req.payload.logger?.warn?.(
+              {
+                err: error,
+                userId: user.id,
+              },
+              'تعذر مزامنة حقل isEmailVerified أثناء تسجيل الدخول.',
+            )
+          }
+        }
+
         return user
       },
     ],

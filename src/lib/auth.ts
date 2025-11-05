@@ -16,6 +16,59 @@ const VERIFICATION_EMAIL_LIMIT = 5
 const VERIFICATION_EMAIL_WINDOW_MS = 7 * 24 * 60 * 60 * 1000
 const VERIFICATION_EMAIL_LOG_LIMIT = 10
 
+type PayloadInstance = Awaited<ReturnType<typeof getPayload>>
+type UserWithVerificationMeta = User & { _verificationToken?: string | null }
+
+async function findUserByVerificationToken(
+  payloadClient: PayloadInstance,
+  token: string,
+): Promise<UserWithVerificationMeta | undefined> {
+  try {
+    const lookup = await payloadClient.find({
+      collection: 'users',
+      where: {
+        _verificationToken: {
+          equals: token,
+        },
+      },
+      limit: 1,
+      showHiddenFields: true,
+      overrideAccess: true,
+    })
+
+    return (lookup.docs[0] as UserWithVerificationMeta | undefined) ?? undefined
+  } catch (error) {
+    payloadClient.logger?.warn?.(
+      {
+        err: error,
+      },
+      'تعذر العثور على المستخدم عبر رمز التحقق قبل إتمام التحقق.',
+    )
+    return undefined
+  }
+}
+
+async function syncVerifiedFlag(payloadClient: PayloadInstance, userId: string): Promise<void> {
+  try {
+    await payloadClient.update({
+      collection: 'users',
+      id: userId,
+      data: {
+        isEmailVerified: true,
+      },
+      overrideAccess: true,
+    })
+  } catch (error) {
+    payloadClient.logger?.warn?.(
+      {
+        err: error,
+        userId,
+      },
+      'تم التحقق من البريد لكن تعذر تحديث الحقل isEmailVerified.',
+    )
+  }
+}
+
 export interface AuthResult {
   user: User | null
   permissions?: SanitizedPermissions
@@ -127,12 +180,13 @@ export async function authenticateUser(email: string, password: string): Promise
 export async function registerUser(data: RegisterData): Promise<RegisterResult> {
   try {
     const payload = await getPayload({ config })
+    const normalizedEmail = data.email.trim().toLowerCase()
 
     const user: User = await payload.create({
       collection: 'users',
       data: {
         name: data.name.trim(),
-        email: data.email.trim().toLowerCase(),
+        email: normalizedEmail,
         password: data.password,
         roles: ['user'],
       },
@@ -276,13 +330,14 @@ export async function resendVerificationUser(
         },
       },
       limit: 1,
+      showHiddenFields: true,
     })
 
     if (!users.docs.length) {
       return {
         success: false,
         code: 'not_found',
-        error: 'لم يتم العثور على حساب بهذا البريد الإلكتروني.',
+        error: 'إذا كان هناك حساب بهذا البريد الإلكتروني، فقد تم إرسال تعليمات التحقق.',
       }
     }
 
@@ -458,23 +513,36 @@ export async function checkUserPermissions(
 
 export async function verifyUserEmail(token: string): Promise<VerifyEmailResult> {
   try {
-    const payload = await getPayload({ config })
+    const payloadClient = await getPayload({ config })
+    const normalizedToken = token?.trim()
 
-    const result = await payload.verifyEmail({
-      collection: 'users',
-      token,
-    })
-
-    if (result) {
-      return {
-        success: true,
-        message: 'Your email has been successfully verified!',
-      }
-    } else {
+    if (!normalizedToken) {
       return {
         success: false,
-        error: 'Email verification failed. The token may be invalid or expired.',
+        error: 'رابط التحقق غير صالح. لم يتم العثور على رمز التحقق.',
       }
+    }
+
+    const matchedUser = await findUserByVerificationToken(payloadClient, normalizedToken)
+    const verificationSucceeded = await payloadClient.verifyEmail({
+      collection: 'users',
+      token: normalizedToken,
+    })
+
+    if (!verificationSucceeded) {
+      return {
+        success: false,
+        error: 'فشل التحقق من البريد الإلكتروني. ربما يكون الرابط غير صالح أو منتهي الصلاحية.',
+      }
+    }
+
+    if (matchedUser?.id) {
+      await syncVerifiedFlag(payloadClient, matchedUser.id)
+    }
+
+    return {
+      success: true,
+      message: 'تم التحقق من بريدك الإلكتروني بنجاح! يمكنك تسجيل الدخول الآن.',
     }
   } catch (error) {
     console.error('Email verification error:', error)
@@ -483,20 +551,20 @@ export async function verifyUserEmail(token: string): Promise<VerifyEmailResult>
       if (error.message.includes('token')) {
         return {
           success: false,
-          error: 'Invalid or expired verification token. Please request a new verification email.',
+          error: 'رمز التحقق غير صالح أو منتهي الصلاحية. يرجى طلب رسالة تحقق جديدة.',
         }
       }
       if (error.message.includes('already verified')) {
         return {
           success: false,
-          error: 'This email address is already verified.',
+          error: 'تم التحقق من هذا البريد الإلكتروني بالفعل.',
         }
       }
     }
 
     return {
       success: false,
-      error: 'An error occurred while verifying your email. Please try again.',
+      error: 'حدث خطأ أثناء التحقق من بريدك الإلكتروني. يرجى المحاولة مرة أخرى.',
     }
   }
 }

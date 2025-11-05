@@ -31,9 +31,11 @@ function LoginClientBoundary() {
   return (
     <>
       {registered && (
-        <div className="bg-green-50 border border-green-100 text-green-700 p-4 mb-6 max-w-md mx-auto rounded-md shadow-sm flex items-center flex-row-reverse">
-          <CheckCircle2 className="h-5 w-5 ml-2 flex-shrink-0 text-green-500" />
-          <p className="text-base">تم التسجيل بنجاح! يرجى تسجيل الدخول.</p>
+        <div className="bg-blue-50 border border-blue-100 text-blue-700 p-4 mb-6 max-w-md mx-auto rounded-md shadow-sm flex items-center flex-row-reverse">
+          <CheckCircle2 className="h-5 w-5 ml-2 flex-shrink-0 text-blue-500" />
+          <p className="text-base">
+            تم إنشاء حسابك بنجاح! يرجى التحقق من بريدك الإلكتروني قبل محاولة تسجيل الدخول.
+          </p>
         </div>
       )}
       <LoginForm />
@@ -46,8 +48,10 @@ export default function LoginPage() {
     <div className="flex flex-col min-h-screen bg-slate-50 pb-12 pt-16 sm:pt-24">
       <Suspense
         fallback={
-          <div className="flex items-center justify-center flex-grow">
-            <div className="animate-pulse text-slate-500 text-base">جاري تحميل معلومات الصفحة...</div>
+          <div className="flex items-center justify-center grow">
+            <div className="animate-pulse text-slate-500 text-base">
+              جاري تحميل معلومات الصفحة...
+            </div>
           </div>
         }
       >

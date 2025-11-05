@@ -34,9 +34,10 @@ export const RegisterForm: React.FC = () => {
 
     setIsLoading(true)
     try {
+      const normalizedEmail = email.trim().toLowerCase()
       const result = await register({
         name,
-        email: email.trim().toLowerCase(),
+        email: normalizedEmail,
         password,
       })
 
@@ -60,7 +61,7 @@ export const RegisterForm: React.FC = () => {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({
-                email: email.trim(),
+                email: normalizedEmail,
                 firstName: extractFirstName(name),
                 source: 'registration',
               }),
@@ -70,7 +71,7 @@ export const RegisterForm: React.FC = () => {
           }
         }
 
-        router.push('/login?registered=true&verify_email=true')
+        router.push(`/verify-email/pending?email=${encodeURIComponent(normalizedEmail)}`)
       } else {
         setError(result.error || 'فشل التسجيل. الرجاء المحاولة مرة أخرى.')
       }
@@ -129,16 +130,24 @@ export const RegisterForm: React.FC = () => {
                   <Mail className="h-4 w-4" />
                 </div>
                 <Input
+                  id="email-address-register"
+                  name="email"
+                  type="email"
                   className="pr-10 bg-white border-slate-200 focus:border-primary focus:ring-primary/80 text-base text-right"
                   placeholder="الاسم@مثال.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="email"
+                  required
                 />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="password-register" className="text-base font-medium text-slate-700 text-right">
+              <Label
+                htmlFor="password-register"
+                className="text-base font-medium text-slate-700 text-right"
+              >
                 كلمة المرور
               </Label>
               <div className="relative">
@@ -160,7 +169,10 @@ export const RegisterForm: React.FC = () => {
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="confirm-password" className="text-base font-medium text-slate-700 text-right">
+              <Label
+                htmlFor="confirm-password"
+                className="text-base font-medium text-slate-700 text-right"
+              >
                 تأكيد كلمة المرور
               </Label>
               <div className="relative">
@@ -197,7 +209,9 @@ export const RegisterForm: React.FC = () => {
             </div>
 
             {error && (
-              <div className="text-base text-red-500 bg-red-50 px-3 py-2 rounded-md text-right">{error}</div>
+              <div className="text-base text-red-500 bg-red-50 px-3 py-2 rounded-md text-right">
+                {error}
+              </div>
             )}
 
             <div className="pt-2">
