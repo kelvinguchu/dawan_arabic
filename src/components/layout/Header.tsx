@@ -35,13 +35,13 @@ interface HeaderProps {
   initialCategories?: BlogCategory[]
 }
 
-const countries = ['الصومال', 'كينيا', 'جيبوتي', 'إثيوبيا', 'إريتريا']
+const countries = ['الصومال', 'كينيا', 'جيبوتي', 'إثيوبيا', 'إرتيريا']
 
 const getInitials = (name?: string | null, email?: string | null): string => {
   if (name) {
     const parts = name.split(' ')
     if (parts.length > 1) {
-      return `${parts[0][0]}${parts[parts.length - 1][0]}`.toUpperCase()
+      return `${parts[0][0]}${parts.at(-1)?.[0] ?? ''}`.toUpperCase()
     }
     return name.substring(0, 2).toUpperCase()
   }
@@ -89,7 +89,17 @@ const Header: React.FC<HeaderProps> = ({ initialCategories = [] }) => {
   const formattedDate = format(today, 'EEEE، d MMMM yyyy', { locale: ar })
 
   useEffect(() => {
-    if (window.matchMedia('(display-mode: standalone)').matches) {
+    const win =
+      typeof globalThis === 'object' && 'matchMedia' in globalThis
+        ? (globalThis as Window & typeof globalThis)
+        : undefined
+
+    if (!win?.matchMedia) {
+      setIsInstallable(false)
+      return
+    }
+
+    if (win.matchMedia('(display-mode: standalone)').matches) {
       setIsInstallable(false)
       return
     }
@@ -105,12 +115,12 @@ const Header: React.FC<HeaderProps> = ({ initialCategories = [] }) => {
       setIsInstallable(false)
     }
 
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
-    window.addEventListener('appinstalled', handleAppInstalled)
+    win.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+    win.addEventListener('appinstalled', handleAppInstalled)
 
     return () => {
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
-      window.removeEventListener('appinstalled', handleAppInstalled)
+      win.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+      win.removeEventListener('appinstalled', handleAppInstalled)
     }
   }, [])
 
@@ -152,7 +162,7 @@ const Header: React.FC<HeaderProps> = ({ initialCategories = [] }) => {
                   alt="بوابة أفريقيا"
                   width={200}
                   height={36}
-                  className="h-[36px] w-auto"
+                  className="h-9 w-auto"
                 />
               </Link>
             </div>
