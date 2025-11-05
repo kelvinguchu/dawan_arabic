@@ -31,6 +31,7 @@ export const generateVerificationEmailHTML = (args?: {
   const verifyEmailURL = buildVerificationEmailURL(token)
   const safeUserEmail = escapeHtml(user?.email || 'Unknown User')
   const safeUserName = escapeHtml(user?.name || 'User')
+  const currentYear = new Date().getFullYear()
 
   return `
 <!DOCTYPE html>
@@ -85,7 +86,7 @@ export const generateVerificationEmailHTML = (args?: {
 
       <div style="text-align: center; margin-top: 32px; padding-top: 24px; border-top: 1px solid #e5e7eb;">
         <p style="font-size: 12px; color: #999; margin: 0;" dir="rtl">
-          © 2025 بوابة أفريقيا. جميع الحقوق محفوظة.<br>
+          © ${currentYear} بوابة أفريقيا. جميع الحقوق محفوظة.<br>
           مصدركم الموثوق للأخبار والرؤى الأفريقية.
         </p>
       </div>

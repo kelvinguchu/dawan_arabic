@@ -19,6 +19,7 @@ export function generateWelcomeEmail({
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bawaba.africa'
 
   const unsubscribeUrl = buildUnsubscribeUrl(email)
+  const currentYear = new Date().getFullYear()
 
   const html = `
 <!DOCTYPE html>
@@ -66,7 +67,7 @@ export function generateWelcomeEmail({
         <a href="${siteUrl}" style="color: #2ac4f3;">زيارة موقعنا</a>
       </p>
       <p>
-        بوابة أفريقيا<br>
+        © ${currentYear} بوابة أفريقيا<br>
         شارع مارينيو، مقديشو، الصومال
       </p>
     </div>

@@ -3,54 +3,54 @@ import { sanitizeHTML } from '../lib/html-sanitizer.ts'
 
 function escapeHtml(unsafe: string): string {
   return unsafe
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#x27;')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#x27;')
 }
 
 function enhanceHTMLWithStyling(html: string): string {
   return html
-    .replace(/<p>/g, '<p style="margin: 8px 0; color: #333; line-height: 1.6; font-size: 16px;">')
-    .replace(
-      /<h1>/g,
+    .replaceAll('<p>', '<p style="margin: 8px 0; color: #333; line-height: 1.6; font-size: 16px;">')
+    .replaceAll(
+      '<h1>',
       '<h1 style="font-size: 28px; font-weight: bold; margin: 16px 0 8px 0; color: #b01c14;">',
     )
-    .replace(
-      /<h2>/g,
+    .replaceAll(
+      '<h2>',
       '<h2 style="font-size: 24px; font-weight: bold; margin: 14px 0 6px 0; color: #b01c14;">',
     )
-    .replace(
-      /<h3>/g,
+    .replaceAll(
+      '<h3>',
       '<h3 style="font-size: 20px; font-weight: bold; margin: 12px 0 6px 0; color: #333;">',
     )
-    .replace(
-      /<h4>/g,
+    .replaceAll(
+      '<h4>',
       '<h4 style="font-size: 18px; font-weight: bold; margin: 10px 0 4px 0; color: #333;">',
     )
-    .replace(
-      /<h5>/g,
+    .replaceAll(
+      '<h5>',
       '<h5 style="font-size: 16px; font-weight: bold; margin: 8px 0 4px 0; color: #333;">',
     )
-    .replace(
-      /<h6>/g,
+    .replaceAll(
+      '<h6>',
       '<h6 style="font-size: 14px; font-weight: bold; margin: 8px 0 4px 0; color: #333;">',
     )
-    .replace(/<ul>/g, '<ul style="margin: 8px 0; padding-left: 20px;">')
-    .replace(/<ol>/g, '<ol style="margin: 8px 0; padding-left: 20px;">')
-    .replace(/<li>/g, '<li style="margin: 2px 0; color: #333; line-height: 1.6;">')
-    .replace(
-      /<blockquote>/g,
+    .replaceAll('<ul>', '<ul style="margin: 8px 0; padding-left: 20px;">')
+    .replaceAll('<ol>', '<ol style="margin: 8px 0; padding-left: 20px;">')
+    .replaceAll('<li>', '<li style="margin: 2px 0; color: #333; line-height: 1.6;">')
+    .replaceAll(
+      '<blockquote>',
       '<blockquote style="margin: 8px 0; padding: 12px; border-left: 4px solid #b01c14; background-color: #f8f9fa; font-style: italic; color: #555;">',
     )
-    .replace(
+    .replaceAll(
       /<hr\s*\/?>/g,
       '<hr style="margin: 12px 0; border: none; border-top: 2px solid #e9ecef;" />',
     )
-    .replace(/<a /g, '<a style="color: #b01c14; text-decoration: underline;" ')
-    .replace(
-      /<code>/g,
+    .replaceAll('<a ', '<a style="color: #b01c14; text-decoration: underline;" ')
+    .replaceAll(
+      '<code>',
       '<code style="background-color: #f1f1f1; padding: 2px 4px; border-radius: 3px; font-family: monospace;">',
     )
 }
@@ -82,6 +82,12 @@ export async function generateNewsletterCampaignEmailHTML(
   }
 
   const escapedSubject = escapeHtml(subject)
+  const escapedSubscriberEmail = escapeHtml(subscriberEmail)
+  const sanitizedUnsubscribeUrl = escapeHtml(unsubscribeUrl)
+  const rawSiteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bawaba.africa'
+  const normalizedSiteUrl = rawSiteUrl.replace(/\/$/, '')
+  const preferencesUrl = `${normalizedSiteUrl}/newsletter`
+  const currentYear = new Date().getFullYear()
 
   return `
 <!DOCTYPE html>
@@ -250,8 +256,8 @@ export async function generateNewsletterCampaignEmailHTML(
 <body>
     <div class="email-container">
         <!-- Header -->
-        <div class="header">
-            <img src="https://bawaba.africa/logo.png" alt="بوابة أفريقيا" />
+    <div class="header">
+      <img src="${normalizedSiteUrl}/logo.png" alt="بوابة أفريقيا" />
             <h1>${escapedSubject}</h1>
         </div>
         
@@ -260,26 +266,27 @@ export async function generateNewsletterCampaignEmailHTML(
             ${htmlContent}
             
             <div class="cta-section">
-                <a href="https://bawaba.africa" class="cta-button">Visit Our Website</a>
+        <a href="${normalizedSiteUrl}" class="cta-button">زيارة موقعنا</a>
             </div>
         </div>
         
         <!-- Footer -->
         <div class="footer">
             <p><strong>بوابة أفريقيا</strong></p>
-            <p>Warar iyo falanqayn qoto dheer oo ku saabsan Soomaaliya iyo Geeska Afrika</p>
+      <p>أخبار وتحليلات معمقة عن أفريقيا والشرق الأوسط</p>
             <p>
-                <a href="mailto:info@bawaba.africa">info@bawaba.africa</a> | 
-                <a href="https://bawaba.africa">www.bawaba.africa</a>
+        <a href="mailto:info@bawaba.africa">info@bawaba.africa</a> | 
+        <a href="${normalizedSiteUrl}">www.bawaba.africa</a>
             </p>
             <p>Marinio Rd, Mogadishu, Somalia | +252628881171</p>
             
             <div class="unsubscribe">
-                <p>This email was sent to ${subscriberEmail}</p>
+        <p dir="rtl">تم إرسال هذا البريد الإلكتروني إلى ${escapedSubscriberEmail}</p>
                 <p>
-                    <a href="${escapeHtml(unsubscribeUrl)}">Unsubscribe</a> | 
-                    <a href="https://bawaba.africa/newsletter">Update Preferences</a>
+          <a href="${sanitizedUnsubscribeUrl}">إلغاء الاشتراك</a> | 
+          <a href="${preferencesUrl}">تحديث التفضيلات</a>
                 </p>
+        <p dir="rtl">© ${currentYear} بوابة أفريقيا. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </div>
@@ -305,35 +312,46 @@ function convertLexicalNodeToText(node: LexicalNode): string {
   }
 
   switch (node.type) {
-    case 'paragraph':
+    case 'paragraph': {
       const paragraphContent = node.children ? convertLexicalNodesToText(node.children) : ''
       return paragraphContent + '\n'
+    }
 
-    case 'heading':
+    case 'heading': {
       const headingContent = node.children ? convertLexicalNodesToText(node.children) : ''
       const level = node.tag?.replace('h', '') || '1'
-      const prefix = level === '1' ? '# ' : level === '2' ? '## ' : level === '3' ? '### ' : ''
+      const headingPrefixes: { [key: string]: string } = {
+        '1': '# ',
+        '2': '## ',
+        '3': '### ',
+      }
+      const prefix = headingPrefixes[level] || ''
       return prefix + headingContent + '\n\n'
+    }
 
-    case 'list':
+    case 'list': {
       const listContent = node.children ? convertLexicalNodesToText(node.children) : ''
       return listContent + '\n'
+    }
 
-    case 'listitem':
+    case 'listitem': {
       const listItemContent = node.children ? convertLexicalNodesToText(node.children) : ''
       return '• ' + listItemContent.replace(/\n+$/, '') + '\n'
+    }
 
-    case 'quote':
+    case 'quote': {
       const quoteContent = node.children ? convertLexicalNodesToText(node.children) : ''
       return '> ' + quoteContent.replace(/\n+$/, '') + '\n\n'
+    }
 
     case 'horizontalrule':
       return '─────────────────────────────────────\n\n'
 
-    case 'link':
+    case 'link': {
       const linkContent = node.children ? convertLexicalNodesToText(node.children) : ''
       const url = node.fields?.url || node.url || '#'
       return `${linkContent} (${url})`
+    }
 
     case 'linebreak':
       return '\n'
@@ -373,35 +391,40 @@ export function generateNewsletterCampaignEmailText(
     textContent = 'No content available'
   }
 
+  const rawSiteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bawaba.africa'
+  const normalizedSiteUrl = rawSiteUrl.replace(/\/$/, '')
+  const preferencesUrl = `${normalizedSiteUrl}/newsletter`
+  const currentYear = new Date().getFullYear()
+
   return `
-بوابة أفريقيا NEWSLETTER
+\u202Bالنشرة البريدية لبوابة أفريقيا\u202C
 ${subject}
 ================================
 
 ${textContent}
 
-Visit our website: https://bawaba.africa
+\u202Bقم بزيارة موقعنا:\u202C ${normalizedSiteUrl}
 
 ================================
-ABOUT بوابة أفريقيا
+\u202Bحول بوابة أفريقيا\u202C
 
-Warar iyo falanqayn qoto dheer oo ku saabsan Soomaaliya iyo Geeska Afrika
+\u202Bأخبار وتحليلات معمقة عن أفريقيا والشرق الأوسط\u202C
 
-Contact Us:
-Email: info@bawaba.africa
-Website: https://bawaba.africa
-Address: Marinio Rd, Mogadishu, Somalia
-Phone: +252628881171
+\u202Bبيانات التواصل:\u202C
+\u202Bالبريد الإلكتروني:\u202C info@bawaba.africa
+\u202Bالموقع الإلكتروني:\u202C ${normalizedSiteUrl}
+\u202Bالعنوان:\u202C Marinio Rd, Mogadishu, Somalia
+\u202Bالهاتف:\u202C +252628881171
 
 ================================
-SUBSCRIPTION DETAILS
+\u202Bتفاصيل الاشتراك\u202C
 
-This email was sent to: ${subscriberEmail}
+\u202Bتم إرسال هذا البريد الإلكتروني إلى:\u202C ${subscriberEmail}
 
-Manage your subscription:
-• Unsubscribe: ${unsubscribeUrl}
-• Update preferences: https://bawaba.africa/newsletter
+\u202Bإدارة اشتراكك:\u202C
+• \u202Bإلغاء الاشتراك:\u202C ${unsubscribeUrl}
+• \u202Bتحديث التفضيلات:\u202C ${preferencesUrl}
 
-© ${new Date().getFullYear()} بوابة أفريقيا. All rights reserved.
+© ${currentYear} \u202Bبوابة أفريقيا. جميع الحقوق محفوظة.\u202C
   `.trim()
 }

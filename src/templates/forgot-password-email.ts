@@ -12,11 +12,11 @@ export const generateForgotPasswordEmailHTML = (args?: {
 
   const escapeHtml = (unsafe: string): string => {
     return unsafe
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;')
   }
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bawaba.africa'
@@ -24,6 +24,7 @@ export const generateForgotPasswordEmailHTML = (args?: {
   const resetPasswordURL = `${baseUrl}/reset-password?token=${safeToken}`
   const safeUserEmail = escapeHtml(user?.email || 'Unknown User')
   const safeUserName = escapeHtml(user?.name || 'User')
+  const currentYear = new Date().getFullYear()
 
   return `
 <!DOCTYPE html>
@@ -82,7 +83,7 @@ export const generateForgotPasswordEmailHTML = (args?: {
       
       <div style="text-align: center; margin-top: 32px; padding-top: 24px; border-top: 1px solid #e5e7eb;">
         <p style="font-size: 12px; color: #999; margin: 0;" dir="rtl">
-          © 2025 بوابة أفريقيا. جميع الحقوق محفوظة.<br>
+          © ${currentYear} بوابة أفريقيا. جميع الحقوق محفوظة.<br>
           مصدركم الموثوق للأخبار والرؤى الأفريقية.
         </p>
       </div>
