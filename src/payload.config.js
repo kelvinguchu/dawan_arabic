@@ -97,7 +97,7 @@ export default buildConfig({
   }),
 
   email: resendAdapter({
-    defaultFromAddress: 'info@dawan.africa',
+    defaultFromAddress: 'info@bawaba.africa',
     defaultFromName: 'بوابة أفريقيا',
     apiKey: process.env.RESEND_API_KEY || '',
   }),
